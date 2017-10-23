@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    
+      <button type="button" class="am-btn am-btn-primary">默认样式</button>
   </div>
 </template>
 

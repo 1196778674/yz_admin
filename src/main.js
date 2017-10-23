@@ -4,6 +4,11 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 
+window.jQuery = window.$ = require('jquery')
+// window.bootstrap = require('bootstrap')
+window.amaze = require('amazeui')
+
+import '../node_modules/amazeui/dist/css/amazeui.min.css'
 import './assets/less/index.less'
 
 Vue.config.productionTip = false
