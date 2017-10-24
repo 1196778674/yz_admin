@@ -1,6 +1,10 @@
 <template>
 	<div class="yx_left">
-		left
+		<ul>
+			<li>
+				<router-link to="#">link</router-link>
+			</li>
+		</ul>
 	</div>
 </template>
 
@@ -12,6 +16,9 @@
 
 			}
 		},
+		created: function () {
+			console.log(Public.Ajax());
+		}
 	}
 </script>
 <style scoped>

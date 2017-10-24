@@ -7,6 +7,7 @@ import router from './router'
 window.jQuery = window.$ = require('jquery')
 // window.bootstrap = require('bootstrap')
 window.amaze = require('amazeui')
+window.Public = require('./assets/js/common.js').default
 
 import '../node_modules/amazeui/dist/css/amazeui.min.css'
 import './assets/less/index.less'
