@@ -1,25 +1,30 @@
 <template>
-  <div class="hello">
-      <button type="button" class="am-btn am-btn-primary">默认样式</button>
+  <div class="yz_home">
+      <left></left>
+      <right></right>
   </div>
 </template>
 
 <script>
+import left from '@/tpls/Left'
+import right from '@/tpls/Right'
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data () {
     return {
-      msg: 'hello world'
+      
     }
   },
   created: function(){
-    this.msg = '优翔客户管理系统'
+
   },
   methods: {
-    change () {
-      this.msg = '优翔客户管理系统!'
-    },
+    
   },
+  components: {
+    "left": left,
+    "right": right
+  }
 }
 </script>
 
