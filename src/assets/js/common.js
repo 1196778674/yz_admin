@@ -44,6 +44,15 @@ const common = {
 	hideDialog: function(modal){
 		modal.modal('close');
 	},
+
+	// button的loading效果
+	btnDialog: function(e){
+		var $btn = $(e.target);
+		$btn.button('loading');
+			setTimeout(function(){
+		    $btn.button('reset');
+		}, 3000);
+	},
 }
 
 export default common;

@@ -1,7 +1,6 @@
 <template>
 	<div class="yx_body">
-		<button @click="test('你脑子哇咔啦')">dialog</button>
-		<button @click="test('这都被你看出来了？')">dialog</button>
+		<button type="button" class="am-btn am-btn-primary btn-loading-example" data-am-loading="{spinner: 'circle-o-notch', loadingText: '登录中...', resetText: '登录'}" @click="test($event)">登录</button>
 	</div>
 </template>
 
@@ -13,9 +12,13 @@
 
 			}
 		},
+		created: function(){
+			var self = this;
+		},
 		methods: {
-			test: function (t) {
-				Public.dialog(t);
+			test: function (e) {
+				Public.btnDialog(e);
+				Public.dialog('etst');
 			}
 		}
 	}
