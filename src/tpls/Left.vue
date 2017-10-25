@@ -24,7 +24,12 @@
 				<li class="sidebar-nav-link">
 					<router-link to="#"><span class="am-icon-tags"></span>标签管理</router-link>
 				</li>
-
+				<li class="sidebar-nav-link">
+					<router-link to="#"><span class="am-icon-stethoscope"></span>诊室管理</router-link>
+				</li>
+				<li class="sidebar-nav-link">
+					<router-link to="#"><span class="am-icon-list-alt"></span>类别管理</router-link>
+				</li>
             </ul>
         </div>
 	</div>
