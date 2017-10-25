@@ -1,3 +1,5 @@
+@leftWidth: 150px;
+
 ul,li {
     list-style: none;
     padding: 0;
@@ -13,7 +15,7 @@ header {
     position: relative;
 }
 .tpl-header-logo {
-    width: 240px;
+    width: @leftWidth;
     height: 57px;
     display: table;
     text-align:center;
@@ -26,13 +28,13 @@ header {
     }
 
     img {
-        width:170px;
+        width:140px;
     }
 }
 
 
 .tpl-header-fluid {
-    margin-left: 240px;
+    margin-left: @leftWidth;
     height: 56px;
     
     padding-left: 20px;
@@ -319,8 +321,8 @@ ul.tpl-dropdown-content {
     color:#fff!important;
 }
 .left-sidebar {
-        transition: all 0.4s ease-in-out;
-    width: 240px;
+    transition: all 0.4s ease-in-out;
+    width: @leftWidth;
     min-height: 100%;
     padding-top: 57px;
     position: absolute;
@@ -450,7 +452,7 @@ ul.tpl-dropdown-content {
 .tpl-content-wrapper {
     transition: all 0.4s ease-in-out;
     position: relative;
-    margin-left: 240px;
+    margin-left: @leftWidth;
     z-index: 1101;
     min-height: 922px;
     border-bottom-left-radius: 3px;
