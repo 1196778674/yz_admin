@@ -1,4 +1,5 @@
 @leftWidth: 150px;
+@headerHeight: 88px;
 
 ul,li {
     list-style: none;
@@ -29,16 +30,21 @@ header {
 
     img {
         width:140px;
+        height: 88px;
     }
 }
 
 
 .tpl-header-fluid {
     margin-left: @leftWidth;
-    height: 56px;
+    height: @headerHeight;
     
     padding-left: 20px;
     padding-right: 20px;
+    div{
+        height: 100%;
+        line-height: @headerHeight;
+    }
 }
 
 
@@ -57,15 +63,15 @@ header {
     line-height: 55px;
     
     &:hover {
-      
+        cursor: pointer;
         outline: none;
     }
 }
 
 
 .tpl-header-search-form {
-    height: 54px;
-    line-height: 52px;
+    height: @headerHeight;
+    line-height: @headerHeight;
     margin-left: 10px;
 
 }
@@ -99,7 +105,7 @@ header {
         float: left;
     }
     a {
-        line-height: 56px;
+        line-height: @headerHeight;
         display: block;
         padding: 0 16px;
         position: relative;
@@ -111,8 +117,8 @@ header {
         
         .item-feed-badge {
             position: absolute;
-            top: 9px;
-            left: 25px;
+            top: 29px;
+            left: 23px;
         }
     }
 }
