@@ -1,8 +1,8 @@
 <template>
 	<div id="right" class="tpl-content-wrapper">
         <div class="container-fluid">
-            <div class="">
-                fsfsfs
+            <div class="am-panel am-panel-primary" data-am-scrollspy="{animation: 'slide-bottom'}">
+                我是滚动效果
             </div>
         </div>
 	</div>
