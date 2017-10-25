@@ -1,11 +1,15 @@
 <template>
-  <div class="yz_home">
-      <left></left>
-      <right></right>
+  <div class="am-g tpl-g">
+      <vheader></vheader>
+      <div>
+        <left></left>
+        <right></right>
+      </div>
   </div>
 </template>
 
 <script>
+import header from '@/tpls/Header'
 import left from '@/tpls/Left'
 import right from '@/tpls/Right'
 export default {
@@ -22,6 +26,7 @@ export default {
     
   },
   components: {
+    "vheader": header,
     "left": left,
     "right": right
   }

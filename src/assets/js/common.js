@@ -53,6 +53,29 @@ const common = {
 		    $btn.button('reset');
 		}, 3000);
 	},
+
+	// 左侧边栏
+	autoLeftNav: function () {
+	    $('.tpl-header-switch-button').on('click', function() {
+	        if ($('.left-sidebar').is('.active')) {
+	            if ($(window).width() > 1024) {
+	                $('.tpl-content-wrapper').removeClass('active');
+	            }
+	            $('.left-sidebar').removeClass('active');
+	        } else {
+
+	            $('.left-sidebar').addClass('active');
+	            if ($(window).width() > 1024) {
+	                $('.tpl-content-wrapper').addClass('active');
+	            }
+	        }
+	    })
+	    if ($(window).width() < 1024) {
+	        $('.left-sidebar').addClass('active');
+	    } else {
+	        $('.left-sidebar').removeClass('active');
+	    }
+	}
 }
 
 export default common;
