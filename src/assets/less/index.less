@@ -16,6 +16,13 @@ header {
     z-index: 1200;
     position: relative;
 }
+#header{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+}
 .tpl-header-logo {
     width: @leftWidth;
     height: 57px;
@@ -337,10 +344,10 @@ ul.tpl-dropdown-content {
     transition: all 0.4s ease-in-out;
     width: @leftWidth;
     min-height: 100%;
-    padding-top: 57px;
-    position: absolute;
+    // padding-top: @headerHeight;
+    position: fixed;
     z-index: 1104;
-    top: 0;
+    top: @headerHeight;
     left: 0px;
     &.xs-active {
         left:0px;
