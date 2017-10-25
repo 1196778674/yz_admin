@@ -1,5 +1,6 @@
 @leftWidth: 150px;
 @headerHeight: 60px;
+@fontColor: #20A8BB;
 
 ul,li {
     list-style: none;
@@ -406,9 +407,9 @@ ul.tpl-dropdown-content {
     }
 
     .sidebar-nav-link-logo {
-            margin-right: 8px;
-    width: 20px;
-    font-size: 16px;
+        margin-right: 8px;
+        width: 20px;
+        font-size: 16px;
     }
 }
 
@@ -437,17 +438,20 @@ ul.tpl-dropdown-content {
     font-size: 16px;
 }
 .sidebar-nav-link {
- 
     color: #fff;
-
     a {
         display: block;
         color: #868E8E;
-        padding: 10px 17px;
+        padding: 10px 22px;
         border-left: #282d2f 3px solid;
         font-size: 14px;
         cursor: pointer;
-
+        span{
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            font-size: 15px;
+        }
         &.active {
             cursor: pointer;
             border-left: #1CA2CE 3px solid;
@@ -1322,16 +1326,18 @@ color: #c5cacd;
             border-left: #fff 3px solid;
         }
         a:hover {
-
             background: #f2f6f9;
-    color: #868E8E;
-    border-left: #3bb4f2 3px solid;
+            color: @fontColor;
+            border-left: #3bb4f2 3px solid;
+            span{
+                color: @fontColor;
+            }
         }
     }
 
     .sidebar-nav-link a.active {
             background: #f2f6f9;
-            color:  #868E8E;
+            color:  @fontColor;
             border-left: #3bb4f2 3px solid;
     }
    .sidebar-nav-heading {
