@@ -1,6 +1,6 @@
 <template>
 	<div class="yx_body">
-		<button type="button" class="am-btn am-btn-primary btn-loading-example" data-am-loading="{spinner: 'circle-o-notch', loadingText: '登录中...', resetText: '登录'}" @click="test($event)">登录</button>
+		body
 	</div>
 </template>
 

@@ -2,6 +2,11 @@
 @import url('./config.less');
 // dialog 
 @import url('./dialog.less');
+// left
+@import url('./left.less');
+body{
+	background-color: @bodybg;
+}
 .yx_left{
 	float: left;
 	width: @leftwidth;
@@ -10,8 +15,29 @@
 	left: 0;
 	top: 0;
 	height: 100%;
+	z-index: 1100;
 }
 .yx_right{
 	float: left;
-	padding-left: @leftwidth;
+	padding-left: @rightbodypadding;
+}
+
+// logo
+.yx_left{
+	padding: 0px 15px;
+	.tpl-logo{
+		img{
+			width: @logowigth;
+			height: auto;
+		}
+	}
+}
+
+// header
+.tpl-header-list-user-ico{
+	img{
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+	}
 }
