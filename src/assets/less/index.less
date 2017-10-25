@@ -1,5 +1,5 @@
 @leftWidth: 150px;
-@headerHeight: 88px;
+@headerHeight: 60px;
 
 ul,li {
     list-style: none;
@@ -29,8 +29,8 @@ header {
     }
 
     img {
-        width:140px;
-        height: 88px;
+        width:100px;
+        height: @headerHeight;
     }
 }
 
@@ -104,17 +104,23 @@ header {
     li {
         float: left;
     }
+    img{
+        display: inline-block;
+        float: left;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-top: 10px;
+    }
     a {
         line-height: @headerHeight;
-        display: block;
+        display: inline-block;
+        float: left;
         padding: 0 16px;
         position: relative;
-
-
         &:hover {
 
         }
-        
         .item-feed-badge {
             position: absolute;
             top: 29px;
