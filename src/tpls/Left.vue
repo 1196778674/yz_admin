@@ -4,10 +4,10 @@
             <!-- 菜单 -->
             <ul class="sidebar-nav">
             	<li class="sidebar-nav-link">
-					<router-link to="#" class="active"><span class="am-icon-tasks"></span>项目管理</router-link>
+					<router-link to="/" class="active"><span class="am-icon-tasks"></span>项目管理</router-link>
 				</li>
 				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-bars"></span>模块管理</router-link>
+					<router-link to="module"><span class="am-icon-bars"></span>模块管理</router-link>
 				</li>
 				<li class="sidebar-nav-link">
 					<router-link to="#"><span class="am-icon-home"></span>中心管理</router-link>

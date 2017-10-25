@@ -12,6 +12,10 @@ const common = {
 		})
 		.fail(function() {
 			console.log("error");
+			var progress = $.AMUI.progress;
+			console.log(progress);
+			progress.start();
+			progress.done();
 		})
 		.always(function() {
 			var progress = $.AMUI.progress;
