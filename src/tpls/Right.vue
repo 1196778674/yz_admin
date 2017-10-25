@@ -10,7 +10,7 @@
 	                        <span class="tpl-header-list-user-ico">
 	                        	<img src="../assets/images/user01.png" height="35" width="35" alt="用户名">
 	                        </span>
-	                        <span class="tpl-header-list-user-nick">123</span>
+	                        <span class="tpl-header-list-user-nick">hi, 小灰灰</span>
 	                    </a>
 	                    <ul class="am-dropdown-content">
 	                        <!-- <li><a href="#"><span class="am-icon-bell-o"></span> 资料</a></li>

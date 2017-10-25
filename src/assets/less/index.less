@@ -34,10 +34,24 @@ body{
 }
 
 // header
-.tpl-header-list-user-ico{
-	img{
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
+.am-topbar-inverse .am-topbar-nav>li>a:focus, .am-topbar-inverse .am-topbar-nav>li>a:hover, .am-topbar-inverse .am-topbar-nav>li.am-active>a, .am-topbar-inverse .am-topbar-nav>li.am-active>a:focus, .am-topbar-inverse .am-topbar-nav>li.am-active>a:hover{
+	height: 55px;
+	background: none;
+}
+.am-topbar{
+	background: @leftbg;
+	border-color: @leftbg;
+	height: 55px;
+	margin-bottom: 0px;
+	.tpl-header-list-user-ico{
+		img{
+			width: 35px;
+			height: 35px;
+			border-radius: 50%;
+			margin-right: 10px;
+		}
+	}
+	.tpl-header-list-user-nick{
+		color: @leftactive;
 	}
 }

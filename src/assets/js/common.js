@@ -49,7 +49,7 @@ const common = {
 	btnDialog: function(e){
 		var $btn = $(e.target);
 		$btn.button('loading');
-			setTimeout(function(){
+		setTimeout(function(){
 		    $btn.button('reset');
 		}, 3000);
 	},
