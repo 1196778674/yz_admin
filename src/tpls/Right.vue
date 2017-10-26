@@ -1,6 +1,6 @@
 <template>
 	<div id="right" class="tpl-content-wrapper">
-        <div class="container-fluid" data-am-scrollspy="{animation: 'slide-bottom'}">
+        <div class="container-fluid">
             <router-view/>
         </div>
 	</div>

@@ -35,11 +35,26 @@
 		},
 		methods: {
 			login (e) {
-				var $btn = $(e.target);
+				var $btn = $(e.target),
+					params = this.params;
 				$btn.button('loading');
-				Public.Ajax('', this.params, 'POST', function(res){
+				if (!$.trim(params.user_name)) {
+					Public.dialog('请输入正确的用户名!');
 					$btn.button('reset');
-				});
+					return false;
+				}
+				if (!$.trim(params.password)) {
+					Public.dialog('请输入正确的密码!');
+					$btn.button('reset');
+					return false;
+				}
+				setTimeout(function(){
+				    $btn.button('reset');
+				    window.location.href = '#/module';
+				}, 3000);
+				// Public.Ajax('', params, 'POST', function(res){
+				// 	$btn.button('reset');
+				// });
 			}
 		}
 	}

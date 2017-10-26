@@ -9,10 +9,10 @@
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">
                 <!-- 侧边切换 -->
-                <div class="am-fl tpl-header-switch-button am-icon-list">
+                <!-- <div class="am-fl tpl-header-switch-button am-icon-list">
                     <span>
                     </span>
-                </div>
+                </div> -->
                 <!-- 其它功能-->
                 <div class="am-fr tpl-header-navbar">
                     <ul>

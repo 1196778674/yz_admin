@@ -42,9 +42,6 @@
 			return{
 
 			}
-		},
-		created: function () {
-			console.log(Public.Ajax());
 		}
 	}
 </script>

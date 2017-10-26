@@ -19,12 +19,6 @@ export default {
       
     }
   },
-  created: function(){
-
-  },
-  methods: {
-    
-  },
   components: {
     "vheader": header,
     "left": left,
