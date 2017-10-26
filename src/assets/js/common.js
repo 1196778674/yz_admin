@@ -1,6 +1,6 @@
 const common = {
 	// ajax
-	Ajax: function (url, params, type, callback) {
+	Ajax (url, params, type, callback) {
 		$.ajax({
 			url: url,
 			type: type,
@@ -26,7 +26,7 @@ const common = {
 	},	
 
 	// dialog提示框
-	dialog: function(txt){
+	dialog (txt){
 		$('#dialog-tips').remove();
 		var htm = '<div class="am-modal am-modal-no-btn" tabindex="-1" id="dialog-tips">'+
 				  '<div class="am-modal-dialog dialog-modal">'+
@@ -45,12 +45,12 @@ const common = {
 		  this.hideDialog($modal);
 		}, 2000);
 	},
-	hideDialog: function(modal){
+	hideDialog (modal){
 		modal.modal('close');
 	},
 
 	// button的loading效果
-	btnDialog: function(e){
+	btnDialog (e){
 		var $btn = $(e.target);
 		$btn.button('loading');
 		setTimeout(function(){
@@ -59,7 +59,7 @@ const common = {
 	},
 
 	// 左侧边栏
-	autoLeftNav: function () {
+	autoLeftNav () {
 	    $('.tpl-header-switch-button').on('click', function() {
 	        if ($('.left-sidebar').is('.active')) {
 	            if ($(window).width() > 1024) {
@@ -79,7 +79,19 @@ const common = {
 	    } else {
 	        $('.left-sidebar').removeClass('active');
 	    }
+	},
+
+	// 初始化下拉
+	initSelect () {
+		$(function(){
+			$('select').selected();
+		})
 	}
+
+
+
+
+
 }
 
 export default common;
