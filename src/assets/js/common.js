@@ -1,6 +1,6 @@
 const common = {
 	// ajax
-	Ajax: function (url, type, params, callback) {
+	Ajax: function (url, params, type, callback) {
 		$.ajax({
 			url: url,
 			type: type,
