@@ -3,8 +3,10 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Login from '@/components/Login'
 
-// test
-import Module from '@/components/Test'
+// 项目管理
+import Project from '@/components/Project'
+// 模块管理
+import Modular from '@/components/Modular'
 
 Vue.use(Router)
 
@@ -21,9 +23,14 @@ export default new Router({
       component: Home,
       children: [
         {
-          path: '/module',
-          name: 'Module',
-          component: Module
+          path: '/project',
+          name: 'Project',
+          component: Project
+        },
+        {
+          path: '/modular',
+          name: 'Modular',
+          component: Modular
         }
       ]
     }
