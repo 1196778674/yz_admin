@@ -16,11 +16,45 @@
 			  	</thead>
 			  	<tbody>
 				  	<tr>
-					    <td>Amaze UI</td>
-					    <td>http://amazeui.org</td>
-					    <td>2012-10-01</td>
-					    <td>Amaze UI</td>
-					    <td>http://amazeui.org</td>
+					    <td>111-AZ</td>
+					    <td>测试项目测试项目测试项目</td>
+					    <td>测试中心测试中心</td>
+					    <td>测试类别</td>
+					    <td>2017-8-9</td>
+					    <td>
+					    	<router-link to="#">
+					    		<span class="am-icon-file-text-o"></span>
+					    		查看详情
+					    	</router-link>
+					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
+					    		<span class="am-icon-trash-o"></span>
+					    		删除
+					    	</a>
+					    </td>
+				  	</tr>
+				  	<tr>
+					    <td>111-AZ</td>
+					    <td>测试项目测试项目测试项目</td>
+					    <td>测试中心测试中心</td>
+					    <td>测试类别</td>
+					    <td>2017-8-9</td>
+					    <td>
+					    	<router-link to="#">
+					    		<span class="am-icon-file-text-o"></span>
+					    		查看详情
+					    	</router-link>
+					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
+					    		<span class="am-icon-trash-o"></span>
+					    		删除
+					    	</a>
+					    </td>
+				  	</tr>
+				  	<tr>
+					    <td>111-AZ</td>
+					    <td>测试项目测试项目测试项目</td>
+					    <td>测试中心测试中心</td>
+					    <td>测试类别</td>
+					    <td>2017-8-9</td>
 					    <td>
 					    	<router-link to="#">
 					    		<span class="am-icon-file-text-o"></span>
