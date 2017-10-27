@@ -21,23 +21,16 @@
 					    <td>2012-10-01</td>
 					    <td>Amaze UI</td>
 					    <td>http://amazeui.org</td>
-					    <td>2012-10-01</td>
-				  	</tr>
-				  	<tr>
-					    <td>Amaze UI</td>
-					    <td>http://amazeui.org</td>
-					    <td>2012-10-01</td>
-					    <td>Amaze UI</td>
-					    <td>http://amazeui.org</td>
-					    <td>2012-10-01</td>
-				  	</tr>
-				  	<tr>
-					    <td>Amaze UI</td>
-					    <td>http://amazeui.org</td>
-					    <td>2012-10-01</td>
-					    <td>Amaze UI</td>
-					    <td>http://amazeui.org</td>
-					    <td>2012-10-01</td>
+					    <td>
+					    	<router-link to="#">
+					    		<span class="am-icon-file-text-o"></span>
+					    		查看详情
+					    	</router-link>
+					    	<a href="javascript:;" title="删除" class="am-delete">
+					    		<span class="am-icon-trash-o"></span>
+					    		删除
+					    	</a>
+					    </td>
 				  	</tr>
 			  	</tbody>
 			</table>
