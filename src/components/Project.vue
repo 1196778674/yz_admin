@@ -48,9 +48,9 @@
 			  :page-count=page
 			  :click-handler="pagination"
 			  :active-class="'am-active'"
+			  :container-class="'am-pagination'"
 			  :prev-text="'上一页'"
-			  :next-text="'下一页'"
-			  :container-class="'am-pagination'">
+			  :next-text="'下一页'">
 			</paginate>
 		</div>
 	</div>
@@ -74,8 +74,8 @@
 			Public.initSelect();
 		},
 		methods: {
-			pagination () {
-				console.log(this);
+			pagination (page) {
+				console.log(page);
 			}
 		}
 	}
