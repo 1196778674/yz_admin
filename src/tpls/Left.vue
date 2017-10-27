@@ -3,32 +3,32 @@
         <div class="left-sidebar">
             <!-- 菜单 -->
             <ul class="sidebar-nav">
-            	<li class="sidebar-nav-link">
-					<router-link to="project" class="active"><span class="am-icon-tasks"></span>项目管理</router-link>
+            	<li class="sidebar-nav-link" @click="isActive(0)">
+					<router-link to="project" :class="{'active': is_active == 0}"><span class="am-icon-tasks"></span>项目管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="modular"><span class="am-icon-bars"></span>模块管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(1)">
+					<router-link to="modular" :class="{'active': is_active == 1}"><span class="am-icon-bars"></span>模块管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-home"></span>中心管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(2)">
+					<router-link to="#" :class="{'active': is_active == 2}"><span class="am-icon-home"></span>中心管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-steam"></span>设备管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(3)">
+					<router-link to="#" :class="{'active': is_active == 3}"><span class="am-icon-steam"></span>设备管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-user-md"></span>人员管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(4)">
+					<router-link to="#" :class="{'active': is_active == 4}"><span class="am-icon-user-md"></span>人员管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-flask"></span>用品管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(5)">
+					<router-link to="#" :class="{'active': is_active == 5}"><span class="am-icon-flask"></span>用品管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-tags"></span>标签管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(6)">
+					<router-link to="#" :class="{'active': is_active == 6}"><span class="am-icon-tags"></span>标签管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-stethoscope"></span>诊室管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(7)">
+					<router-link to="#" :class="{'active': is_active == 7}"><span class="am-icon-stethoscope"></span>诊室管理</router-link>
 				</li>
-				<li class="sidebar-nav-link">
-					<router-link to="#"><span class="am-icon-list-alt"></span>类别管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(8)">
+					<router-link to="#" :class="{'active': is_active == 8}"><span class="am-icon-list-alt"></span>类别管理</router-link>
 				</li>
             </ul>
         </div>
@@ -40,7 +40,12 @@
 		name: 'Left',
 		data(){
 			return{
-
+				is_active: 0
+			}
+		},
+		methods: {
+			isActive (id) {
+				this.is_active = id;
 			}
 		}
 	}
