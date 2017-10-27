@@ -43,27 +43,41 @@
 			</table>
 		</div>
 
-		<page></page>
+		<div class="yx_page">
+			<paginate
+			  :page-count=page
+			  :click-handler="pagination"
+			  :active-class="'am-active'"
+			  :prev-text="'上一页'"
+			  :next-text="'下一页'"
+			  :container-class="'am-pagination'">
+			</paginate>
+		</div>
 	</div>
 </template>
 <script>
 	import Search from '@/tpls/Search';
-	import Page from '@/tpls/Page';
+	import Paginate from 'vuejs-paginate';
 	export default {
 		name: 'Project',
 
 		data() {
 			return {
-
+				page: 10
 			}
 		},
 		components: {
 			"search": Search,
-			"page": Page
+			"paginate": Paginate
 		},
 		created: function () {
 			Public.initSelect();
-		}	
+		},
+		methods: {
+			pagination () {
+				console.log(this);
+			}
+		}
 	}
 </script>
 
