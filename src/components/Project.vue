@@ -26,7 +26,7 @@
 					    		<span class="am-icon-file-text-o"></span>
 					    		查看详情
 					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete">
+					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
 					    		<span class="am-icon-trash-o"></span>
 					    		删除
 					    	</a>
@@ -69,6 +69,11 @@
 		methods: {
 			pagination (page) {
 				console.log(page);
+			},
+			deleteList (e, id) {
+				Public.deleteModal(e, id, function(){
+					console.log('delete');
+				});
 			}
 		}
 	}

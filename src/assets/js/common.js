@@ -30,9 +30,6 @@ const common = {
 		$('#dialog-tips').remove();
 		var htm = '<div class="am-modal am-modal-no-btn" tabindex="-1" id="dialog-tips">'+
 				  '<div class="am-modal-dialog dialog-modal">'+
-				  '<div class="am-modal-hd">'+
-				  '<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>'+
-				  '</div>'+
 			      '<div class="am-modal-bd">'+
 				      txt +
 				  '</div>'+
@@ -86,6 +83,27 @@ const common = {
 		$(function(){
 			$('select').selected();
 		})
+	},
+
+	// 删除确认模态框
+	deleteModal (e, id, callback) {
+		$('#delete_modal').remove();
+		var modal = '<div class="am-modal am-modal-prompt" tabindex="-1" id="delete_modal">'+
+					'<div class="am-modal-dialog">'+
+					'<div class="am-modal-hd">确认删除当前数据!</div>'+
+					'<div class="am-modal-footer">'+
+			      	'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
+			      	'<span class="am-modal-btn" data-am-modal-confirm>提交</span>'+
+				    '</div>'+
+				  	'</div>'+
+					'</div>';
+		$('body').append(modal);
+	    $('#delete_modal').modal({
+			relatedTarget: $(e.target),
+			onConfirm: function(e) {
+				callback();
+			}
+		});
 	}
 
 
