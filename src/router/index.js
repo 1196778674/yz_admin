@@ -1,26 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Login from '@/components/Login'
+import Home from '@/components/Home/Home'
+import Login from '@/components/Login/Login'
 
 // 项目管理
-import Project from '@/components/Project'
+import Project from '@/components/Project/Project'
 // 模块管理
-import Modular from '@/components/Modular'
+import Modular from '@/components/Modular/Modular'
 // 中心管理
-import Center from '@/components/Center'
+import Center from '@/components/Center/Center'
 // 设备管理
-import Equipment from '@/components/Equipment'
+import Equipment from '@/components/Equipment/Equipment'
 // 人员管理
-import Personnel from '@/components/Personnel'
+import Personnel from '@/components/Personnel/Personnel'
 // 用品管理
-import Articles from '@/components/Articles'
+import Articles from '@/components/Articles/Articles'
 // 标签管理
-import Tags from '@/components/Tags'
+import Tags from '@/components/Tags/Tags'
 // 诊室管理
-import Consultation from '@/components/Consultation'
+import Consultation from '@/components/Consultation/Consultation'
 // 类别管理
-import Category from '@/components/Category'
+import Category from '@/components/Category/Category'
 
 Vue.use(Router)
 
