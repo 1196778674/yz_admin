@@ -22,7 +22,7 @@
 					    <td>测试类别</td>
 					    <td>2017-8-9</td>
 					    <td>
-					    	<router-link to="#">
+					    	<router-link :to="{ name: 'Projectdetail', params: { id: 123 }}">
 					    		<span class="am-icon-file-text-o"></span>
 					    		查看详情
 					    	</router-link>
