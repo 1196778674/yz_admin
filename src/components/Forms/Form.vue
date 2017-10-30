@@ -20,7 +20,7 @@
 			}
 		},
 		created () {
-			this.type = this.$route.query.id;
+			this.type = this.$route.query.type;
 		},
 		components: {
 			"projectform" : Projectform,
