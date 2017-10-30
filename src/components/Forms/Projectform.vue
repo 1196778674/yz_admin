@@ -23,7 +23,7 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>项目模块</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event)"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
@@ -196,6 +196,60 @@
 		created () {
 			Public.initSelect();
 		},
+		methods: {
+			addEditFn (e) {
+				var self = this;
+				Public.addEditFn(e, '', self.selectHtm(), function(){
+					console.log(1);
+				});
+			},
+			selectHtm () {
+				var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">模块1'+
+							'</label>'+
+							'</li>'+
+							'<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">模块1'+
+							'</label>'+
+							'</li>'+
+							'<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">模块1'+
+							'</label>'+
+							'</li>'+
+							'<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">模块1'+
+							'</label>'+
+							'</li>'+
+							'<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">模块1'+
+							'</label>'+
+							'</li>'+
+							'<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">模块1'+
+							'</label>'+
+							'</li>';
+				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
+						'<div class="am-modal-dialog">'+
+						'<div class="am-modal-hd">项目模块</div>'+
+						'<div class="am-modal-bd">'+
+						'<ul>'+
+						item +
+						'</ul>'+
+						'</div>'+
+						'<div class="am-modal-footer">'+
+						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
+						'<span class="am-modal-btn" data-am-modal-confirm>提交</span>'+
+						'</div>'+
+						'</div>'+
+						'</div>';
+			},
+		}
 	}
 </script>
 <style scoped>
