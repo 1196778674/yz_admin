@@ -104,7 +104,22 @@ const common = {
 				callback();
 			}
 		});
+	},
+
+	// 编辑添加modal
+	addEditFn (e, id, htm, callback) {
+		$('#add-edit-modal').remove();
+		$('body').append(htm);
+		var $modal = $('#add-edit-modal');
+	    var $target = $(e.target);
+		$modal.modal({
+			relatedTarget: $(e.target),
+			onConfirm: function(e) {
+				callback();
+			}
+		});
 	}
+	
 
 
 

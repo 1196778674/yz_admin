@@ -1,6 +1,6 @@
 <template>
 	<div class="yx_project">
-		<search modal="false"></search>	
+		<search modal="false" @addEditFn="addEditFn"></search>	
 
 		<div class="am-scrollable-horizontal list_table">
 	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
@@ -108,6 +108,25 @@
 				Public.deleteModal(e, id, function(){
 					console.log('delete');
 				});
+			},
+			addEditFn (e) {
+				Public.addEditFn(e, '1', this.htm(), function(){
+					console.log(1);
+				});
+			},
+			htm () {
+					return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
+						'<div class="am-modal-dialog">'+
+						'<div class="am-modal-hd">添加/编辑</div>'+
+						'<div class="am-modal-bd">'+
+						'sdsfsdf'+
+						'</div>'+
+						'<div class="am-modal-footer">'+
+						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
+						'<span class="am-modal-btn" data-am-modal-confirm>提交</span>'+
+						'</div>'+
+						'</div>'+
+						'</div>';
 			}
 		}
 	}
