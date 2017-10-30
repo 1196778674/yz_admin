@@ -205,7 +205,28 @@
 			},
 			selectHtm (title) {
 				if (title == '项目模块') {
-					var item = 'table';
+					var item = '<table class="am-table am-table-bordered am-table-striped am-table-compact">'+
+							'<thead>'+
+							'<tr>'+
+							'<th></th>'+
+							'<th>模块编号</th>'+
+							'<th>模块名称</th>'+
+							'<th>功能</th>'+
+							'<th>执行人</th>'+
+							'<th>时间</th>'+
+							'</tr>'+
+							'</thead>'+
+							'<tbody>'+
+							'<tr>'+
+							'<td><input type="checkbox"/></td>'+
+							'<td>111-AZ</td>'+
+							'<td>测试类别测试类别</td>'+
+							'<td>测试类别测试类别测试类别测试类别测试测试类别测试类别测试类别</td>'+
+							'<td>测试类别测试类别</td>'+
+							'<td>2017-8-9</td>'+
+							'</tr>'+
+							'</tbody>'+
+							'</table>';
 				} else if (title == '所属中心') {
 					var item = '<li>'+
 							'<label class="am-checkbox-inline">'+
