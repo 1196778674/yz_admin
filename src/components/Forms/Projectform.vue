@@ -23,21 +23,21 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>项目模块</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event)"></p>
+						<p class="am-radius" @click="addEditFn($event, '项目模块')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>所属中心</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '所属中心')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>执行人等级</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '执行人等级')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
@@ -87,49 +87,49 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">诊室</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '诊室')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">设备</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '设备')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">用品</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '用品')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">适应症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '适应症')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">禁忌症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '禁忌症')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">作用部位</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '作用部位')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">作用功能</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, '作用功能')"></p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
@@ -197,46 +197,73 @@
 			Public.initSelect();
 		},
 		methods: {
-			addEditFn (e) {
+			addEditFn (e, title) {
 				var self = this;
-				Public.addEditFn(e, '', self.selectHtm(), function(){
+				Public.addEditFn(e, '', self.selectHtm(title), function(){
 					console.log(1);
 				});
 			},
-			selectHtm () {
-				var item = '<li>'+
+			selectHtm (title) {
+				if (title == '项目模块') {
+					var item = 'table';
+				} else if (title == '所属中心') {
+					var item = '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">模块1'+
-							'</label>'+
-							'</li>'+
-							'<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">模块1'+
-							'</label>'+
-							'</li>'+
-							'<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">模块1'+
-							'</label>'+
-							'</li>'+
-							'<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">模块1'+
-							'</label>'+
-							'</li>'+
-							'<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">模块1'+
-							'</label>'+
-							'</li>'+
-							'<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">模块1'+
+							'<input type="checkbox" value="option1">中心1'+
 							'</label>'+
 							'</li>';
+				} else if (title == '执行人等级') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">等级1'+
+							'</label>'+
+							'</li>';
+				} else if (title == '诊室') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">诊室1'+
+							'</label>'+
+							'</li>';
+				} else if (title == '设备') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">设备'+
+							'</label>'+
+							'</li>';
+				} else if (title == '用品') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">用品'+
+							'</label>'+
+							'</li>';
+				} else if (title == '适应症') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">适应症'+
+							'</label>'+
+							'</li>';
+				} else if (title == '禁忌症') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">禁忌症'+
+							'</label>'+
+							'</li>';
+				} else if (title == '作用部位') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">作用部位'+
+							'</label>'+
+							'</li>';
+				} else if (title == '作用功能') {
+					var item = '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input type="checkbox" value="option1">作用功能'+
+							'</label>'+
+							'</li>';
+				}
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
-						'<div class="am-modal-hd">项目模块</div>'+
+						'<div class="am-modal-hd">'+title+'</div>'+
 						'<div class="am-modal-bd">'+
 						'<ul>'+
 						item +
