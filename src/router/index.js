@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/components/Home/Home'
 import Login from '@/components/Login/Login'
+// 添加编辑
+import Form from '@/components/Forms/Form'
 
 // 项目管理
 import Project from '@/components/Project/Project'
@@ -40,6 +42,11 @@ export default new Router({
       name: 'Home',
       component: Home,
       children: [
+        {
+          path: 'form',
+          name: 'form',
+          component: Form
+        },
         {
           path: '/project',
           name: 'Project',

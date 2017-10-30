@@ -33,7 +33,11 @@
 	  	</div> -->
 	  	<button type="button" class="am-btn am-btn-primary list_left">查询</button>
 	  	<div class="list_btn">
-	  		<button type="button" class="am-btn am-btn-primary" v-if="modal == 'false'" @click="addEditFn($event)">
+	  		<router-link :to="{ path: 'form', query: { id: fromtype }}" class="am-btn am-btn-primary" v-if="modal == 'false'">
+	  			<i class="am-icon-plus"></i>
+	  			添加
+	  		</router-link>
+	  		<button type="button" class="am-btn am-btn-primary" v-else @click="addEditFn($event)">
 	  			<i class="am-icon-plus"></i>
 	  			添加
 	  		</button>
@@ -49,6 +53,10 @@
 			'modal':{
 				type: String,
 				default: false
+			},
+			'fromtype': {
+				type: String,
+				default: 'project'
 			}
 		},
 		data () {

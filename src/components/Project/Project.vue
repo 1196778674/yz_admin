@@ -1,6 +1,6 @@
 <template>
 	<div class="yx_project">
-		<search modal="false" @addEditFn="addEditFn"></search>	
+		<search modal="false" @addEditFn="addEditFn" fromtype="project"></search>	
 
 		<div class="am-scrollable-horizontal list_table">
 	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
