@@ -26,6 +26,9 @@ import Equipmentdetail from '@/components/Equipment/Equipmentdetail'
 import Personnel from '@/components/Personnel/Personnel'
 // 用品管理
 import Articles from '@/components/Articles/Articles'
+// 用品详情
+import Articlesdetail from '@/components/Articles/Articlesdetail'
+
 // 标签管理
 import Tags from '@/components/Tags/Tags'
 // 诊室管理
@@ -97,6 +100,11 @@ export default new Router({
           path: '/articles',
           name: 'Articles',
           component: Articles
+        },
+        {
+          path: '/articlesdetail',
+          name: 'Articlesdetail',
+          component: Articlesdetail
         },
         {
           path: '/tags',
