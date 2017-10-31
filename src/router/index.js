@@ -12,6 +12,9 @@ import Projectdetail from '@/components/project/Projectdetail'
 
 // 模块管理
 import Modular from '@/components/Modular/Modular'
+// 详情
+import Modulardetail from '@/components/Modular/Modulardetail' 
+
 // 中心管理
 import Center from '@/components/Center/Center'
 // 设备管理
@@ -61,6 +64,11 @@ export default new Router({
           path: '/modular',
           name: 'Modular',
           component: Modular
+        },
+        {
+          path: 'modulardetail',
+          name: 'modulardetail',
+          component: Modulardetail
         },
         {
           path: '/center',
