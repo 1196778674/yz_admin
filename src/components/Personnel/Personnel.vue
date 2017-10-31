@@ -6,11 +6,10 @@
 	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
 		  		<thead>
 			  		<tr>
-			    		<th>用品编号</th>
-			    		<th>用品名称</th>
+			    		<th>人员姓名</th>
 			    		<th>所属中心</th>
-			    		<th>规格型号</th>
-			    		<th>品牌</th>
+			    		<th>职位等级</th>
+			    		<th>时薪</th>
 			    		<th>操作</th>
 			  		</tr>
 			  	</thead>
@@ -20,7 +19,6 @@
 					    <td>测试项目测试项目测试项目</td>
 					    <td>测试中心测试中心</td>
 					    <td>测试类别</td>
-					    <td>2017-8-9</td>
 					    <td>
 					    	<router-link :to="{ path: 'personneldetail', query: { id: 123 }}">
 					    		<span class="am-icon-file-text-o"></span>
@@ -37,7 +35,6 @@
 					    <td>测试项目测试项目测试项目</td>
 					    <td>测试中心测试中心</td>
 					    <td>测试类别</td>
-					    <td>2017-8-9</td>
 					    <td>
 					    	<router-link to="#">
 					    		<span class="am-icon-file-text-o"></span>
@@ -54,7 +51,6 @@
 					    <td>测试项目测试项目测试项目</td>
 					    <td>测试中心测试中心</td>
 					    <td>测试类别</td>
-					    <td>2017-8-9</td>
 					    <td>
 					    	<router-link to="#">
 					    		<span class="am-icon-file-text-o"></span>
