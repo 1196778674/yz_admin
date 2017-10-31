@@ -43,6 +43,41 @@
 				is_active: 0
 			}
 		},
+		created () {
+			var name = this.$route.name;
+			switch(name) {
+				case 'Project':
+					this.is_active = 0;
+					break;
+				case 'Modular':
+					this.is_active = 1;
+					break;
+				case 'Center':
+					this.is_active = 2;
+					break;
+				case 'Equipment':
+					this.is_active = 3;
+					break;
+				case 'Personnel':
+					this.is_active = 4;
+					break;
+				case 'Articles':
+					this.is_active = 5;
+					break;
+				case 'Tags':
+					this.is_active = 6;
+					break;
+				case 'Consultation':
+					this.is_active = 7;
+					break;
+				case 'Category':
+					this.is_active = 8;
+					break;
+				default :
+					this.is_active = '-1';
+					break;
+			}
+		},
 		methods: {
 			isActive (id) {
 				this.is_active = id;
