@@ -1,6 +1,6 @@
 <template>
 	<div id="right" class="tpl-content-wrapper">
-        <div class="container-fluid">
+        <div class="container-fluid" :style="bodyHeight">
             <router-view/>
         </div>
 	</div>
@@ -11,8 +11,16 @@
 		name: 'Right',
 		data(){
 			return{
-
+				bodyHeight: {
+					'min-height': 0,
+					'overflow-y': 'scroll'
+				}
 			}
+		},
+		created () {
+			var body_height = ($(window).height() - 90) + 'px';
+			this.bodyHeight.height = body_height;
+			console.log(this.bodyHeight);
 		}
 	}
 </script>
