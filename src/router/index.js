@@ -24,6 +24,9 @@ import Equipmentdetail from '@/components/Equipment/Equipmentdetail'
 
 // 人员管理
 import Personnel from '@/components/Personnel/Personnel'
+// 详情
+import Personneldetail from '@/components/personnel/Personneldetail'
+
 // 用品管理
 import Articles from '@/components/Articles/Articles'
 // 用品详情
@@ -95,6 +98,11 @@ export default new Router({
           path: '/personnel',
           name: 'Personnel',
           component: Personnel
+        },
+        {
+          path: '/personneldetail',
+          name: 'Personneldetail',
+          component: Personneldetail
         },
         {
           path: '/articles',
