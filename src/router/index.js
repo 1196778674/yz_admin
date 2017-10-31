@@ -8,7 +8,7 @@ import Form from '@/components/Forms/Form'
 // 项目管理
 import Project from '@/components/Project/Project'
 // 详情
-import Projectdetail from '@/components/project/Projectdetail'
+import Projectdetail from '@/components/Project/Projectdetail'
 
 // 模块管理
 import Modular from '@/components/Modular/Modular'

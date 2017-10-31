@@ -93,7 +93,7 @@ const common = {
 					'<div class="am-modal-hd">确认删除当前数据!</div>'+
 					'<div class="am-modal-footer">'+
 			      	'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
-			      	'<span class="am-modal-btn" data-am-modal-confirm>提交</span>'+
+			      	'<span class="am-modal-btn" data-am-modal-confirm>删除</span>'+
 				    '</div>'+
 				  	'</div>'+
 					'</div>';
@@ -118,6 +118,11 @@ const common = {
 				callback();
 			}
 		});
+	},
+
+	// 打印
+	print (id) {
+		$(id).jqprint();
 	}
 	
 
