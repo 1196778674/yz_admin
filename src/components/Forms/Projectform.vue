@@ -136,13 +136,13 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">不良反应</label>
 					<div class="am-u-sm-10">
-						<p class="textarea"></p>
+						<textarea name=""></textarea>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">注意事项</label>
 					<div class="am-u-sm-10">
-						<p class="textarea"></p>
+						<textarea name=""></textarea>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
