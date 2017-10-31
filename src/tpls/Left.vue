@@ -45,11 +45,19 @@
 		},
 		created () {
 			var name = this.$route.name;
+			console.log(name);
+			// return;
 			switch(name) {
 				case 'Project':
 					this.is_active = 0;
 					break;
+				case 'Projectdetail':
+					this.is_active = 0;
+					break;
 				case 'Modular':
+					this.is_active = 1;
+					break;
+				case 'Modulardetail':
 					this.is_active = 1;
 					break;
 				case 'Center':
@@ -58,10 +66,19 @@
 				case 'Equipment':
 					this.is_active = 3;
 					break;
+				case 'Equipmentdetail':
+					this.is_active = 3;
+					break;
 				case 'Personnel':
 					this.is_active = 4;
 					break;
+				case 'Personneldetail':
+					this.is_active = 4;
+					break;
 				case 'Articles':
+					this.is_active = 5;
+					break;
+				case 'Articlesdetail':
 					this.is_active = 5;
 					break;
 				case 'Tags':

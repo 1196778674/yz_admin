@@ -76,7 +76,7 @@ export default new Router({
         },
         {
           path: 'modulardetail',
-          name: 'modulardetail',
+          name: 'Modulardetail',
           component: Modulardetail
         },
         {

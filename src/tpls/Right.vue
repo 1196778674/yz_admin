@@ -20,7 +20,6 @@
 		created () {
 			var body_height = ($(window).height() - 90) + 'px';
 			this.bodyHeight.height = body_height;
-			console.log(this.bodyHeight);
 		}
 	}
 </script>
