@@ -7,7 +7,7 @@ import router from './router'
 import './assets/js/app.js'
 
 window.amaze = require('amazeui')
-window.print = require('./assets/js/print.js')
+window.prints = require('./assets/js/print.js')
 window.Public = require('./assets/js/common.js').default
 
 import '../node_modules/amazeui/dist/css/amazeui.min.css'
