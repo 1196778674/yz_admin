@@ -122,7 +122,9 @@ const common = {
 
 	// 打印
 	print (id) {
-		$(id).jqprint();
+		$(id).printThis({
+			importStyle: true
+		});
 	}
 	
 

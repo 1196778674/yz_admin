@@ -123,5 +123,28 @@
 </script>
 
 <style scoped>
-	
+	table{
+		border: 1px solid #F2F5F8;
+		border-top: 0;
+	}
+	table tr td{
+		color: #555;
+		border-right: 1px solid #F2F5F8;
+		text-align: left;
+		border-top: 1px solid #F2F5F8;
+		width: 20%;
+	}
+	table tr td.space{
+		text-overflow:ellipsis;
+		word-break:keep-all; 
+		white-space:nowrap;
+	}
+	table tr td.no-right{
+		border-right: 0;
+	}
+	table tr td.title{
+		width: 8%;
+		font-weight: bolder;
+		color: #333;
+	}
 </style>
