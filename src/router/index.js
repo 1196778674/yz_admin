@@ -19,6 +19,9 @@ import Modulardetail from '@/components/Modular/Modulardetail'
 import Center from '@/components/Center/Center'
 // 设备管理
 import Equipment from '@/components/Equipment/Equipment'
+// 详情
+import Equipmentdetail from '@/components/Equipment/Equipmentdetail'
+
 // 人员管理
 import Personnel from '@/components/Personnel/Personnel'
 // 用品管理
@@ -79,6 +82,11 @@ export default new Router({
           path: '/equipment',
           name: 'Equipment',
           component: Equipment
+        },
+        {
+          path: '/equipmentdetail',
+          name: 'Equipmentdetail',
+          component: Equipmentdetail
         },
         {
           path: '/personnel',
