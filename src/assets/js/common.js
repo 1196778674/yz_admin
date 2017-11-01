@@ -1,6 +1,7 @@
 const common = {
 	// ajax
 	Ajax (url, params, type, callback) {
+		var self = this;
 		var url = 'http://admin.yx.dev/admin/' + url;
 		$.ajax({
 			url: url,
@@ -8,21 +9,18 @@ const common = {
 			dataType: 'json',
 			data: params,
 		})
+		.always(function() {
+			var loading = '<div id="loading"><div class="tips"><span class="am-icon-refresh am-icon-spin"></span></div></div>';
+			$('#loading').length || $('body').append(loading);
+		})
 		.done(function(res) {
+			$('#loading').remove();
 			callback(res);
 		})
 		.fail(function() {
-			console.log("error");
-			var progress = $.AMUI.progress;
-			console.log(progress);
-			progress.start();
-			progress.done();
+			$('#loading').remove();
+			self.dialog('请求失败，请稍后重试');
 		})
-		.always(function() {
-			var progress = $.AMUI.progress;
-			progress.start();
-			progress.done();
-		});
 		
 	},	
 
