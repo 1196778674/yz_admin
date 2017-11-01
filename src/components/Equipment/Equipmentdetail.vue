@@ -19,14 +19,6 @@
 		            <td class="no-right space">{{detail.english_name}}</td>
 		        </tr>
 		        <tr>
-		            <td class="title no-right space">年龄限制</td>
-		            <td class="space">{{detail.min_age_limit}}-{{detail.max_age_limit}}</td>
-		            <td class="title space no-right">性别限制</td>
-		            <td class="space">{{detail.gender_limit_name}}</td>
-		            <td class="title no-right space">是否医疗</td>
-		            <td class="no-right space">是</td>
-		        </tr>
-		        <tr>
 		            <td class="title no-right space">单次成本</td>
 		            <td class="space">{{detail.once_cost}}</td>
 		            <td class="title space no-right">市场价格</td>
@@ -41,6 +33,12 @@
 		            <td class="space">{{detail.production_area}}</td>
 		            <td class="title no-right space">规格型号</td>
 		            <td class="no-right space">{{detail.specifications}}</td>
+		        </tr>
+		        <tr>
+		            <td class="title no-right space">年龄限制</td>
+		            <td class="space">{{detail.min_age_limit}}-{{detail.max_age_limit}}</td>
+		            <td class="title space no-right">性别限制</td>
+		            <td class="space" colspan="3">{{detail.gender_limit_name}}</td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right">设备描述</td>
@@ -109,7 +107,7 @@
 				console.log('prevPage');
 			},
 			editPage () {
-				window.location.href = '#/form' + '?type=project';
+				window.location.href = '#/form' + '?type=equipment';
 			},
 			deletePage (e) {
 				var id = this.$route.query.id;
