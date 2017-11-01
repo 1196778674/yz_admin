@@ -20,7 +20,7 @@
 					    <td>{{item.job_grade_name}}</td>
 					    <td>{{item.hourly_wage}}</td>
 					    <td>
-					    	<a href="javascript:;" title="编辑" @click="edit($event, item)">
+					    	<a href="javascript:;" title="编辑" @click="edit($event, item.id, item)">
 					    		<span class="am-icon-edit"></span>
 					    		编辑
 					    	</a>
@@ -116,7 +116,7 @@
 					});
 				});
 			},
-			edit (e, obj) {
+			edit (e, id, obj) {
 				var self = this;
 				Public.addEditFn(e, '', this.htm(obj), function(){
 					self.person = {
@@ -125,6 +125,7 @@
 						center_id: $('#center_id').val(),
 						hourly_wage: $('#hourly_wage').val()
 					};
+					self.person.id = id;
 					console.log(self.person);
 					return;
 					Public.Ajax('personnel/add', self.person, 'POST', function(res){
