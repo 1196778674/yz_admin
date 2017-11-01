@@ -124,13 +124,13 @@
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>性别限制</label>
 					<div class="am-u-sm-10">
 						<label class="am-radio-inline">
-							<input type="radio" value="0" name="docInlineRadio">不限
+							<input type="radio" value="0" name="gender_limit">不限
 						</label>
 						<label class="am-radio-inline">
-							<input type="radio" value="1" name="docInlineRadio">男
+							<input type="radio" value="1" name="gender_limit">男
 						</label>
 						<label class="am-radio-inline">
-							<input type="radio" value="2" name="docInlineRadio">女
+							<input type="radio" value="2" name="gender_limit">女
 						</label>
 					</div>
 				</div>
@@ -208,6 +208,9 @@
 		},
 		methods: {
 			save () {
+				this.forms.center_id = $('#center_id').val();
+				this.forms.clinics_id = $('#clinics_id').val();
+				this.forms.gender_limit = $('input[name="gender_limit"]:checked').val();
 				console.log(this.forms);
 			},
 			addEditFn (e, type) {
