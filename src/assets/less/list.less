@@ -68,35 +68,6 @@
 	text-align: left;
 }
 
-// 项目管理
-.category{
-	padding: 20px;
-	ul{
-		overflow: hidden;
-		li{
-			font-size: 15px;
-			color: #333;
-			float: left;
-			border: 1px solid #ccc;
-			padding: 10px;
-			border-radius: 5px;
-			cursor: pointer;
-			margin: 10px;
-			font-weight: bolder;
-			small{
-				font-size: 13px;
-				color: #777;
-				font-weight: 100;
-			}
-			p{
-				margin: 0;
-				font-size: 14px;
-				color: #666;
-				font-weight: 100;
-			}
-		}
-	}
-}
 
 // 中心管理
 .center_admin{
@@ -153,6 +124,70 @@
 	}
 }
 
+// 类别管理
+.category{
+	padding: 20px;
+	h3{
+		margin-bottom: 0;
+		margin-top: 20px;
+		font-size: 16px;
+		color: #666;
+		font-weight: bolder;
+	}
+	ul{
+		overflow: hidden;
+		.plus{
+			font-size: 41px;
+		    vertical-align: middle;
+		    display: inline-block;
+		    margin-top: -5px;
+		    color: #ccc;
+		    cursor: pointer;
+		}
+		li{
+			font-size: 15px;
+			color: #666;
+			float: left;
+			border: 1px solid #ccc;
+			padding: 5px 10px;
+			border-radius: 5px;
+			cursor: pointer;
+			margin: 10px;
+			font-size: 14px;
+			font-weight: 100;
+			position: relative;
+			.btns{
+				display: none;
+				position: absolute;
+				top: 0;
+				bottom: 0;
+				left: 0;
+				right: 0;
+				border: 1px solid #333;
+				background-color: rgba(0,0,0,.7);
+				border-radius: 3px;
+				.centers{
+					margin: 0 auto;
+					position: absolute;
+					top: 5px;
+					left: 50%;
+					margin-left: -15px;
+					span{
+						color: #fff;
+						&.edit{
+							margin-right: 2px;
+						}
+					}
+				}
+			}
+			&:hover{
+				.btns{
+					display: block;
+				}
+			}
+		}
+	}
+}
 
 
 
