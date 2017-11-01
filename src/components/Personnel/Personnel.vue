@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<search modal="false" @addEditFn="addEditFn" fromtype="personnel"></search>	
+		<search modal="true" search="false" @addEditFn="addEditFn" fromtype="personnel"></search>	
 
 		<div class="am-scrollable-horizontal list_table">
-	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
+	  		<table class="am-table am-table-bordered am-table-compact">
 		  		<thead>
 			  		<tr>
 			    		<th>人员姓名</th>
@@ -14,49 +14,17 @@
 			  		</tr>
 			  	</thead>
 			  	<tbody>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
+				  	<tr v-for="item in list">
+					    <td>{{item.name}}</td>
+					    <td>{{item.center_name}}</td>
+					    <td>{{item.job_grade_name}}</td>
+					    <td>{{item.hourly_wage}}</td>
 					    <td>
-					    	<router-link :to="{ path: 'personneldetail', query: { id: 123 }}">
-					    		<span class="am-icon-file-text-o"></span>
-					    		查看详情
-					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
-					    		<span class="am-icon-trash-o"></span>
-					    		删除
+					    	<a href="javascript:;" title="编辑" @click="edit($event, item)">
+					    		<span class="am-icon-edit"></span>
+					    		编辑
 					    	</a>
-					    </td>
-				  	</tr>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>
-					    	<router-link to="#">
-					    		<span class="am-icon-file-text-o"></span>
-					    		查看详情
-					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
-					    		<span class="am-icon-trash-o"></span>
-					    		删除
-					    	</a>
-					    </td>
-				  	</tr>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>
-					    	<router-link to="#">
-					    		<span class="am-icon-file-text-o"></span>
-					    		查看详情
-					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
+					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, item.id)">
 					    		<span class="am-icon-trash-o"></span>
 					    		删除
 					    	</a>
@@ -66,7 +34,7 @@
 			</table>
 		</div>
 
-		<div class="yx_page">
+		<div class="yx_page" v-if="page > 1">
 			<paginate
 			  :page-count=page
 			  :click-handler="pagination"
@@ -87,36 +55,108 @@
 
 		data() {
 			return {
-				page: 10
+				list: '',
+				page: 1,
+				person: {
+					name: '',
+					job_grade_name: '',
+					center_id: '',
+					hourly_wage: ''
+				}
 			}
 		},
 		created: function () {
 			Public.initSelect();
+			this.getList();
 		},
 		components: {
 			"search": Search,
 			"paginate": Paginate
 		},
 		methods: {
+			getList (page) {
+				var self = this;
+				Public.Ajax ('personnel/list', {}, 'GET', function(res){
+					self.list = res.data;
+				})
+			},
 			pagination (page) {
 				console.log(page);
+				// this.getList(page);
 			},
 			deleteList (e, id) {
+				var self = this;
 				Public.deleteModal(e, id, function(){
-					console.log('delete');
+					console.log(id);
+					return;
+					Public.Ajax('personnel/del', {personnel_id: id}, 'GET', function(res){
+						self.getList();
+					});
 				});
 			},
 			addEditFn (e) {
-				Public.addEditFn(e, '1', this.htm(), function(){
-					console.log(1);
+				var self = this;
+				this.person = {
+					name: '',
+					job_grade_name: '',
+					center_id: '',
+					hourly_wage: ''
+				};
+				Public.addEditFn(e, '', this.htm(this.person), function(){
+					self.person = {
+						name: $('#name').val(),
+						job_grade_name: $('#job_grade_name').val(),
+						center_id: $('#center_id').val(),
+						hourly_wage: $('#hourly_wage').val()
+					};
+					console.log(self.person);
+					return;
+					Public.Ajax('personnel/add', self.person, 'POST', function(res){
+						self.getList();
+					});
 				});
 			},
-			htm () {
+			edit (e, obj) {
+				var self = this;
+				Public.addEditFn(e, '', this.htm(obj), function(){
+					self.person = {
+						name: $('#name').val(),
+						job_grade_name: $('#job_grade_name').val(),
+						center_id: $('#center_id').val(),
+						hourly_wage: $('#hourly_wage').val()
+					};
+					console.log(self.person);
+					return;
+					Public.Ajax('personnel/add', self.person, 'POST', function(res){
+						self.getList();
+					});
+				});
+			},
+			htm (obj) {
 					return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
 						'<div class="am-modal-hd">添加/编辑</div>'+
-						'<div class="am-modal-bd">'+
-						'sdsfsdf'+
+						'<div class="am-modal-bd" style="padding: 0px;">'+
+						'<div class="am-modal-hd" style="padding: 20px;padding-bottom: 0px;"><div action="" class="am-form">'+
+						'<div class="am-form-group">'+
+						'<input type="text" id="name" value="'+obj.name+'" class="am-form-field" placeholder="请输入人员姓名">'+
+						'</div>'+
+						'<div class="am-form-group">'+
+						'<select data-am-selected id="center_id" value="'+obj.center_id+'">'+
+						'<option value="-1">中心选择</option>'+
+				  		'<option value="1">Apple</option>'+
+					  	'<option value="2">Banana</option>'+
+					  	'<option value="3">Orange</option>'+
+					  	'<option value="4">Mango</option>'+
+						'</select>'+
+						'</div>'+
+						'<div class="am-form-group">'+
+						'<input type="text" id="job_grade_name" value="'+obj.job_grade_name+'" class="am-form-field" placeholder="请输入职位等级">'+
+						'</div>'+
+						'<div class="am-form-group">'+
+						'<input type="text" id="hourly_wage" value="'+obj.hourly_wage+'" class="am-form-field" placeholder="请输入时薪">'+
+						'</div>'+
+						'</div>'+
 						'</div>'+
 						'<div class="am-modal-footer">'+
 						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
@@ -130,5 +170,5 @@
 </script>
 
 <style scoped>
-	
+
 </style>

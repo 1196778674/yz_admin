@@ -1,6 +1,6 @@
 <template>
 	<div class="list_header am-form">
-		<div class="list_left">
+		<div class="list_left" v-if="search == 'true'">
 			<select data-am-selected>
 				<option value="-1" selected>中心选择</option>
 		  		<option value="a">Apple</option>
@@ -9,7 +9,7 @@
 			  	<option value="m">Mango</option>
 			</select>
 		</div>
-		<div class="list_left">
+		<div class="list_left" v-if="search == 'true'">
 			<select data-am-selected>
 				<option value="-1" selected>标签选择</option>
 		  		<option value="a">Apple</option>
@@ -18,7 +18,7 @@
 			  	<option value="m">Mango</option>
 			</select>
 		</div>
-		<div class="list_left">
+		<div class="list_left" v-if="search == 'true'">
 			<select data-am-selected>
 				<option value="-1">关键字选择</option>
 		  		<option value="a">Apple</option>
@@ -31,7 +31,7 @@
 		    <i class="am-icon-search"></i>
 		    <input type="text" class="am-form-field" placeholder="搜索">
 	  	</div> -->
-	  	<button type="button" class="am-btn am-btn-primary list_left">查询</button>
+	  	<button type="button" class="am-btn am-btn-primary list_left" v-if="search == 'true'">查询</button>
 	  	<div class="list_btn">
 	  		<router-link :to="{ path: 'form', query: { type: fromtype }}" class="am-btn am-btn-primary" v-if="modal == 'false'">
 	  			<i class="am-icon-plus"></i>
@@ -57,6 +57,10 @@
 			'fromtype': {
 				type: String,
 				default: 'project'
+			},
+			'search': {
+				type: String,
+				default: 'true'
 			}
 		},
 		data () {

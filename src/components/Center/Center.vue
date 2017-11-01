@@ -38,7 +38,11 @@
 			},
 			edit (e, id, code, name) {
 				var self = this;
-				Public.addEditFn(e, '', self.htm(code, name), function(){
+				this.center = {
+					code: code,
+					name: name
+				};
+				Public.addEditFn(e, '', self.htm(this.center), function(){
 					self.center = {
 						code: $('#code').val(),
 						name: $('#name').val()
@@ -63,7 +67,11 @@
 			},
 			addCenter (e) {
 				var self = this;
-				Public.addEditFn(e, '', self.htm(), function(){
+				this.center = {
+					code: '',
+					name: ''
+				};
+				Public.addEditFn(e, '', self.htm(this.center), function(){
 					self.center = {
 						code: $('#code').val(),
 						name: $('#name').val()
@@ -75,15 +83,15 @@
 					});
 				});
 			},
-			htm (code, name) {
+			htm (obj) {
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
 						'<div class="am-modal-hd" style="padding: 20px;padding-bottom: 0px;"><div action="" class="am-form">'+
 						'<div class="am-form-group">'+
-						'<input type="text" id="code" value="'+code+'" class="am-form-field" placeholder="请输入中心编码">'+
+						'<input type="text" id="code" value="'+obj.code+'" class="am-form-field" placeholder="请输入中心编码">'+
 						'</div>'+
 						'<div class="am-form-group">'+
-						'<input type="text" id="name" value="'+name+'" class="am-form-field" placeholder="请输入中心名称">'+
+						'<input type="text" id="name" value="'+obj.name+'" class="am-form-field" placeholder="请输入中心名称">'+
 						'</div>'+
 						'</div></div>'+
 						'<div class="am-modal-footer">'+
