@@ -1,6 +1,7 @@
 const common = {
 	// ajax
 	Ajax (url, params, type, callback) {
+		var url = 'http://admin.yx.dev/admin/' + url;
 		$.ajax({
 			url: url,
 			type: type,
