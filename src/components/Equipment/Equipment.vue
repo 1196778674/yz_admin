@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<search modal="false" @addEditFn="addEditFn" fromtype="equipment"></search>	
+		<search modal="false" @searchFn="searchFn" fromtype="equipment"></search>	
 
 		<div class="am-scrollable-horizontal list_table">
 	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
@@ -15,52 +15,18 @@
 			  		</tr>
 			  	</thead>
 			  	<tbody>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>2017-8-9</td>
+				  	<tr v-for="item in list">
+					    <td>{{item.code}}</td>
+					    <td>{{item.name}}</td>
+					    <td>{{item.brands}}</td>
+					    <td>{{item.center_name}}</td>
+					    <td>{{item.clinics_name}}</td>
 					    <td>
-					    	<router-link :to="{ path: 'equipmentdetail', query: { id: 123 }}">
+					    	<router-link :to="{ path: 'equipmentdetail', query: { id: item.id }}">
 					    		<span class="am-icon-file-text-o"></span>
 					    		查看详情
 					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
-					    		<span class="am-icon-trash-o"></span>
-					    		删除
-					    	</a>
-					    </td>
-				  	</tr>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>2017-8-9</td>
-					    <td>
-					    	<router-link to="#">
-					    		<span class="am-icon-file-text-o"></span>
-					    		查看详情
-					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
-					    		<span class="am-icon-trash-o"></span>
-					    		删除
-					    	</a>
-					    </td>
-				  	</tr>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>2017-8-9</td>
-					    <td>
-					    	<router-link to="#">
-					    		<span class="am-icon-file-text-o"></span>
-					    		查看详情
-					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
+					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, item.id)">
 					    		<span class="am-icon-trash-o"></span>
 					    		删除
 					    	</a>
@@ -70,9 +36,9 @@
 			</table>
 		</div>
 
-		<div class="yx_page">
+		<div class="yx_page" v-if="page_total > 1">
 			<paginate
-			  :page-count=page
+			  :page-count=page_total
 			  :click-handler="pagination"
 			  :active-class="'am-active'"
 			  :container-class="'am-pagination'"
@@ -91,43 +57,45 @@
 
 		data() {
 			return {
-				page: 10
+				page_total: 0,
+				page: this.$route.query.page || 1,
+				list: ''
 			}
 		},
 		created: function () {
 			Public.initSelect();
+			this.getList(this.page);
 		},
 		components: {
 			"search": Search,
 			"paginate": Paginate
 		},
 		methods: {
+			getList (page) {
+				var self = this;
+				var params = {
+					page: page
+				};
+				Public.Ajax('equipment/list', params, 'GET', function(res){
+					self.page_total = res.data.total_page;
+					self.list = res.data.list;
+				});
+			},
 			pagination (page) {
-				console.log(page);
+				this.getList(page);
 			},
 			deleteList (e, id) {
+				var self = this;
 				Public.deleteModal(e, id, function(){
-					console.log('delete');
+					console.log(id);
+					return;
+					Public.Ajax('equipment/del', {equipment_id: id}, 'GET', function(res){
+						self.getList(self.page);
+					});
 				});
 			},
-			addEditFn (e) {
-				Public.addEditFn(e, '1', this.htm(), function(){
-					console.log(1);
-				});
-			},
-			htm () {
-					return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
-						'<div class="am-modal-dialog">'+
-						'<div class="am-modal-hd">添加/编辑</div>'+
-						'<div class="am-modal-bd">'+
-						'sdsfsdf'+
-						'</div>'+
-						'<div class="am-modal-footer">'+
-						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
-						'<span class="am-modal-btn" data-am-modal-confirm>提交</span>'+
-						'</div>'+
-						'</div>'+
-						'</div>';
+			searchFn (params) {
+				console.log(params);
 			}
 		}
 	}
