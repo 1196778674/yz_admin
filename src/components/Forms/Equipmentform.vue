@@ -82,7 +82,7 @@
 				</div>
 				<div class="am-form-group am-u-sm-12" style="padding-left:5px;">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>年龄限制</label>
-					<div class="am-u-sm-10 age">
+					<div class="am-u-sm-6 age">
 						<div class="am-form-group am-form-icon am-form-feedback">
 						    <input type="text" v-model="forms.min_age_limit" class="am-radius" maxlength="2" placeholder="">
 						    <span class="am-icon-ellipsis">岁</span>
@@ -103,25 +103,21 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">适应症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, 1)">选中了{{indications}}个适应症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 					<div class="am-u-sm-10 show_detail_list">
-						<span>234,</span>
-						<span>234,</span>
-						<span>234</span>
+						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">禁忌症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius"></p>
+						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{contraindications}}个适应症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 					<div class="am-u-sm-10 show_detail_list">
-						<span>234,</span>
-						<span>234,</span>
-						<span>234</span>
+						<span v-for="v in forms.equipment_contraindications_labels">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group">
@@ -200,16 +196,87 @@
 					equipment_contraindications_labels: [],
 					equipment_images: '',
 					equipment_attachments: ''
-				}
+				},
+				checked_list: [],
+				indications: 0,
+				contraindications: 0
 			}
 		},
 		created () {
 			Public.initSelect();
+			this.initCheckbox();
 		},
 		methods: {
 			save () {
 				console.log(this.forms);
-			}
+			},
+			addEditFn (e, type) {
+				var self = this;
+				var list, item;
+				Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
+					var list = res.data;
+					Public.addEditFn(e, '', self.selectHtm(type, list), function(){
+						if (type == 1) {
+							self.forms.equipment_indications_labels = [];
+						} else {
+							self.forms.equipment_contraindications_labels = [];
+						};
+						$.each(list, function(k, val) {
+							 var id = val.id + '';
+							 if ($.inArray(id, self.checked_list) > -1 && type == 1) {
+							 	self.forms.equipment_indications_labels.push(val);
+							 }
+							 if ($.inArray(id, self.checked_list) > -1 && type == 2) {
+							 	self.forms.equipment_contraindications_labels.push(val);
+							 }
+						});
+						self.indications = self.forms.equipment_indications_labels.length;
+						self.contraindications = self.forms.equipment_contraindications_labels.length;
+					});
+				});
+			},
+			initCheckbox () {
+				var self = this;
+				$('body').on('click', '.checks', function(e) {
+					self.checked_list = [];
+					$('.checks').each(function(k, v){
+						var is_checked = $(v).prop('checked'),
+							id = $(v).val();
+						if (is_checked) {
+							self.checked_list.push(id);
+						};
+					});
+				});
+			},
+			selectHtm (type, list) {
+				if (type == 1) {
+					var title = '适应症';
+				} else {
+					var title = '禁忌症';
+				}
+				var item = '';
+				for (var i = 0; i < list.length; i++) {
+					item += '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input class="checks" type="checkbox" value="'+list[i].id+'">'+list[i].name+''+
+							'</label>'+
+							'</li>';	
+				};
+				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
+						'<div class="am-modal-dialog">'+
+						'<div class="am-modal-hd">'+title+'</div>'+
+						'<div class="am-modal-bd">'+
+						'<ul>'+
+						item +
+						'</ul>'+
+						'</div>'+
+						'<div class="am-modal-footer">'+
+						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
+						'<span class="am-modal-btn" data-am-modal-confirm>确定</span>'+
+						'</div>'+
+						'</div>'+
+						'</div>';
+			},
 		}
 	}
 </script>
@@ -223,12 +290,24 @@
 		float: left;
 		width: 33%;
 	}
+	.form_container .am-u-sm-6{
+		float: left;
+	}
 	.form_container .age .am-form-feedback{
 		float: left;
-		width: 45%;
+		width: 27%;
 	}
 	.form_container .age span.fg{
 		float: left;
 		margin: 5px 10px;
+	}
+	.show_detail_list span{
+		font-size: 13px;
+		margin-right: 10px;
+	}
+	.froms .am-form-group p.am-radius{
+		line-height: 25px;
+		padding-left: 5px;
+		font-size: 13px;
 	}
 </style>
