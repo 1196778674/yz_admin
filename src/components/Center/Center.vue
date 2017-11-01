@@ -8,7 +8,7 @@
 				<span class="edit am-icon-edit" @click="edit($event, item.id, item.code, item.name)"></span>
 			</li>
 			<li>
-				<span class="plus am-icon-plus-square-o" @click="addCenter($event)"></span>
+				<span class="plus am-icon-plus" @click="addCenter($event)"></span>
 			</li>
 		</ul>
 	</div>
