@@ -287,9 +287,6 @@
 					});
 				});
 			},
-			addCheckList (type) {
-				console.log(type);
-			},
 			selectHtm (type, list) {
 				if (type == 1) {
 					var title = '适应症';
