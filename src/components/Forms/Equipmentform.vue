@@ -220,6 +220,9 @@
 				this.forms.center_id = $('#center_id').val();
 				this.forms.clinics_id = $('#clinics_id').val();
 				this.forms.gender_limit = $('input[name="gender_limit"]:checked').val();
+				if (!!this.$route.query.equipment_id) {
+					this.forms.equipment_id = this.$route.query.equipment_id;
+				}
 				console.log(this.forms);
 				return;
 				Public.Ajax('equipment/add', this.forms, 'POST', function(res){
