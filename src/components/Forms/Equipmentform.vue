@@ -29,9 +29,8 @@
 				<div class="am-form-group am-u-sm-6">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>所属中心</label>
 					<div class="am-u-sm-8">
-						<select data-am-selected="{btnWidth: '100%'}" id="center_id">
-							<option value="-1">中心选择</option>
-					  		<option value="1">中心1</option>
+						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
+							<option v-for="center_item in center_list">{{center_item.name}}</option>
 						</select>
 					</div>
 				</div>
@@ -74,9 +73,8 @@
 				<div class="am-form-group am-u-sm-6">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>摆放诊室</label>
 					<div class="am-u-sm-8">
-						<select data-am-selected="{btnWidth: '100%'}" id="clinics_id">
-							<option value="-1">诊室选择</option>
-					  		<option value="1">中心1</option>
+						<select data-am-selected="{btnWidth: '100%'}" id="clinics_name">
+							<option v-for="clinics_item in clinics_list">{{clinics_item.name}}</option>
 						</select>
 					</div>
 				</div>
@@ -199,17 +197,41 @@
 				},
 				checked_list: [],
 				indications: 0,
-				contraindications: 0
+				contraindications: 0,
+				center_list: [],
+				clinics_list: []
 			}
 		},
 		created () {
-			Public.initSelect();
 			this.initCheckbox();
+			this.getCenter();
 			if (!!this.$route.query.equipment_id) {
 				this.getDetail(this.$route.query.equipment_id);
 			}
 		},
 		methods: {
+			getCenter () {
+				var self = this;
+				Public.Ajax('center/list', {}, 'GET', function(res){
+					self.center_list = res.data;
+					Public.initSelect();
+					$('#center_name').on('change', function(){
+						self.getClinics();
+					});
+				});
+			},
+			getClinics () {
+				var self = this;
+				var center_name = $('.am-selected-status').eq(0).text();
+				$.each(self.center_list, function(i, v) {
+					if (v.name == center_name) {
+						self.forms.center_id = v.id;
+					}
+				});
+				Public.Ajax('clinics/listByCenterId', {center_id: self.forms.center_id}, 'GET', function(res){
+					self.clinics_list = res.data;
+				});
+			},
 			getDetail (id) {
 				var self = this;
 				Public.Ajax('equipment/detail', {equipment_id: id}, 'GET', function(res){
@@ -217,15 +239,29 @@
 				});
 			},
 			save () {
-				this.forms.center_id = $('#center_id').val();
-				this.forms.clinics_id = $('#clinics_id').val();
+				var self = this;
+				var center_name = $('.am-selected-status').eq(0).text();
+				var clinics_name = $('.am-selected-status').eq(1).text();
+				$.each(self.center_list, function(i, v) {
+					if (v.name == center_name) {
+						self.forms.center_id = v.id;
+					}
+				});
+				$.each(self.clinics_list, function(i, v) {
+					 if (v.name == clinics_name) {
+						self.forms.clinics_id = v.id;
+					}
+				});
 				this.forms.gender_limit = $('input[name="gender_limit"]:checked').val();
 				if (!!this.$route.query.equipment_id) {
 					this.forms.equipment_id = this.$route.query.equipment_id;
+					var url = 'equipment/edit'
+				} else {
+					var url = 'equipment/add'
 				}
-				console.log(this.forms);
-				return;
-				Public.Ajax('equipment/add', this.forms, 'POST', function(res){
+				// console.log(this.forms);
+				// return;
+				Public.Ajax(url, this.forms, 'POST', function(res){
 					window.location.href = '#/equipment';
 				});
 			},

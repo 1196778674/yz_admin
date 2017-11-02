@@ -15,7 +15,11 @@ const common = {
 		})
 		.done(function(res) {
 			$('#loading').remove();
-			callback(res);
+			if (res.status == 5000) {
+				self.dialog(res.msg);
+			} else {
+				callback(res);
+			}
 		})
 		.fail(function() {
 			$('#loading').remove();
