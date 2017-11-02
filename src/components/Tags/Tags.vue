@@ -49,8 +49,8 @@
 						name: $('#name').val(),
 						label_category_id: id
 					};
-					console.log(self.labels);
-					return;
+					// console.log(self.labels);
+					// return;
 					Public.Ajax('label/add', self.labels, 'POST', function(){
 						self.getList();
 					});
@@ -69,9 +69,9 @@
 						label_id: item.id,
 						label_category_id: id
 					};
-					console.log(self.labels);
-					return;
-					Public.Ajax('clinics/edit', self.labels, 'POST', function(){
+					// console.log(self.labels);
+					// return;
+					Public.Ajax('label/edit', self.labels, 'POST', function(){
 						self.getList();
 					});
 				});
@@ -79,9 +79,9 @@
 			deleteBtn (e, id, label_category_id) {
 				var self = this;
 				Public.deleteModal(e, '', function(){
-					console.log(id, label_category_id);
-					return;
-					Public.Ajax('clinics/del', {label_id: id, label_category_id: label_category_id}, 'GET', function(){
+					// console.log(id, label_category_id);
+					// return;
+					Public.Ajax('label/del', {label_id: id, label_category_id: label_category_id}, 'GET', function(){
 						self.getList();
 					});
 				});
