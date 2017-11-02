@@ -48,8 +48,8 @@
 						name: $('#name').val()
 					};
 					self.center.id = id;
-					console.log(self.center);
-					return;
+					// console.log(self.center);
+					// return;
 					Public.Ajax('center/edit', self.center, 'POST', function(){
 						self.getList();
 					});
@@ -58,8 +58,8 @@
 			deletes (e, id) {
 				var self = this;
 				Public.deleteModal(e, id, function(){
-					console.log(id);
-					return;
+					// console.log(id);
+					// return;
 					Public.Ajax('center/del', {center_id: id}, 'GET', function(){
 						self.getList();
 					});
@@ -76,8 +76,8 @@
 						code: $('#code').val(),
 						name: $('#name').val()
 					};
-					console.log(self.center);
-					return;
+					// console.log(self.center);
+					// return;
 					Public.Ajax('center/add', self.center, 'POST', function(){
 						self.getList();
 					});
