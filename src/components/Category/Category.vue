@@ -52,8 +52,8 @@
 						name: $('#name').val(),
 						center_id: id
 					};
-					console.log(self.category);
-					return;
+					// console.log(self.category);
+					// return;
 					Public.Ajax('category/add', self.category, 'POST', function(){
 						self.getList();
 					});
@@ -74,8 +74,8 @@
 						category_id: item.id,
 						center_id: id
 					};
-					console.log(self.category);
-					return;
+					// console.log(self.category);
+					// return;
 					Public.Ajax('category/edit', self.category, 'POST', function(){
 						self.getList();
 					});
@@ -84,8 +84,8 @@
 			deleteBtn (e, id, center_id) {
 				var self = this;
 				Public.deleteModal(e, '', function(){
-					console.log(id, center_id);
-					return;
+					// console.log(id, center_id);
+					// return;
 					Public.Ajax('category/del', {category_id: id, center_id: center_id}, 'GET', function(){
 						self.getList();
 					});

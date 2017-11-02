@@ -49,8 +49,8 @@
 						name: $('#name').val(),
 						center_id: id
 					};
-					console.log(self.consultation);
-					return;
+					// console.log(self.consultation);
+					// return;
 					Public.Ajax('clinics/add', self.consultation, 'POST', function(){
 						self.getList();
 					});
@@ -69,8 +69,8 @@
 						clinics_id: item.id,
 						center_id: id
 					};
-					console.log(self.consultation);
-					return;
+					// console.log(self.consultation);
+					// return;
 					Public.Ajax('clinics/edit', self.consultation, 'POST', function(){
 						self.getList();
 					});
@@ -79,8 +79,8 @@
 			deleteBtn (e, id, center_id) {
 				var self = this;
 				Public.deleteModal(e, '', function(){
-					console.log(id, center_id);
-					return;
+					// console.log(id, center_id);
+					// return;
 					Public.Ajax('clinics/del', {clinics_id: id, center_id: center_id}, 'GET', function(){
 						self.getList();
 					});
