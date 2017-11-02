@@ -47,7 +47,7 @@
 						code: $('#code').val(),
 						name: $('#name').val()
 					};
-					self.center.id = id;
+					self.center.center_id = id;
 					// console.log(self.center);
 					// return;
 					Public.Ajax('center/edit', self.center, 'POST', function(){
