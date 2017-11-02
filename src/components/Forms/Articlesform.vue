@@ -30,7 +30,7 @@
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>所属中心</label>
 					<div class="am-u-sm-8">
 						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
-							<option v-for="center_item in center_list">{{center_item.name}}</option>
+							
 						</select>
 					</div>
 				</div>
@@ -200,10 +200,11 @@
 			}
 		},
 		created () {
-			this.getCenter();
 			this.initCheckbox();
 			if (!!this.$route.query.supplies_id) {
 				this.getDetail(this.$route.query.supplies_id);
+			} else {
+				this.getCenter();
 			}
 		},
 		methods: {
@@ -211,12 +212,31 @@
 				var self = this;
 				Public.Ajax('supplies/detail', {supplies_id: id}, 'GET', function(res){
 					self.forms = res.data;
+					self.getCenter();
 				});
 			},
 			getCenter () {
 				var self = this;
 				Public.Ajax('center/list', {}, 'GET', function(res){
 					self.center_list = res.data;
+					var options = '';
+					var center_id = self.forms.center_id;
+					var eq;
+					if (!!self.$route.query.supplies_id) {
+						$.each(self.center_list, function(index, val) {
+							 if (val.id == center_id) {
+							 	eq = index;
+							 }
+						});
+					}
+					for (var i = 0; i < self.center_list.length; i++) {
+						if (eq == i) {
+							options += '<option value="'+self.center_list[i].id+'" selected>'+self.center_list[i].name+'</option>';
+						} else {
+							options += '<option value="'+self.center_list[i].id+'">'+self.center_list[i].name+'</option>';
+						};
+					};
+					$('#center_name').append(options);
 					Public.initSelect();
 				});
 			},
