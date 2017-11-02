@@ -74,7 +74,7 @@
 			
 			<ul>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="prevPage()">上一页</button></li>
-				<li><button type="button" class="am-btn am-btn-secondary" @click="editPage()">编辑</button></li>
+				<li><button type="button" class="am-btn am-btn-secondary" @click="editPage(edit_id)">编辑</button></li>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="deletePage($event)">删除</button></li>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="printPage()">打印</button></li>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="nextPage()">下一页</button></li>
@@ -89,7 +89,8 @@
 		name: 'Equipmentdetail',
 		data () {
 			return {
-				detail: ''
+				detail: '',
+				edit_id: this.$route.query.id
 			}
 		},
 		created () {
@@ -98,16 +99,15 @@
 		methods: {
 			getDetail () {
 				var self = this;
-				var id = this.$route.query.id;
-				Public.Ajax('equipment/detail', {equipment_id: id}, 'GET', function(res){
+				Public.Ajax('equipment/detail', {equipment_id: this.edit_id}, 'GET', function(res){
 					self.detail = res.data;
 				});
 			},
 			prevPage () {
 				console.log('prevPage');
 			},
-			editPage () {
-				window.location.href = '#/form' + '?type=equipment';
+			editPage (id) {
+				window.location.href = '#/form' + '?type=equipment&equipment_id=' +  id;
 			},
 			deletePage (e) {
 				var id = this.$route.query.id;

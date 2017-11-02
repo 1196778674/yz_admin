@@ -205,13 +205,26 @@
 		created () {
 			Public.initSelect();
 			this.initCheckbox();
+			if (!!this.$route.query.equipment_id) {
+				this.getDetail(this.$route.query.equipment_id);
+			}
 		},
 		methods: {
+			getDetail (id) {
+				var self = this;
+				Public.Ajax('equipment/detail', {equipment_id: id}, 'GET', function(res){
+					self.forms = res.data;
+				});
+			},
 			save () {
 				this.forms.center_id = $('#center_id').val();
 				this.forms.clinics_id = $('#clinics_id').val();
 				this.forms.gender_limit = $('input[name="gender_limit"]:checked').val();
 				console.log(this.forms);
+				return;
+				Public.Ajax('equipment/add', this.forms, 'POST', function(res){
+					window.location.href = '#/equipment';
+				});
 			},
 			addEditFn (e, type) {
 				var self = this;
@@ -307,6 +320,7 @@
 	.show_detail_list span{
 		font-size: 13px;
 		margin-right: 10px;
+		color: #777;
 	}
 	.froms .am-form-group p.am-radius{
 		line-height: 25px;
