@@ -82,7 +82,7 @@
 				});
 			},
 			pagination (page) {
-				console.log(page);
+				this.page = page;
 			},
 			deleteList (e, id) {
 				var self = this;
@@ -90,8 +90,8 @@
 					var params = {
 						supplies_id: id
 					};
-					console.log(params);
-					return;
+					// console.log(params);
+					// return;
 					Public.Ajax('supplies/del', params, 'GET', function(){
 						self.getList(self.page);
 					});
