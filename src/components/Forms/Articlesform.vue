@@ -221,8 +221,8 @@
 				if (!!this.$route.query.supplies_id) {
 					this.forms.supplies_id = this.$route.query.supplies_id;
 				}
-				console.log(this.forms);
-				return;
+				// console.log(this.forms);
+				// return;
 				Public.Ajax('supplies/add', this.forms, 'POST', function(res){
 					window.location.href = '#/supplies';
 				});

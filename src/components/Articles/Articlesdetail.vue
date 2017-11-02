@@ -112,8 +112,8 @@
 			deletePage (e) {
 				var id = this.$route.query.id;
 				Public.deleteModal(e, id, function () {
-					console.log(id);
-					return;
+					// console.log(id);
+					// return;
 					Public.Ajax('supplies/del', {supplies_id: id}, 'GET', function(res){
 						window.location.href = '#/articles';
 					});
