@@ -62,7 +62,8 @@
 					job_grade_name: '',
 					center_id: '',
 					hourly_wage: ''
-				}
+				},
+				center_list: []
 			}
 		},
 		created: function () {
@@ -78,7 +79,10 @@
 				var self = this;
 				Public.Ajax ('personnel/list', {}, 'GET', function(res){
 					self.list = res.data;
-				})
+				});
+				Public.Ajax('center/list', {}, 'GET', function(res){
+					self.center_list = res.data;
+				});
 			},
 			pagination (page) {
 				console.log(page);
@@ -87,8 +91,8 @@
 			deleteList (e, id) {
 				var self = this;
 				Public.deleteModal(e, id, function(){
-					console.log(id);
-					return;
+					// console.log(id);
+					// return;
 					Public.Ajax('personnel/del', {personnel_id: id}, 'GET', function(res){
 						self.getList();
 					});
@@ -109,8 +113,8 @@
 						center_id: $('#center_id').val(),
 						hourly_wage: $('#hourly_wage').val()
 					};
-					console.log(self.person);
-					return;
+					// console.log(self.person);
+					// return;
 					Public.Ajax('personnel/add', self.person, 'POST', function(res){
 						self.getList();
 					});
@@ -125,15 +129,19 @@
 						center_id: $('#center_id').val(),
 						hourly_wage: $('#hourly_wage').val()
 					};
-					self.person.id = id;
-					console.log(self.person);
-					return;
-					Public.Ajax('personnel/add', self.person, 'POST', function(res){
+					self.person.personnel_id = id;
+					// console.log(self.person);
+					// return;
+					Public.Ajax('personnel/edit', self.person, 'POST', function(res){
 						self.getList();
 					});
 				});
 			},
 			htm (obj) {
+					var option = '';
+					for (var i = 0; i < this.center_list.length; i++) {
+						option += '<option value="'+this.center_list[i].id+'">'+this.center_list[i].name+'</option>';
+					}
 					return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
 						'<div class="am-modal-hd">添加/编辑</div>'+
@@ -144,11 +152,7 @@
 						'</div>'+
 						'<div class="am-form-group">'+
 						'<select data-am-selected id="center_id" value="'+obj.center_id+'">'+
-						'<option value="-1">中心选择</option>'+
-				  		'<option value="1">Apple</option>'+
-					  	'<option value="2">Banana</option>'+
-					  	'<option value="3">Orange</option>'+
-					  	'<option value="4">Mango</option>'+
+						option+
 						'</select>'+
 						'</div>'+
 						'<div class="am-form-group">'+
