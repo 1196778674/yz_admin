@@ -1,7 +1,7 @@
 <template>
 	<div class="list_header am-form">
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected id="center">
+			<select data-am-selected id="center_id">
 				<option value="-1" selected>中心选择</option>
 		  		<option value="a">Apple</option>
 			  	<option value="b">Banana</option>
@@ -10,7 +10,7 @@
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected id="tags">
+			<select data-am-selected id="label_category_id">
 				<option value="-1" selected>标签选择</option>
 		  		<option value="a">Apple</option>
 			  	<option value="b">Banana</option>
@@ -19,7 +19,7 @@
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected id="keywrod">
+			<select data-am-selected id="label_key_word">
 				<option value="-1">关键字选择</option>
 		  		<option value="a">Apple</option>
 			  	<option value="b">Banana</option>
@@ -66,9 +66,9 @@
 		data () {
 			return {
 				params: {
-					center: '',
-					tag: '',
-					keywrod: ''
+					center_id: '',
+					label_category_id: '',
+					label_key_word: ''
 				}
 			}
 		},
@@ -81,9 +81,9 @@
 			},
 			searchFn () {
 				this.params = {
-					center: $('#center').val(),
-					tags: $('#tags').val(),
-					keywrod: $('#keywrod').val()
+					center_id: $('#center_id').val(),
+					label_category_id: $('#label_category_id').val(),
+					label_key_word: $('#label_key_word').val()
 				};
 				this.$emit('searchFn', this.params);
 			}
