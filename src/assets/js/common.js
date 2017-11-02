@@ -106,11 +106,14 @@ const common = {
 	},
 
 	// 编辑添加modal
-	addEditFn (e, id, htm, callback) {
+	addEditFn (e, id, htm, callback, init) {
 		$('#add-edit-modal').remove();
 		$('body').append(htm);
 		var $modal = $('#add-edit-modal');
 	    var $target = $(e.target);
+	    if (!!init) {
+	    	init();
+	    };
 		$modal.modal({
 			relatedTarget: $(e.target),
 			onConfirm: function(e) {

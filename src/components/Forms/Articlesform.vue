@@ -252,6 +252,25 @@
 						} else {
 							self.contraindications = self.forms.supplies_contraindications_labels.length;
 						}
+					},function(){
+						$('#addCheckList').on('click', function(e){
+							var val = $('#add_check_name').val();
+							Public.Ajax('label/add', {label_category_id: type, name: val}, 'POST', function(res){
+								Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
+									$('#add_check_name').val('');
+									var list = res.data,
+										item = '';
+									for (var i = 0; i < list.length; i++) {
+										item += '<li>'+
+												'<label class="am-checkbox-inline">'+
+												'<input class="checks" type="checkbox" value="'+list[i].id+'">'+list[i].name+''+
+												'</label>'+
+												'</li>';	
+									};
+									$('#checked_arr_list').html(item);
+								});
+							});
+						});
 					});
 				});
 			},
@@ -267,6 +286,9 @@
 						};
 					});
 				});
+			},
+			addCheckList (type) {
+				console.log(type);
 			},
 			selectHtm (type, list) {
 				if (type == 1) {
@@ -287,7 +309,17 @@
 						'<div class="am-modal-hd">'+title+'</div>'+
 						'<div class="am-modal-bd">'+
 						'<ul>'+
+						'<span id="checked_arr_list">'+
 						item +
+						'</span>'+
+						'<li style="width: 30%;">'+
+						'<div class="am-input-group">'+
+						'<input type="text" id="add_check_name" class="am-form-field" style="height: 30px;line-height: 30px;border: 1px solid #ccc; border-top-left-radius: 3px;border-bottom-left-radius: 3px;" placeholder="添加'+title+'">'+
+						'<span class="am-input-group-btn">'+
+						'<button class="am-btn am-btn-secondary" id="addCheckList" type="button" style="height: 30px;border: 1px solid #3bb4f2;">添加</button>'+
+						'</span>'+
+						'</div>'+
+						'</li>'+
 						'</ul>'+
 						'</div>'+
 						'<div class="am-modal-footer">'+
