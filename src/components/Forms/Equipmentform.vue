@@ -249,8 +249,11 @@
 							 	self.forms.equipment_contraindications_labels.push(val);
 							 }
 						});
-						self.indications = self.forms.equipment_indications_labels.length;
-						self.contraindications = self.forms.equipment_contraindications_labels.length;
+						if (type == 1) {
+							self.indications = self.forms.equipment_indications_labels.length;
+						} else {
+							self.contraindications = self.forms.equipment_contraindications_labels.length;
+						}
 					});
 				});
 			},
