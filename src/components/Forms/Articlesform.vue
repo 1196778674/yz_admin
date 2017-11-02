@@ -29,9 +29,8 @@
 				<div class="am-form-group am-u-sm-6">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>所属中心</label>
 					<div class="am-u-sm-8">
-						<select data-am-selected="{btnWidth: '100%'}" id="center_id">
-							<option value="-1">中心选择</option>
-					  		<option value="1">中心1</option>
+						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
+							<option v-for="center_item in center_list">{{center_item.name}}</option>
 						</select>
 					</div>
 				</div>
@@ -181,7 +180,6 @@
 					purchase_price: '',
 					market_price: '',
 					once_cost: '',
-					clinics_id: '',
 					min_age_limit: '',
 					max_age_limit: '',
 					gender_limit: '',
@@ -197,11 +195,12 @@
 				},
 				checked_list: [],
 				indications: 0,
-				contraindications: 0
+				contraindications: 0,
+				center_list: []
 			}
 		},
 		created () {
-			Public.initSelect();
+			this.getCenter();
 			this.initCheckbox();
 			if (!!this.$route.query.supplies_id) {
 				this.getDetail(this.$route.query.supplies_id);
@@ -214,16 +213,33 @@
 					self.forms = res.data;
 				});
 			},
+			getCenter () {
+				var self = this;
+				Public.Ajax('center/list', {}, 'GET', function(res){
+					self.center_list = res.data;
+					Public.initSelect();
+				});
+			},
 			save () {
-				this.forms.center_id = $('#center_id').val();
-				this.forms.clinics_id = $('#clinics_id').val();
+				var self = this;
+				var center_name = $('.am-selected-status').eq(0).text();
+				$.each(self.center_list, function(i, v) {
+					if (v.name == center_name) {
+						self.forms.center_id = v.id;
+					}
+				});
 				this.forms.gender_limit = $('input[name="gender_limit"]:checked').val();
 				if (!!this.$route.query.supplies_id) {
 					this.forms.supplies_id = this.$route.query.supplies_id;
+					var url = 'supplies/edit'
+				} else {
+					var url = 'supplies/add'
 				}
 				// console.log(this.forms);
 				// return;
-				Public.Ajax('supplies/add', this.forms, 'POST', function(res){
+				this.forms.supplies_indications_labels = JSON.stringify(this.forms.supplies_indications_labels);
+				this.forms.supplies_contraindications_labels = JSON.stringify(this.forms.supplies_contraindications_labels);
+				Public.Ajax(url, this.forms, 'POST', function(res){
 					window.location.href = '#/supplies';
 				});
 			},

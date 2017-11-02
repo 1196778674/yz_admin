@@ -261,6 +261,8 @@
 				}
 				// console.log(this.forms);
 				// return;
+				this.forms.equipment_indications_labels = JSON.stringify(this.forms.equipment_indications_labels);
+				this.forms.equipment_contraindications_labels = JSON.stringify(this.forms.equipment_contraindications_labels);
 				Public.Ajax(url, this.forms, 'POST', function(res){
 					window.location.href = '#/equipment';
 				});
