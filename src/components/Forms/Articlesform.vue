@@ -352,7 +352,8 @@
 						'<span id="checked_arr_list">'+
 						item +
 						'</span>'+
-						'<li style="width: 30%;">'+
+						'</ul>'+
+						'<li style="width: 30%; margin-left: 15px;">'+
 						'<div class="am-input-group">'+
 						'<input type="text" id="add_check_name" class="am-form-field" style="height: 30px;line-height: 30px;border: 1px solid #ccc; border-top-left-radius: 3px;border-bottom-left-radius: 3px;" placeholder="添加'+title+'">'+
 						'<span class="am-input-group-btn">'+
@@ -360,7 +361,6 @@
 						'</span>'+
 						'</div>'+
 						'</li>'+
-						'</ul>'+
 						'</div>'+
 						'<div class="am-modal-footer">'+
 						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
