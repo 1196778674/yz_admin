@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<search modal="false" fromtype="articles"></search>	
+		<search modal="false" @searchFn="searchFn" fromtype="articles"></search>	
 
 		<div class="am-scrollable-horizontal list_table">
 	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
@@ -71,11 +71,12 @@
 			"paginate": Paginate
 		},
 		methods: {
-			getList (page) {
+			getList (page, param) {
 				var self = this;
 				var params = {
 					page: page
 				};
+				params = $.extend(true, params, param);
 				Public.Ajax('supplies/list', params, 'GET', function(res){
 					self.page_total = res.data.total_page;
 					self.list = res.data.list;
@@ -97,6 +98,9 @@
 					});
 				});
 			},
+			searchFn (params) {
+				this.getList(this.page, params);
+			}
 		}
 	}
 </script>
