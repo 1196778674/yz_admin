@@ -267,7 +267,7 @@
 				this.forms.supplies_indications_labels = JSON.stringify(this.forms.supplies_indications_labels);
 				this.forms.supplies_contraindications_labels = JSON.stringify(this.forms.supplies_contraindications_labels);
 				Public.Ajax(url, this.forms, 'POST', function(res){
-					window.location.href = '#/articles';
+					window.location.href = '#/articlesdetail?id=' + self.$route.query.supplies_id;
 				});
 			},
 			addEditFn (e, type) {
