@@ -80,14 +80,19 @@
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>年龄限制</label>
 					<div class="am-u-sm-6 age" style="float:left;">
 						<div class="am-form-group am-form-icon am-form-feedback">
-						    <input type="text" v-model="forms.min_age_limit" class="am-radius" maxlength="2" placeholder="">
+						    <input type="text" v-model="forms.min_age_limit" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<span class="fg">至</span>
 					  	<div class="am-form-group am-form-icon am-form-feedback">
-						    <input type="text" v-model="forms.max_age_limit" class="am-radius" maxlength="2" placeholder="">
+						    <input type="text" v-model="forms.max_age_limit" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
+					  	<div class="checkbox no_limit">
+					        <label>
+				          		<input v-model="no_limit" type="checkbox" @click="noLimit">不限
+					        </label>
+				      	</div>
 					</div>
 				</div>
 				<div class="am-form-group">
@@ -196,7 +201,8 @@
 				checked_list: [],
 				indications: 0,
 				contraindications: 0,
-				center_list: []
+				center_list: [],
+				no_limit: false
 			}
 		},
 		created () {
@@ -208,6 +214,10 @@
 			}
 		},
 		methods: {
+			noLimit () {
+				this.forms.min_age_limit = '';
+				this.forms.max_age_limit = '';
+			},
 			getDetail (id) {
 				var self = this;
 				Public.Ajax('supplies/detail', {supplies_id: id}, 'GET', function(res){
