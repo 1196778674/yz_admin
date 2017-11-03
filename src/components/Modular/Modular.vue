@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<search modal="false" @addEditFn="addEditFn" fromtype="modular"></search>	
+		<search modal="false" @searchFn="searchFn" @addEditFn="addEditFn" fromtype="modular"></search>	
 
 		<div class="am-scrollable-horizontal list_table">
 	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
@@ -102,6 +102,9 @@
 			"paginate": Paginate
 		},
 		methods: {
+			searchFn (params) {
+				console.log(params);
+			},
 			pagination (page) {
 				console.log(page);
 			},

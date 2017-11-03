@@ -1,30 +1,20 @@
 <template>
 	<div class="list_header am-form">
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected id="center_id">
-				<option value="-1" selected>中心选择</option>
-		  		<option value="a">Apple</option>
-			  	<option value="b">Banana</option>
-			  	<option value="o">Orange</option>
-			  	<option value="m">Mango</option>
+			<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected id="label_category_id">
-				<option value="-1" selected>标签选择</option>
-		  		<option value="a">Apple</option>
-			  	<option value="b">Banana</option>
-			  	<option value="o">Orange</option>
-			  	<option value="m">Mango</option>
+			<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="category_name">
+				<option value="0">标签选择</option>
+		  		<option value="1">适应症</option>
+			  	<option value="2">禁忌症</option>
+			  	<option value="3">作用功能</option>
+			  	<option value="4">作用部位</option>
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected id="label_key_word">
-				<option value="-1">关键字选择</option>
-		  		<option value="a">Apple</option>
-			  	<option value="b">Banana</option>
-			  	<option value="o">Orange</option>
-			  	<option value="m">Mango</option>
+			<select data-am-selected id="keyword_name">
 			</select>
 		</div>
 		<!-- <div class="am-form-group am-form-icon list_left">
@@ -69,21 +59,58 @@
 					center_id: '',
 					label_category_id: '',
 					label_key_word: ''
-				}
+				},
+				center_list: [],
+				keyword_list: []
 			}
 		},
 		created: function () {
-			// console.log(this);
+			this.getCenter();
+			this.changeCategory();
+			this.getKeyword(0);
 		},
 		methods: {
+			getCenter () {
+				var self = this;
+				Public.Ajax('center/list', {}, 'GET', function(res){
+					self.center_list = res.data;
+					var options = '<option value="0">中心选择</option>';
+					for (var i = 0; i < self.center_list.length; i++) {
+						options += '<option value="'+self.center_list[i].id+'">'+self.center_list[i].name+'</option>';
+					};
+					$('#center_name').append(options);
+					Public.initSelect();
+				});
+			},
+			changeCategory () {
+				var self = this;
+				$(function(){
+					$('#category_name').on('change', function(e){
+						self.getKeyword(e.target.value);
+					});
+				});
+			},
+			getKeyword (id) {
+				var self = this;
+				self.keyword_list = [{id: 0, name: '关键字选择'}];
+				Public.Ajax('label/selectList', {label_category_id: id}, 'GET', function(res){
+					self.keyword_list = self.keyword_list.concat(res.data);
+					var options = '';
+					for (var i = 0; i < self.keyword_list.length; i++) {
+						options += '<option value="'+self.keyword_list[i].id+'">'+self.keyword_list[i].name+'</option>';
+					};
+					$('#keyword_name').html('').append(options);
+					Public.initSelect();
+				});
+			},	
 			addEditFn (e) {
 				this.$emit('addEditFn', e);
 			},
 			searchFn () {
 				this.params = {
-					center_id: $('#center_id').val(),
-					label_category_id: $('#label_category_id').val(),
-					label_key_word: $('#label_key_word').val()
+					center_id: $('#center_name').val(),
+					label_category_id: $('#category_name').val(),
+					label_key_word: $('#keyword_name').val()
 				};
 				this.$emit('searchFn', this.params);
 			}
