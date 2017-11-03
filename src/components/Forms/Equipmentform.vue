@@ -30,7 +30,6 @@
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>所属中心</label>
 					<div class="am-u-sm-8">
 						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
-							<option v-for="center_item in center_list">{{center_item.name}}</option>
 						</select>
 					</div>
 				</div>
@@ -74,7 +73,6 @@
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>摆放诊室</label>
 					<div class="am-u-sm-8">
 						<select data-am-selected="{btnWidth: '100%'}" id="clinics_name">
-							<option v-for="clinics_item in clinics_list">{{clinics_item.name}}</option>
 						</select>
 					</div>
 				</div>
@@ -104,17 +102,17 @@
 						<p class="am-radius" @click="addEditFn($event, 1)">选中了{{indications}}个适应症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list">
+					<div class="am-u-sm-10 show_detail_list" v-if="indications > 0">
 						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">禁忌症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{contraindications}}个适应症</p>
+						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{contraindications}}个禁忌症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list">
+					<div class="am-u-sm-10 show_detail_list" v-if="contraindications > 0">
 						<span v-for="v in forms.equipment_contraindications_labels">{{v.name}}</span>
 					</div>
 				</div>
@@ -204,20 +202,54 @@
 		},
 		created () {
 			this.initCheckbox();
-			this.getCenter();
 			if (!!this.$route.query.equipment_id) {
 				this.getDetail(this.$route.query.equipment_id);
+			} else {
+				this.getCenter();
 			}
 		},
 		methods: {
+			getDetail (id) {
+				var self = this;
+				Public.Ajax('equipment/detail', {equipment_id: id}, 'GET', function(res){
+					self.forms = res.data;
+					self.getCenter();
+					self.indications = self.forms.equipment_indications_labels.length;
+					self.contraindications = self.forms.equipment_contraindications_labels.length;
+					$.each($('input[name="gender_limit"]'), function(index, val) {
+						 if ($(val).val() == self.forms.gender_limit) {
+						 	$(val).prop('checked', true);
+						 }
+					});
+				});
+			},
 			getCenter () {
 				var self = this;
 				Public.Ajax('center/list', {}, 'GET', function(res){
 					self.center_list = res.data;
-					Public.initSelect();
+					var options = '';
+					var center_id = self.forms.center_id;
+					var eq;
+					if (!!self.$route.query.equipment_id) {
+						$.each(self.center_list, function(index, val) {
+							 if (val.id == center_id) {
+							 	eq = index;
+							 }
+						});
+					}
+					for (var i = 0; i < self.center_list.length; i++) {
+						if (eq == i) {
+							options += '<option value="'+self.center_list[i].id+'" selected>'+self.center_list[i].name+'</option>';
+						} else {
+							options += '<option value="'+self.center_list[i].id+'">'+self.center_list[i].name+'</option>';
+						};
+					};
+					$('#center_name').append(options);
+					self.getClinics();
 					$('#center_name').on('change', function(){
 						self.getClinics();
 					});
+					Public.initSelect();
 				});
 			},
 			getClinics () {
@@ -230,12 +262,24 @@
 				});
 				Public.Ajax('clinics/listByCenterId', {center_id: self.forms.center_id}, 'GET', function(res){
 					self.clinics_list = res.data;
-				});
-			},
-			getDetail (id) {
-				var self = this;
-				Public.Ajax('equipment/detail', {equipment_id: id}, 'GET', function(res){
-					self.forms = res.data;
+					var options = '';
+					var clinics_id = self.forms.clinics_id;
+					var eq;
+					if (!!self.$route.query.equipment_id) {
+						$.each(self.clinics_list, function(index, val) {
+							 if (val.id == clinics_id) {
+							 	eq = index;
+							 }
+						});
+					}
+					for (var i = 0; i < self.clinics_list.length; i++) {
+						if (eq == i) {
+							options += '<option value="'+self.clinics_list[i].id+'" selected>'+self.clinics_list[i].name+'</option>';
+						} else {
+							options += '<option value="'+self.clinics_list[i].id+'">'+self.clinics_list[i].name+'</option>';
+						};
+					};
+					$('#clinics_name').html('').append(options);
 				});
 			},
 			save () {
