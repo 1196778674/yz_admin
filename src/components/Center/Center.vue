@@ -2,7 +2,7 @@
 	<div class="center_admin">
 		<ul>
 			<li v-for="item in list">
-				<p class="code">{{item.code}}-{{item.id}}</p>
+				<p class="code">{{item.code}}</p>
 				<p class="title">{{item.name}}</p>
 				<span class="trash am-icon-trash" @click="deletes($event, item.id)"></span>
 				<span class="edit am-icon-edit" @click="edit($event, item.id, item.code, item.name)"></span>
