@@ -71,11 +71,12 @@
 			"paginate": Paginate
 		},
 		methods: {
-			getList (page) {
+			getList (page, param) {
 				var self = this;
 				var params = {
 					page: page
 				};
+				params = $.extend(true, params, param);
 				Public.Ajax('equipment/list', params, 'GET', function(res){
 					self.page_total = res.data.total_page;
 					self.list = res.data.list;
@@ -95,7 +96,7 @@
 				});
 			},
 			searchFn (params) {
-				console.log(params);
+				this.getList(this.page, params);
 			}
 		}
 	}
