@@ -140,7 +140,11 @@
 			htm (obj) {
 					var option = '';
 					for (var i = 0; i < this.center_list.length; i++) {
-						option += '<option value="'+this.center_list[i].id+'">'+this.center_list[i].name+'</option>';
+						if (this.center_list[i].id == obj.center_id) {
+							option += '<option value="'+this.center_list[i].id+'" selected>'+this.center_list[i].name+'</option>';
+						} else {
+							option += '<option value="'+this.center_list[i].id+'">'+this.center_list[i].name+'</option>';
+						}
 					}
 					return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
