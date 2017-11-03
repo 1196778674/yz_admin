@@ -19,6 +19,9 @@
     	}
     }
 }
+.clear{
+	clear: both;
+}
 .list_header{
 	width: 100%;
 	padding: 10px;
@@ -203,8 +206,27 @@
 					}
 				}
 			}
+			.tips{
+				display: none;
+				.triangle{
+					position: absolute;
+					left: -8px;
+					width: 0;
+				    height: 0;
+				    top: 2px;
+					border-top: 5px solid transparent;
+					border-right: 8px solid rgb(0,0,0);
+					border-bottom: 5px solid transparent;
+				}
+				dd{
+				    word-break: keep-all;
+				}
+			}
 			&:hover{
 				.btns{
+					display: block;
+				}
+				.tips{
 					display: block;
 				}
 			}

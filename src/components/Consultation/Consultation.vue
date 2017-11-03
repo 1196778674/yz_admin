@@ -25,9 +25,14 @@
 								<span class="am-icon-trash" @click="deleteBtn($event, v.id, item.id)"></span>
 							</div>
 						</div>
+						<div class="tips">
+							<div class="triangle"></div>
+							<dd v-for="vv in v.list">{{vv.name}}</dd>
+						</div>
 					</li>
 				</ul>
 			</div>
+			<div class="clear"></div>
 		</ul>
 	</div>
 </template>
@@ -188,6 +193,9 @@
 </script>
 
 <style scoped>
+.category ul{
+	overflow: inherit;
+}
 .list_container,.list_container{
 	width: 100%;
 	float: left;
@@ -198,10 +206,24 @@
 .list_containers ul{
 	margin-left: -10px;
 }
+.list_containers ul li{
+	position: relative;
+}
 .list_containers p{
 	margin-bottom: 0;
 	font-size: 15px;
 	font-weight: 600;
 	color: #888;
+}
+.tips{
+	position: absolute;
+	padding: 5px;
+	background-color: rgb(0,0,0);
+	border: 1px solid #000;
+	border-radius: 5px;
+	left: 110%;
+	top: 0px;
+	z-index: 10000;
+	color: #fafafa;
 }
 </style>
