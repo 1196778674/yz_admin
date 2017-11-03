@@ -213,6 +213,13 @@
 				Public.Ajax('supplies/detail', {supplies_id: id}, 'GET', function(res){
 					self.forms = res.data;
 					self.getCenter();
+					self.indications = self.forms.supplies_indications_labels.length;
+					self.contraindications = self.forms.supplies_contraindications_labels.length;
+					$.each($('input[name="gender_limit"]'), function(index, val) {
+						 if ($(val).val() == self.forms.gender_limit) {
+						 	$(val).prop('checked', true);
+						 }
+					});
 				});
 			},
 			getCenter () {
