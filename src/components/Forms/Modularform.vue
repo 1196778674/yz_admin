@@ -516,7 +516,11 @@
 				// console.log(this.forms);
 				// return;
 				Public.Ajax(url, this.forms, 'POST', function(res){
-					window.location.href = '#/modulardetail?id=' + self.$route.query.module_id;
+					if (!!this.$route.query.module_id) {
+						window.location.href = '#/modulardetail?id=' + self.$route.query.module_id;
+					} else {
+						window.location.href = '#/modular';
+					}
 				});
 			},
 			initCheckbox () {

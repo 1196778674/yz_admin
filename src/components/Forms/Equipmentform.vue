@@ -318,7 +318,11 @@
 				this.forms.equipment_indications_labels = JSON.stringify(this.forms.equipment_indications_labels);
 				this.forms.equipment_contraindications_labels = JSON.stringify(this.forms.equipment_contraindications_labels);
 				Public.Ajax(url, this.forms, 'POST', function(res){
-					window.location.href = '#/equipmentdetail?id=' + self.$route.query.equipment_id;
+					if (!!this.$route.query.equipment_id) {
+						window.location.href = '#/equipmentdetail?id=' + self.$route.query.equipment_id;
+					} else {
+						window.location.href = '#/equipment';
+					}
 				});
 			},
 			addEditFn (e, type) {
