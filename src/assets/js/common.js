@@ -3,7 +3,7 @@ const common = {
 	Ajax (url, params, type, callback) {
 		var self = this;
 		if (window.location.host == '118.190.204.110') {
-			var url = 'http://118.190.204.110/' + url;
+			var url = 'http://118.190.204.110/admin/' + url;
 		} else {
 			var url = 'http://admin.yx.dev/admin/' + url;
 		}
