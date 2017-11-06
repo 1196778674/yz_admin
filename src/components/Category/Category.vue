@@ -96,10 +96,10 @@
 						'<div class="am-modal-dialog">'+
 						'<div class="am-modal-hd" style="padding: 20px;padding-bottom: 0px;"><div action="" class="am-form">'+
 						'<div class="am-form-group">'+
-						'<input type="text" id="name" value="'+obj.name+'" class="am-form-field" placeholder="请输入类别名称">'+
+						'<input type="text" id="code" value="'+obj.code+'" class="am-form-field" placeholder="请输入类别编码">'+
 						'</div>'+
 						'<div class="am-form-group">'+
-						'<input type="text" id="code" value="'+obj.code+'" class="am-form-field" placeholder="请输入类别编码">'+
+						'<input type="text" id="name" value="'+obj.name+'" class="am-form-field" placeholder="请输入类别名称">'+
 						'</div>'+
 						'</div></div>'+
 						'<div class="am-modal-footer">'+
