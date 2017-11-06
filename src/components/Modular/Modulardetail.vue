@@ -4,37 +4,49 @@
 		    <tbody>
 		        <tr>
 		            <td class="title no-right space">模块编码</td>
-		            <td class="space">A-23344</td>
+		            <td class="space">{{detail.code}}</td>
 		            <td class="title no-right space">所属中心</td>
-		            <td class="space">测试中心</td>
+		            <td class="space">{{detail.center_name}}</td>
 		            <td class="title no-right space">模块名称</td>
-		            <td class="no-right space">测试模块</td>
+		            <td class="no-right space">{{detail.name}}</td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right space">成本</td>
-		            <td class="space">A23324234</td>
+		            <td class="space">{{detail.expected_cost}}</td>
 		            <td class="title no-right space">时间</td>
-		            <td class="space">122</td>
+		            <td class="space">{{detail.service_time}}</td>
 		            <td class="title no-right space">服务后时间</td>
-		            <td class="no-right space">100</td>
+		            <td class="no-right space">{{detail.service_after_time}}</td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right space">年龄限制</td>
-		            <td class="space">30</td>
+		            <td class="space">{{detail.age_limit}}</td>
 		            <td class="title space no-right">性别限制</td>
-		            <td class="space">女</td>
+		            <td class="space">{{detail.gender_limit_name}}</td>
 		            <td class="title no-right space">是否医疗</td>
-		            <td class="no-right space">是</td>
+		            <td class="no-right space">{{detail.whether_medical}}</td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right space">诊室</td>
-		            <td class="space">诊室1,诊室2,诊室3,诊室4,诊室5</td>
+		            <td class="space">
+		            	<span v-for="clinics in detail.module_clinics">
+		            		{{clinics.name}}
+		            	</span>
+		            </td>
 		            <td class="title no-right space">执行人等级</td>
-		            <td colspan="3" class="no-right">专家康复师</td>
+		            <td colspan="3" class="no-right">
+		            	<span v-for="grades in detail.job_grades">
+		            		{{grades.name}}
+		            	</span>
+		            </td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right">执行人</td>
-		            <td colspan="5" class="no-right">助理康复师、专家康复师</td>
+		            <td colspan="5" class="no-right">
+		            	<span v-for="person in detail.personnel_list">
+		            		{{person.name}}
+		            	</span>
+		            </td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right">作用部位</td>
@@ -93,13 +105,54 @@
 		name: 'Modulardetail',
 		data () {
 			return {
-
+				detail: {
+					"id": '',
+			        "code": "",
+			        "name": "",
+			        "center_id": '',
+			        "service_time": '',
+			        "service_after_time": '',
+			        "whether_medical": "",
+			        "min_age_limit": '',
+			        "max_age_limit": '',
+			        "gender_limit": '',
+			        "considerations": "",
+			        "adverse_reaction": "",
+			        "description": "",
+			        "expected_cost": "",
+			        "remark": "",
+			        "created_at": "",
+			        "updated_at": "",
+			        "deleted_at": '',
+			        "center_name": "",
+			        "job_grades": [],
+			        "personnel_list": [],
+			        "module_equipment": [],
+			        "module_supplies": [],
+			        "module_clinics": [],
+			        "module_working_part_labels": [],
+			        "module_contraindications_labels": [],
+			        "equipment_indications_labels": [],
+			        "module_function_labels": [],
+			        "gender_limit_name": "",
+			        "last_id": '',
+			        "next_id": ''
+				}
 			}
 		},
 		created () {
-
+			this.getDetail();
 		},
 		methods: {
+			getDetail () {
+				var self = this;
+				var params = {
+					module_id: this.$route.query.id
+				}
+				Public.Ajax('module/detail', params, 'GET', function(res){
+					self.detail = res.data;
+				});
+			},
 			prevPage () {
 				console.log('prevPage');
 			},
