@@ -526,7 +526,7 @@
 				// console.log(this.forms);
 				// return;
 				Public.Ajax(url, this.forms, 'POST', function(res){
-					if (!!this.$route.query.module_id) {
+					if (!!self.$route.query.module_id) {
 						window.location.href = '#/modulardetail?id=' + self.$route.query.module_id;
 					} else {
 						window.location.href = '#/modular';
