@@ -24,7 +24,7 @@
 		            <td class="title space no-right">性别限制</td>
 		            <td class="space">{{detail.gender_limit_name}}</td>
 		            <td class="title no-right space">是否医疗</td>
-		            <td class="no-right space">{{detail.whether_medical}}</td>
+		            <td class="no-right space">{{detail.whether_medical_name}}</td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right space">诊室</td>
