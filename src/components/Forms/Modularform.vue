@@ -251,7 +251,17 @@
 			getDetail (id) {
 				var self = this;
 				Public.Ajax('module/detail', {module_id: id}, 'GET', function(res){
-					// self.forms = res.data;
+					self.forms = res.data;
+					$.each($('input[name="gender_limit"]'), function(index, val) {
+						 if ($(val).val() == self.forms.gender_limit) {
+						 	$(val).prop('checked', true);
+						 }
+					});
+					$.each($('input[name="whether_medical"]'), function(index, val) {
+						 if ($(val).val() == self.forms.whether_medical) {
+						 	$(val).prop('checked', true);
+						 }
+					});
 					self.getCenter();
 				});
 			},
