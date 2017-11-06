@@ -69,6 +69,14 @@
 		            <td colspan="5" class="no-right">{{detail.description}}</td>
 		        </tr>
 		        <tr>
+		            <td class="title no-right">适应症</td>
+		            <td colspan="5" class="no-right">
+		            	<span v-for="indications in detail.module_indications_labels">
+		            		{{indications.name}}
+		            	</span>
+		            </td>
+		        </tr>
+		        <tr>
 		            <td class="title no-right">禁忌症</td>
 		            <td colspan="5" class="no-right">
 		            	<span v-for="contraindications in detail.module_contraindications_labels">

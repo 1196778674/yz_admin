@@ -16,29 +16,53 @@
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>执行人</label>
+					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>执行人等级</label>
 					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了{{peoples}}个执行人</p>
+						<p class="am-radius" @click="addEditFn($event, 'grade')">选中了{{forms.job_grades.length}}个执行人等级</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-8 show_detail_list" v-if="peoples > 0">
-						<!-- <span v-for="v in forms.equipment_indications_labels">{{v.name}}</span> -->
+					<div class="am-u-sm-8 show_detail_list" v-if="forms.job_grades.length > 0">
+						<span v-for="v in forms.job_grades">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>执行人等级</label>
+					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>执行人</label>
 					<div class="am-u-sm-8">
-						<p class="am-radius">执行人等级</p>
+						<p class="am-radius">
+							<span v-for="person in grade_list_person">
+								{{person.name}}
+							</span>
+						</p>
+					</div>
+				</div>
+				<div class="am-form-group am-form-icon am-form-feedback">
+					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">设备</label>
+					<div class="am-u-sm-8">
+						<p class="am-radius" @click="addEditFn($event, 'equipment')">选中了{{forms.module_equipment.length}}个设备</p>
+						<span class="am-icon-ellipsis-h"></span>
+					</div>
+					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_equipment.length > 0">
+						<span v-for="v in forms.module_equipment">{{v.name}}</span>
+					</div>
+				</div>
+				<div class="am-form-group am-form-icon am-form-feedback">
+					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">用品</label>
+					<div class="am-u-sm-8">
+						<p class="am-radius" @click="addEditFn($event, 'supplies')">选中了{{forms.module_supplies.length}}个用品</p>
+						<span class="am-icon-ellipsis-h"></span>
+					</div>
+					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_supplies.length > 0">
+						<span v-for="v in forms.module_supplies">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-4" class="am-u-sm-4 am-form-label"><span>*</span>是否医疗</label>
 					<div class="am-u-sm-8">
 						<label class="am-radio-inline">
-							<input type="radio" value="1" name="gender_limit">是
+							<input type="radio" value="1" name="whether_medical">是
 						</label>
 						<label class="am-radio-inline">
-							<input type="radio" value="2" name="gender_limit">否
+							<input type="radio" value="2" name="whether_medical">否
 						</label>
 					</div>
 				</div>
@@ -46,7 +70,7 @@
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>服务时间</label>
 					<div class="am-u-sm-8" style="float:left;">
 						<div class="am-form-group am-form-icon am-form-feedback">
-						    <input type="text" class="am-radius" maxlength="4" placeholder="">
+						    <input type="text" class="am-radius" v-model="forms.service_time" maxlength="4" placeholder="">
 						    <span class="am-icon-ellipsis">分钟</span>
 					  	</div>
 					</div>
@@ -55,12 +79,12 @@
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>年龄限制</label>
 					<div class="am-u-sm-8 age" style="float:left;">
 						<div class="am-form-group am-form-icon am-form-feedback">
-						    <input type="text" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
+						    <input type="text" class="am-radius" v-model="forms.min_age_limit" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<span class="fg">至</span>
 					  	<div class="am-form-group am-form-icon am-form-feedback">
-						    <input type="text" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
+						    <input type="text" class="am-radius" v-model="forms.max_age_limit" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<div class="checkbox no_limit">
@@ -95,81 +119,61 @@
 					</div> -->
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">设备</label>
-					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了0个设备</p>
-						<span class="am-icon-ellipsis-h"></span>
-					</div>
-					<!-- <div class="am-u-sm-8 show_detail_list" v-if="indications > 0">
-						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
-					</div> -->
-				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">用品</label>
-					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了0个用品</p>
-						<span class="am-icon-ellipsis-h"></span>
-					</div>
-					<!-- <div class="am-u-sm-8 show_detail_list" v-if="indications > 0">
-						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
-					</div> -->
-				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">适应症</label>
 					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了0个适应症</p>
+						<p class="am-radius" @click="addEditFn($event, 1)">选中了{{forms.module_indications_labels.length}}个适应症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<!-- <div class="am-u-sm-8 show_detail_list" v-if="indications > 0">
-						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
-					</div> -->
+					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_indications_labels.length > 0">
+						<span v-for="v in forms.module_indications_labels">{{v.name}}</span>
+					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">禁忌症</label>
 					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了0个禁忌症</p>
+						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{forms.module_contraindications_labels.length}}个禁忌症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<!-- <div class="am-u-sm-8 show_detail_list" v-if="indications > 0">
-						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
-					</div> -->
+					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_contraindications_labels.length > 0">
+						<span v-for="v in forms.module_contraindications_labels">{{v.name}}</span>
+					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">作用部位</label>
 					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了0个作用部位</p>
+						<p class="am-radius" @click="addEditFn($event, 3)">选中了{{forms.module_working_part_labels.length}}个作用部位</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<!-- <div class="am-u-sm-8 show_detail_list" v-if="indications > 0">
-						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
-					</div> -->
+					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_working_part_labels.length > 0">
+						<span v-for="v in forms.module_working_part_labels">{{v.name}}</span>
+					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">作用功能</label>
 					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了0个作用功能</p>
+						<p class="am-radius" @click="addEditFn($event, 4)">选中了{{forms.module_function_labels.length}}个作用功能</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<!-- <div class="am-u-sm-8 show_detail_list" v-if="indications > 0">
-						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
-					</div> -->
+					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_function_labels.length > 0">
+						<span v-for="v in forms.module_function_labels">{{v.name}}</span>
+					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">注意事项</label>
 					<div class="am-u-sm-8">
-						<textarea name=""></textarea>
+						<textarea name="" v-model="forms.considerations"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">不良反应</label>
 					<div class="am-u-sm-8">
-						<textarea name=""></textarea>
+						<textarea name="" v-model="forms.adverse_reaction"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">备注</label>
 					<div class="am-u-sm-8">
-						<textarea name=""></textarea>
+						<textarea name="" v-model="forms.remark"></textarea>
 					</div>
 				</div>
 
@@ -193,23 +197,63 @@
 		data () {
 			return {
 				forms: {
-					name: '',
-					center_id: ''
+					"id": '',
+			        "code": "",
+			        "name": "",
+			        "center_id": '',
+			        "service_time": '',
+			        "service_after_time": '',
+			        "whether_medical": "",
+			        "min_age_limit": '',
+			        "max_age_limit": '',
+			        "gender_limit": '',
+			        "considerations": "",
+			        "adverse_reaction": "",
+			        "description": "",
+			        "expected_cost": "",
+			        "remark": "",
+			        "created_at": "",
+			        "updated_at": "",
+			        "deleted_at": '',
+			        "center_name": "",
+			        "job_grades": [],
+			        "personnel_list": [],
+			        "module_equipment": [],
+			        "module_supplies": [],
+			        "module_clinics": [],
+			        "module_working_part_labels": [],
+			        "module_contraindications_labels": [],
+			        "module_indications_labels": [],
+			        "module_function_labels": [],
+			        "gender_limit_name": "",
+			        "age_limit": ""
 				},
-				peoples: 0,
+				center_list: '',
+				grade_list: '',
+				label_list: '',
+				equipment_list: '',
+				supplies_list: '',
+				grade_list_person: [],
+				checked_list: '',
 				no_limit: false
 			}
 		},
 		created () {
-			if (!!this.$route.query.modular_id) {
-				this.getDetail(this.$route.query.modular_id);
+			if (!!this.$route.query.module_id) {
+				this.getDetail(this.$route.query.module_id);
 			} else {
 				this.getCenter();
-			}
+			};
+			// this.getCenter();
+			this.initCheckbox();
 		},
 		methods: {
 			getDetail (id) {
-
+				var self = this;
+				Public.Ajax('module/detail', {module_id: id}, 'GET', function(res){
+					// self.forms = res.data;
+					self.getCenter();
+				});
 			},
 			getCenter () {
 				var self = this;
@@ -218,7 +262,7 @@
 					var options = '';
 					var center_id = self.forms.center_id;
 					var eq;
-					if (!!self.$route.query.modular_id) {
+					if (!!self.$route.query.module_id) {
 						$.each(self.center_list, function(index, val) {
 							 if (val.id == center_id) {
 							 	eq = index;
@@ -233,21 +277,282 @@
 						};
 					};
 					$('#center_name').append(options);
-					// self.getClinics();
-					// $('#center_name').on('change', function(){
-					// 	self.getClinics();
-					// });
 					Public.initSelect();
+					self.getClinics();
+					$('#center_name').on('change', function(){
+						self.getClinics();
+					});
 				});
 			},
+			getClinics () {
+				var self = this;
+				var center_name = $('.am-selected-status').eq(0).text();
+				$.each(self.center_list, function(i, v) {
+					if (v.name == center_name) {
+						self.forms.center_id = v.id;
+					}
+				});
+				Public.Ajax('job-grade/list', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+					self.grade_list = res.data;
+				});
+				// 设备
+				Public.Ajax('equipment/list', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+					self.equipment_list = res.data.list;
+				});
+				// 用品 
+				Public.Ajax('supplies/list', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+					self.supplies_list = res.data.list;
+				});
+				self.getLabelList();
+				
+			},
+			getLabelList () {
+				var self = this; 
+				Public.Ajax('label/list', {}, 'GET', function(res){
+					self.label_list = res.data;
+				});
+			},
+			getLabelSelct (list, id) {
+				var lists = '';
+				$.each(list, function(i, val) {
+					if (val.id == id) {
+						lists = val.list;
+					}
+				});
+				return lists;
+			},
 			addEditFn (e, type) {
+				var self = this;
+				switch(type) {
+					case 'grade':
+						var list = this.grade_list;
+						break;
+					case 'equipment':
+						var list = this.equipment_list;
+						break;
+					case 'supplies':
+						var list = this.supplies_list;
+						break;
+					case 1:
+						var list = self.getLabelSelct(self.label_list, 1);
+						break;
+					case 2:
+						var list = self.getLabelSelct(self.label_list, 2);
+						break;
+					case 3:
+						var list = self.getLabelSelct(self.label_list, 3);
+						break;
+					case 4:
+						var list = self.getLabelSelct(self.label_list, 4);
+						break;
+					default:
 
+						break;
+				};
+				Public.addEditFn(e, '', self.selectHtm(type, list), function(){
+					switch(type) {
+						case 'grade':
+							self.forms.job_grades = [];
+							self.grade_list_person = [];
+							break;
+						case 'equipment':
+							self.forms.module_equipment = [];
+							break;
+						case 'supplies':
+							self.forms.module_supplies = [];
+							break;
+						case 1:
+							self.forms.module_indications_labels = [];
+							break;
+						case 2:
+							self.forms.module_contraindications_labels = [];
+							break;
+						case 3:
+							self.forms.module_working_part_labels = [];
+							break;
+						case 4:
+							self.forms.module_function_labels = [];
+							break;
+						default:
+
+							break;
+					};
+					$.each(list, function(index, val) {
+						 var id = val.id + '';
+						 if ($.inArray(id, self.checked_list) > -1 && type == 'grade') {
+						 	self.forms.job_grades.push(val);
+						 	$.each(val.personnel_list, function(i, v) {
+						 		 self.grade_list_person.push(v);
+						 	});
+						 };
+						 if ($.inArray(id, self.checked_list) > -1 && type == 'equipment') {
+						 	self.forms.module_equipment.push(val);
+						 };
+						 if ($.inArray(id, self.checked_list) > -1 && type == 'supplies') {
+						 	self.forms.module_supplies.push(val);
+						 };
+						 if ($.inArray(id, self.checked_list) > -1 && type == 1) {
+						 	self.forms.module_indications_labels.push(val);
+						 };
+						 if ($.inArray(id, self.checked_list) > -1 && type == 2) {
+						 	self.forms.module_contraindications_labels.push(val);
+						 };
+						 if ($.inArray(id, self.checked_list) > -1 && type == 3) {
+						 	self.forms.module_working_part_labels.push(val);
+						 };
+						 if ($.inArray(id, self.checked_list) > -1 && type == 4) {
+						 	self.forms.module_function_labels.push(val);
+						 };
+					});
+					if (type == 'equipment' || type == 'supplies') {
+						var params = {
+							equipment_list: JSON.stringify(self.forms.equipment_list),
+							supplies_list: JSON.stringify(self.forms.supplies_list)
+						};
+						Public.Ajax('module/check_gender_age', params, 'GET', function(res){
+							var data = res.data;
+							self.forms.gender = data.gender;
+							$('input[name="gender_limit"]').eq(data.gender).prop('checked', true);
+							self.forms.max_age_limit = data.max_age_limit;
+							self.forms.min_age_limit = data.min_age_limit;
+						});
+					}
+				}, function(){
+					$('#addCheckList').on('click', function(e){
+						var val = $('#add_check_name').val();
+						Public.Ajax('label/add', {label_category_id: type, name: val}, 'POST', function(res){
+							Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
+								$('#add_check_name').val('');
+								var list = res.data,
+									item = '';
+								for (var i = 0; i < list.length; i++) {
+									item += '<li>'+
+											'<label class="am-checkbox-inline">'+
+											'<input class="checks" type="checkbox" value="'+list[i].id+'">'+list[i].name+''+
+											'</label>'+
+											'</li>';
+								};
+								$('#checked_arr_list').html(item);
+								self.getLabelList();
+							});
+						});
+					});
+				});
 			},
 			noLimit () {
-
+				this.forms.min_age_limit = '';
+				this.forms.max_age_limit = '';
 			},
 			save () {
+				var self = this;
+				var center_name = $('.am-selected-status').eq(0).text();
+				$.each(self.center_list, function(i, v) {
+					if (v.name == center_name) {
+						self.forms.center_id = v.id;
+					}
+				});
+				this.forms.gender_limit = $('input[name="gender_limit"]:checked').val();
+				if (!!this.$route.query.module_id) {
+					this.forms.module_id = this.$route.query.module_id;
+					var url = 'module/edit'
+				} else {
+					var url = 'module/add'
+				}
+				this.forms.job_grades = JSON.stringify(this.forms.job_grades);
+				this.forms.personnel_list = JSON.stringify(this.forms.personnel_list);
+				this.forms.module_equipment = JSON.stringify(this.forms.module_equipment);
+				this.forms.module_supplies = JSON.stringify(this.forms.module_supplies);
+				this.forms.module_clinics = JSON.stringify(this.forms.module_clinics);
+				this.forms.module_working_part_labels = JSON.stringify(this.forms.module_working_part_labels);
+				this.forms.module_contraindications_labels = JSON.stringify(this.forms.module_contraindications_labels);
+				this.forms.module_indications_labels = JSON.stringify(this.forms.module_indications_labels);
+				this.forms.module_function_labels = JSON.stringify(this.forms.module_function_labels);
+				// console.log(this.forms);
+				// return;
+				Public.Ajax(url, this.forms, 'POST', function(res){
+					window.location.href = '#/modulardetail?id=' + self.$route.query.module_id;
+				});
+			},
+			initCheckbox () {
+				var self = this;
+				$('body').on('click', '.checks', function(e) {
+					self.checked_list = [];
+					$('.checks').each(function(k, v){
+						var is_checked = $(v).prop('checked'),
+							id = $(v).val();
+						if (is_checked) {
+							self.checked_list.push(id);
+						};
+					});
+				});
+			},
+			selectHtm (type, list) {
+				switch(type) {
+					case 1:
+						var title = '适应症';
+						break;
+					case 2:
+						var title = '禁忌症';
+						break;
+					case 3:
+						var title = '作用部位';
+						break;
+					case 4:
+						var title = '作用功能';
+						break;
+					default:
+						break;
+				}
+				var addBtn = '<li style="width: 30%; margin-left:15px;">'+
+						'<div class="am-input-group">'+
+						'<input type="text" id="add_check_name" class="am-form-field" style="height: 30px;line-height: 30px;border: 1px solid #ccc; border-top-left-radius: 3px;border-bottom-left-radius: 3px;" placeholder="添加'+title+'">'+
+						'<span class="am-input-group-btn">'+
+						'<button class="am-btn am-btn-secondary" id="addCheckList" type="button" style="height: 30px;border: 1px solid #3bb4f2;">添加</button>'+
+						'</span>'+
+						'</div>'+
+						'</li>';
+				switch(type) {
+					case 'grade':
+						var title = '执行人等级';
+						var addBtn = '';
+						break;
+					case 'equipment':
+						var title = '设备';
+						var addBtn = '';
+						break;
+					case 'supplies':
+						var title = '用品';
+						var addBtn = '';
+						break;
+					default:
 
+						break;
+				};
+				var item = '';
+				for (var i = 0; i < list.length; i++) {
+					item += '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input class="checks" type="checkbox" value="'+list[i].id+'">'+list[i].name+''+
+							'</label>'+
+							'</li>';	
+				};
+				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
+						'<div class="am-modal-dialog">'+
+						'<div class="am-modal-hd">'+title+'</div>'+
+						'<div class="am-modal-bd">'+
+						'<ul>'+
+						'<span id="checked_arr_list">'+
+						item +
+						'</span>'+
+						'</ul>'+
+						addBtn +
+						'</div>'+
+						'<div class="am-modal-footer">'+
+						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
+						'<span class="am-modal-btn" data-am-modal-confirm>确定</span>'+
+						'</div>'+
+						'</div>'+
+						'</div>';
 			}
 		}
 	}
@@ -277,5 +582,10 @@
 		float: left;
 		line-height: 35px;
 		margin: 0px 5px;
+	}
+	.show_detail_list span{
+		font-size: 13px;
+		margin-right: 10px;
+		color: #777;
 	}
 </style>

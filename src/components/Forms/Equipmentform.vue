@@ -270,7 +270,7 @@
 						self.forms.center_id = v.id;
 					}
 				});
-				Public.Ajax('clinics/listByCenterId', {center_id: self.forms.center_id}, 'GET', function(res){
+				Public.Ajax('clinics/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
 					self.clinics_list = res.data;
 					var options = '';
 					var clinics_id = self.forms.clinics_id;
