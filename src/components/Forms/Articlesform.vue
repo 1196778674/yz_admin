@@ -79,12 +79,12 @@
 				<div class="am-form-group am-u-sm-12" style="padding-left:5px;">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>年龄限制</label>
 					<div class="am-u-sm-6 age" style="float:left;">
-						<div class="am-form-group am-form-icon am-form-feedback">
+						<div class="am-form-icon am-form-feedback">
 						    <input type="text" v-model="forms.min_age_limit" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<span class="fg">至</span>
-					  	<div class="am-form-group am-form-icon am-form-feedback">
+					  	<div class="am-form-icon am-form-feedback">
 						    <input type="text" v-model="forms.max_age_limit" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
