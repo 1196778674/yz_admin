@@ -2,7 +2,11 @@ const common = {
 	// ajax
 	Ajax (url, params, type, callback) {
 		var self = this;
-		var url = 'http://admin.yx.dev/admin/' + url;
+		if (window.location.host == '118.190.204.110') {
+			var url = 'http://118.190.204.110/' + url;
+		} else {
+			var url = 'http://admin.yx.dev/admin/' + url;
+		}
 		$.ajax({
 			url: url,
 			type: type,
@@ -14,12 +18,12 @@ const common = {
 			$('#loading').length || $('body').append(loading);
 		})
 		.done(function(res) {
-			$('#loading').remove();
 			if (res.status == 5000) {
 				self.dialog(res.msg);
 			} else {
 				callback(res);
-			}
+			};
+			$('#loading').remove();
 		})
 		.fail(function() {
 			$('#loading').remove();
