@@ -111,12 +111,12 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>诊室</label>
 					<div class="am-u-sm-8">
-						<p class="am-radius" @click="addEditFn($event, 1)">选中了0个诊室</p>
+						<p class="am-radius" @click="addEditFn($event, 'consultation')">选中了{{consultation_list.length}}个诊室</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<!-- <div class="am-u-sm-8 show_detail_list" v-if="indications > 0">
-						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
-					</div> -->
+					<div class="am-u-sm-8 show_detail_list" v-if="consultation_list.length > 0">
+						<span v-for="v in consultation_list">{{v.name}}</span>
+					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">适应症</label>
@@ -231,6 +231,7 @@
 				center_list: '',
 				grade_list: '',
 				label_list: '',
+				consultation_list: [],
 				equipment_list: '',
 				supplies_list: '',
 				grade_list_person: [],
@@ -262,7 +263,21 @@
 						 	$(val).prop('checked', true);
 						 }
 					});
+					self.consultation_list = self.forms.module_clinics;
+					self.grade_list_person = self.forms.personnel_list;
 					self.getCenter();
+					self.getConsultationList(self.forms);
+				});
+			},
+			getConsultationList (obj) {
+				var self = this;
+				var params = {
+					equipment_list: JSON.stringify(obj.module_equipment),
+					supplies_list: JSON.stringify(obj.module_supplies),
+					center_id: obj.center_id || 1
+				};
+				Public.Ajax('module/check_gender_age', params, 'GET', function(res){
+					self.forms.module_clinics = res.data.clinics_list;
 				});
 			},
 			getCenter () {
@@ -343,6 +358,9 @@
 					case 'supplies':
 						var list = this.supplies_list;
 						break;
+					case 'consultation':
+						var list = this.forms.module_clinics;
+						break;
 					case 1:
 						var list = self.getLabelSelct(self.label_list, 1);
 						break;
@@ -370,6 +388,10 @@
 							break;
 						case 'supplies':
 							self.forms.module_supplies = [];
+							break;
+						case 'consultation':
+							self.forms.module_clinics = [];
+							self.consultation_list = [];
 							break;
 						case 1:
 							self.forms.module_indications_labels = [];
@@ -401,6 +423,9 @@
 						 if ($.inArray(id, self.checked_list) > -1 && type == 'supplies') {
 						 	self.forms.module_supplies.push(val);
 						 };
+						 if ($.inArray(id, self.checked_list) > -1 && type == 'consultation') {
+						 	self.consultation_list.push(val);
+						 };
 						 if ($.inArray(id, self.checked_list) > -1 && type == 1) {
 						 	self.forms.module_indications_labels.push(val);
 						 };
@@ -414,10 +439,11 @@
 						 	self.forms.module_function_labels.push(val);
 						 };
 					});
-					if (type == 'equipment' || type == 'supplies') {
+					if (type == 'equipment' || type == 'supplies' || type == 'consultation') {
 						var params = {
-							equipment_list: JSON.stringify(self.forms.equipment_list),
-							supplies_list: JSON.stringify(self.forms.supplies_list)
+							equipment_list: JSON.stringify(self.equipment_list),
+							supplies_list: JSON.stringify(self.supplies_list),
+							center_id: self.forms.center_id || 1
 						};
 						Public.Ajax('module/check_gender_age', params, 'GET', function(res){
 							var data = res.data;
@@ -425,6 +451,16 @@
 							$('input[name="gender_limit"]').eq(data.gender).prop('checked', true);
 							self.forms.max_age_limit = data.max_age_limit;
 							self.forms.min_age_limit = data.min_age_limit;
+							self.forms.module_clinics = data.clinics_list;
+
+							if (self.consultation_list.length) {
+								return;
+							}
+							$.each(self.forms.module_clinics, function(index, val) {
+								 if (val.status == 1) {
+								 	self.consultation_list.push(val);
+								 }
+							});
 						});
 					}
 				}, function(){
@@ -535,7 +571,8 @@
 						var addBtn = '';
 						break;
 					default:
-
+						var title = '诊室';
+						var addBtn = '';
 						break;
 				};
 				var item = '';
