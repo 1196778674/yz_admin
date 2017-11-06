@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<search modal="false" @searchFn="searchFn" @addEditFn="addEditFn" fromtype="modular"></search>	
+		<search modal="false" @searchFn="searchFn" fromtype="modular"></search>	
 
 		<div class="am-scrollable-horizontal list_table">
 	  		<table class="am-table am-table-bordered am-table-striped am-table-compact">
@@ -8,59 +8,25 @@
 			  		<tr>
 			    		<th>模块编号</th>
 			    		<th>模块名称</th>
-			    		<th>功能</th>
+			    		<th>中心</th>
 			    		<th>执行人</th>
 			    		<th>时间</th>
 			    		<th>操作</th>
 			  		</tr>
 			  	</thead>
 			  	<tbody>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>2017-8-9</td>
+				  	<tr v-for="item in list">
+					    <td>{{item.code}}</td>
+					    <td>{{item.name}}</td>
+					    <td>{{item.center_name}}</td>
+					    <td>{{item.job_grade_list}}</td>
+					    <td>{{item.time}}</td>
 					    <td>
-					    	<router-link :to="{ path: 'modulardetail', query: { id: 123 }}">
+					    	<router-link :to="{ path: 'modulardetail', query: { id: item.id }}">
 					    		<span class="am-icon-file-text-o"></span>
 					    		查看详情
 					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
-					    		<span class="am-icon-trash-o"></span>
-					    		删除
-					    	</a>
-					    </td>
-				  	</tr>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>2017-8-9</td>
-					    <td>
-					    	<router-link to="#">
-					    		<span class="am-icon-file-text-o"></span>
-					    		查看详情
-					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
-					    		<span class="am-icon-trash-o"></span>
-					    		删除
-					    	</a>
-					    </td>
-				  	</tr>
-				  	<tr>
-					    <td>111-AZ</td>
-					    <td>测试项目测试项目测试项目</td>
-					    <td>测试中心测试中心</td>
-					    <td>测试类别</td>
-					    <td>2017-8-9</td>
-					    <td>
-					    	<router-link to="#">
-					    		<span class="am-icon-file-text-o"></span>
-					    		查看详情
-					    	</router-link>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, 1)">
+					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, item.id)">
 					    		<span class="am-icon-trash-o"></span>
 					    		删除
 					    	</a>
@@ -70,7 +36,7 @@
 			</table>
 		</div>
 
-		<div class="yx_page">
+		<div class="yx_page" v-if="page > 1">
 			<paginate
 			  :page-count=page
 			  :click-handler="pagination"
@@ -91,47 +57,46 @@
 
 		data() {
 			return {
-				page: 10
+				page: 0,
+				list: '',
+				current_page: 1,
 			}
 		},
 		created: function () {
 			Public.initSelect();
+			this.getList();
 		},
 		components: {
 			"search": Search,
 			"paginate": Paginate
 		},
 		methods: {
+			getList () {
+				var self = this;
+				var params = {
+					current_page: this.current_page
+				};
+				Public.Ajax('module/list', params, 'GET', function(res){
+					self.list = res.data.list;
+					self.page = res.data.total_page;
+				});
+			},
 			searchFn (params) {
 				console.log(params);
 			},
 			pagination (page) {
-				console.log(page);
+				this.current_page = page;
 			},
 			deleteList (e, id) {
+				var self = this;
 				Public.deleteModal(e, id, function(){
-					console.log('delete');
+					console.log({module_id: id});
+					return;
+					Public.Ajax('module/del', {module_id: id}, 'GET', function(res){
+						self.getList(self.current_page);
+					});
 				});
 			},
-			addEditFn (e) {
-				Public.addEditFn(e, '1', this.htm(), function(){
-					console.log(1);
-				});
-			},
-			htm () {
-					return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
-						'<div class="am-modal-dialog">'+
-						'<div class="am-modal-hd">添加/编辑</div>'+
-						'<div class="am-modal-bd">'+
-						'sdsfsdf'+
-						'</div>'+
-						'<div class="am-modal-footer">'+
-						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
-						'<span class="am-modal-btn" data-am-modal-confirm>提交</span>'+
-						'</div>'+
-						'</div>'+
-						'</div>';
-			}
 		}
 	}
 </script>
