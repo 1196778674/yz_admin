@@ -507,6 +507,7 @@
 					}
 				});
 				this.forms.gender_limit = $('input[name="gender_limit"]:checked').val();
+				this.forms.whether_medical = $('input[name="whether_medical"]:checked').val();
 				if (!!this.$route.query.module_id) {
 					this.forms.module_id = this.$route.query.module_id;
 					var url = 'module/edit'
