@@ -1,7 +1,7 @@
 <template>
 	<div class="list_header am-form">
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
+			<select data-am-selected="{btnWidth: '100%', maxHeight: 300}" id="center_name">
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
@@ -14,7 +14,7 @@
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected id="keyword_name">
+			<select data-am-selected="{btnWidth: '100%', maxHeight: 300}" id="keyword_name">
 			</select>
 		</div>
 		<!-- <div class="am-form-group am-form-icon list_left">
