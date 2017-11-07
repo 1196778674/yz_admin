@@ -191,6 +191,7 @@
 </template>
 
 <script>
+
 	export default {
 		name: 'Projectform',
 		data () {
@@ -198,15 +199,29 @@
 				forms: {
 					min_age_limit: '',
 					max_age_limit: '',
+					module_list: [],
 				},
 				center_list: '',
-				no_limit: false
+				module_list_arr: '',
+				no_limit: false,
 			}
 		},
 		created () {
 			this.getCenter();
+			this.getModuleList();
 		},
 		methods: {
+			getModuleList () {
+				var self = this;
+				var params = {
+					center_id: 0,
+					label_category_id: 0,
+					label_key_word: 0
+				};
+				Public.Ajax('module/search', params, 'GET', function(res){
+					self.module_list_arr = res.data;
+				});
+			},
 			getCenter () {
 				var self = this;
 				Public.Ajax('center/list', {}, 'GET', function(res){
@@ -242,47 +257,96 @@
 			},
 			addEditFn (e, title) {
 				var self = this;
-				Public.addEditFn(e, '', self.selectHtm(title), function(){
-					console.log(1);
+				var module_eq;
+				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
+					console.log(self.forms.module_list);
+				}, function(){
+					$('body').on('click', '.check_items', function(e){
+						var is_checked = $(e.target).prop('checked'),
+							id = $(e.target).val(),
+							name = $(e.target).data('name');
+						if (is_checked) {
+							if (module_eq != undefined) {
+								self.forms.module_list[module_eq].push({id: id, name: name});
+								module_eq = undefined;
+							} else {
+								self.forms.module_list.push([{id: id, name: name}]);
+							};
+						} else {
+							$.each(self.forms.module_list, function(index, val) {
+							 	$.each(val, function(i, v) {
+								 	if (v.id == id) {
+								 	 	val.splice(i,1);
+								 	 	return false;
+							 	 	};
+							 	});
+								 if (val.length == 0) {
+								 	self.forms.module_list.splice(index,1);
+								 	return false;
+								 }
+							});
+						};
+						// console.log(module_eq, self.forms.module_list);
+						var module_item = '';
+						$.each(self.forms.module_list, function(index, val) {
+							module_item += '<ul>';
+						 	$.each(val, function(i, v) {
+						 		if (val.length > 1) {
+						 			module_item += '<li class="module_active"><span>'+(index+1)+'-'+(i+1)+'</span>'+v.name+'</li>';
+						 		} else {
+						 			module_item += '<li class="module_active"><span>'+(index+1)+'</span>'+v.name+'</li>';
+						 		}
+						 	});
+						 	module_item += '</ul>';
+						});
+						$('#module_list_container').html('').html(module_item);
+					});
+					$('body').on('click', '.module_active', function(e){
+						if ($(e.target).hasClass('active')) {
+							$(e.target).removeClass('active');
+							module_eq = undefined;
+						} else {
+							if ($(e.target).prev('li').length) {
+								return false;
+							};
+							$(e.target).addClass('active');
+							$(e.target).siblings().removeClass('active');
+							$(e.target).parent('ul').siblings().children('li').removeClass('active');
+							module_eq = $(e.target).parent('ul').index();
+						};
+					});
 				});
 			},
-			selectHtm (title) {
+			selectHtm (title, list) {
+				var self = this;
 				if (title == '项目模块') {
-					var params = {
-						center_id: 0,
-						label_category_id: 0,
-						label_key_word: 0
-					};
-					var item = '';
-					Public.Ajax('module/search', params, 'GET', function(res){
-						var items = '';
-						var items_list = res.data;
-						$.each(items_list, function(index, val) {
-							 items += '<tr>'+
-										'<td><input type="checkbox" value="'+val.id+'"/></td>'+
-										'<td>'+val.code+'</td>'+
-										'<td>'+val.name+'</td>'+
-										'<td>'+val.center_name+'</td>'+
-										'<td>'+val.job_grade_list+'</td>'+
-										'</tr>';
-						});
-						console.log(items);
-						item = '<table class="am-table am-table-bordered am-table-striped am-table-compact">'+
-								'<thead>'+
-								'<tr>'+
-								'<th></th>'+
-								'<th>模块编号</th>'+
-								'<th>模块名称</th>'+
-								'<th>中心</th>'+
-								'<th>执行人</th>'+
-								'<th>时间</th>'+
-								'</tr>'+
-								'</thead>'+
-								'<tbody>'+
-								items +
-								'</tbody>'+
-								'</table>';
-					});
+					var items = '';
+					for (var i = 0; i < self.module_list_arr.length; i++) {
+						var data = self.module_list_arr[i];
+						items += '<tr>'+
+							'<td><input type="checkbox" class="check_items" data-name="'+data.name+'" value="'+data.id+'"/></td>'+
+							'<td>'+data.code+'</td>'+
+							'<td>'+data.name+'</td>'+
+							'<td>'+data.center_name+'</td>'+
+							'<td>'+data.job_grade_list+'</td>'+
+							'<td>'+data.time+'</td>'+
+							'</tr>';
+					}
+					var item = '<table class="am-table am-table-bordered am-table-striped am-table-compact">'+
+							'<thead>'+
+							'<tr>'+
+							'<th></th>'+
+							'<th>模块编号</th>'+
+							'<th>模块名称</th>'+
+							'<th>中心</th>'+
+							'<th>执行人</th>'+
+							'<th>时间</th>'+
+							'</tr>'+
+							'</thead>'+
+							'<tbody>'+
+							items +
+							'</tbody>'+
+							'</table>';
 				} else if (title == '所属中心') {
 					var item = '<li>'+
 							'<label class="am-checkbox-inline">'+
@@ -342,6 +406,8 @@
 						'<div class="am-modal-dialog" style="max-width: 100%;">'+
 						'<div class="am-modal-hd">'+title+'</div>'+
 						'<div class="am-modal-bd">'+
+						'<div id="module_list_container">'+
+						'</div>'+
 						'<ul>'+
 						item +
 						'</ul>'+

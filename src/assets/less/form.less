@@ -62,6 +62,30 @@
 			}
 		}
 	}
+	#module_list_container {
+		overflow: hidden;
+		margin-top: -10px;
+		margin-bottom: 5px;
+		ul{
+			float: left;
+			margin-right: 5px;
+			li{
+				float: none;
+				font-size: 13px;
+				margin: 0px;
+				margin-bottom: 5px;
+				border: 1px solid #ccc;
+				border-radius: 3px;
+				padding: 3px 10px;
+				cursor: pointer;
+				&.active{
+					color: #fafafa;
+					background: #0e90d2;
+					border: 1px solid #0e90d2;
+				}
+			}
+		}
+	}
 }
 
 // 表单input
