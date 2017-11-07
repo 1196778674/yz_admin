@@ -77,9 +77,18 @@
 					current_page: page
 				};
 				params = $.extend(true, params, param);
-				Public.Ajax('equipment/list', params, 'GET', function(res){
-					self.page_total = res.data.total_page;
-					self.list = res.data.list;
+				if (param) {
+					var url = 'equipment/search';
+				} else {
+					var url = 'equipment/list';
+				}
+				Public.Ajax(url, params, 'GET', function(res){
+					if (param) {
+						self.list = res.data;
+					} else {
+						self.list = res.data.list;
+						self.page_total = res.data.total_page;
+					}
 				});
 			},
 			pagination (page) {

@@ -195,6 +195,10 @@
 		name: 'Projectform',
 		data () {
 			return {
+				forms: {
+					min_age_limit: '',
+					max_age_limit: '',
+				},
 				center_list: '',
 				no_limit: false
 			}
@@ -233,7 +237,8 @@
 				});
 			},
 			noLimit () {
-
+				this.forms.min_age_limit = '';
+				this.forms.max_age_limit = '';
 			},
 			addEditFn (e, title) {
 				var self = this;
@@ -346,5 +351,8 @@
 	.form_container .am-u-sm-5{
 		float: left;
 		width: 33%;
+	}
+	.am-table-bordered>tbody>tr>td, .am-table-bordered>tbody>tr>th, .am-table-bordered>tfoot>tr>td, .am-table-bordered>tfoot>tr>th, .am-table-bordered>thead>tr>td, .am-table-bordered>thead>tr>th, .am-table-bordered>thead+tbody>tr:first-child>td, .am-table-bordered>thead+tbody>tr:first-child>th{
+		word-break: keep-all;
 	}
 </style>
