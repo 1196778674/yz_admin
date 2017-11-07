@@ -58,13 +58,13 @@
 		data() {
 			return {
 				page_total: 0,
-				page: this.$route.query.page || 1,
+				current_page: this.$route.query.page || 1,
 				list: ''
 			}
 		},
 		created: function () {
 			Public.initSelect();
-			this.getList(this.page);
+			this.getList(this.current_page);
 		},
 		components: {
 			"search": Search,
@@ -74,7 +74,7 @@
 			getList (page, param) {
 				var self = this;
 				var params = {
-					page: page
+					current_page: page
 				};
 				params = $.extend(true, params, param);
 				Public.Ajax('equipment/list', params, 'GET', function(res){
@@ -91,12 +91,12 @@
 					console.log(id);
 					return;
 					Public.Ajax('equipment/del', {equipment_id: id}, 'GET', function(res){
-						self.getList(self.page);
+						self.getList(self.current_page);
 					});
 				});
 			},
 			searchFn (params) {
-				this.getList(this.page, params);
+				this.getList(this.current_page, params);
 			}
 		}
 	}
