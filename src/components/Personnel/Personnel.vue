@@ -56,7 +56,7 @@
 		data() {
 			return {
 				list: '',
-				page: 1,
+				current_page: 1,
 				person: {
 					name: '',
 					job_grade_name: '',

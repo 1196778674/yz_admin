@@ -90,7 +90,7 @@
 
 		data() {
 			return {
-				page: 10
+				current_page: 10
 			}
 		},
 		components: {
