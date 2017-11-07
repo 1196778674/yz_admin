@@ -90,7 +90,8 @@
 
 		data() {
 			return {
-				current_page: 10
+				page: 10,
+				current_page: 1,
 			}
 		},
 		components: {
