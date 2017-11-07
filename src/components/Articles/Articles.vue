@@ -77,9 +77,18 @@
 					current_page: page
 				};
 				params = $.extend(true, params, param);
+				if (param) {
+					var url = 'supplies/search';
+				} else {
+					var url = 'supplies/list';
+				}
 				Public.Ajax('supplies/list', params, 'GET', function(res){
-					self.page_total = res.data.total_page;
-					self.list = res.data.list;
+					if (param) {
+						self.list = res.data;
+					} else {
+						self.page_total = res.data.total_page;
+						self.list = res.data.list;
+					}
 				});
 			},
 			pagination (page) {
