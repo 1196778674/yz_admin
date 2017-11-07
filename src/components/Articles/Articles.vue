@@ -59,12 +59,12 @@
 			return {
 				list: '',
 				page_total: 0,
-				page: this.$route.query.page || 1,
+				current_page: this.$route.query.page || 1,
 			}
 		},
 		created: function () {
 			Public.initSelect();
-			this.getList(this.page);
+			this.getList(this.current_page);
 		},
 		components: {
 			"search": Search,
@@ -74,7 +74,7 @@
 			getList (page, param) {
 				var self = this;
 				var params = {
-					page: page
+					current_page: page
 				};
 				params = $.extend(true, params, param);
 				Public.Ajax('supplies/list', params, 'GET', function(res){
@@ -83,7 +83,7 @@
 				});
 			},
 			pagination (page) {
-				this.page = page;
+				this.current_page = page;
 			},
 			deleteList (e, id) {
 				var self = this;
@@ -94,12 +94,12 @@
 					// console.log(params);
 					// return;
 					Public.Ajax('supplies/del', params, 'GET', function(){
-						self.getList(self.page);
+						self.getList(self.current_page);
 					});
 				});
 			},
 			searchFn (params) {
-				this.getList(this.page, params);
+				this.getList(this.current_page, params);
 			}
 		}
 	}
