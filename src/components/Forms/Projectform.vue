@@ -11,12 +11,7 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>项目类别</label>
 					<div class="am-u-sm-10">
-						<select data-am-selected>
-							<option value="-1">关键字选择</option>
-					  		<option value="a">Apple</option>
-						  	<option value="b">Banana</option>
-						  	<option value="o">Orange</option>
-						  	<option value="m">Mango</option>
+						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
 						</select>
 					</div>
 				</div>
@@ -45,10 +40,10 @@
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">是否医疗</label>
 					<div class="am-u-sm-10">
 						<label class="am-radio-inline">
-							<input type="radio"  value="" name="docInlineRadio">是
+							<input type="radio"  value="" name="whether_medical">是
 						</label>
 						<label class="am-radio-inline">
-							<input type="radio" name="docInlineRadio">否
+							<input type="radio" name="whether_medical">否
 						</label>
 					</div>
 				</div>
@@ -62,25 +57,35 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">年龄限制</label>
 					<div class="am-u-sm-10 am-form-inline age">
-						<div class="am-form-group am-form-icon am-form-feedback">
-						    <input type="text" class="am-radius" maxlength="2" placeholder="录入数字">
-						    <span class="am-icon-ellipsis">岁</span>
-					  	</div>
-					  	<span>至</span>
-					  	<div class="am-form-group am-form-icon am-form-feedback">
-						    <input type="text" class="am-radius" maxlength="2" placeholder="录入数字">
-						    <span class="am-icon-ellipsis">岁</span>
-					  	</div>
+						<div style="float:left;">
+							<div class="am-form-group am-form-icon am-form-feedback">
+							    <input type="text" class="am-radius" maxlength="2" placeholder="录入数字">
+							    <span class="am-icon-ellipsis">岁</span>
+						  	</div>
+						  	<span>至</span>
+						  	<div class="am-form-group am-form-icon am-form-feedback">
+							    <input type="text" class="am-radius" maxlength="2" placeholder="录入数字">
+							    <span class="am-icon-ellipsis">岁</span>
+						  	</div>
+						</div>
+						<div class="checkbox no_limit">
+					        <label>
+				          		<input v-model="no_limit" type="checkbox" @click="noLimit">不限
+					        </label>
+				      	</div>
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">性别限制</label>
 					<div class="am-u-sm-10">
 						<label class="am-radio-inline">
-							<input type="radio"  value="" name="docInlineRadio">男
+							<input type="radio" value="0" name="gender_limit">不限
 						</label>
 						<label class="am-radio-inline">
-							<input type="radio" name="docInlineRadio">女
+							<input type="radio" value="1" name="gender_limit">男
+						</label>
+						<label class="am-radio-inline">
+							<input type="radio" value="2" name="gender_limit">女
 						</label>
 					</div>
 				</div>
@@ -190,13 +195,46 @@
 		name: 'Projectform',
 		data () {
 			return {
-
+				center_list: '',
+				no_limit: false
 			}
 		},
 		created () {
-			Public.initSelect();
+			this.getCenter();
 		},
 		methods: {
+			getCenter () {
+				var self = this;
+				Public.Ajax('center/list', {}, 'GET', function(res){
+					self.center_list = res.data;
+					var options = '';
+					// var center_id = self.forms.center_id;
+					var eq;
+					// if (!!self.$route.query.module_id) {
+					// 	$.each(self.center_list, function(index, val) {
+					// 		 if (val.id == center_id) {
+					// 		 	eq = index;
+					// 		 }
+					// 	});
+					// }
+					for (var i = 0; i < self.center_list.length; i++) {
+						if (eq == i) {
+							options += '<option value="'+self.center_list[i].id+'" selected>'+self.center_list[i].name+'</option>';
+						} else {
+							options += '<option value="'+self.center_list[i].id+'">'+self.center_list[i].name+'</option>';
+						};
+					};
+					$('#center_name').append(options);
+					Public.initSelect();
+					// self.getClinics();
+					// $('#center_name').on('change', function(){
+					// 	self.getClinics();
+					// });
+				});
+			},
+			noLimit () {
+
+			},
 			addEditFn (e, title) {
 				var self = this;
 				Public.addEditFn(e, '', self.selectHtm(title), function(){
