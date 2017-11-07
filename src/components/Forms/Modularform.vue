@@ -312,7 +312,7 @@
 					};
 					$('#center_name').append(options);
 					Public.initSelect();
-					self.getClinics();
+					// self.getClinics();
 					$('#center_name').on('change', function(){
 						self.getClinics();
 					});
@@ -330,12 +330,12 @@
 					self.grade_list = res.data;
 				});
 				// 设备
-				Public.Ajax('equipment/list', {center_id: self.forms.center_id || 1}, 'GET', function(res){
-					self.equipment_list = res.data.list;
+				Public.Ajax('equipment/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+					self.equipment_list = res.data;
 				});
 				// 用品 
-				Public.Ajax('supplies/list', {center_id: self.forms.center_id || 1}, 'GET', function(res){
-					self.supplies_list = res.data.list;
+				Public.Ajax('supplies/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+					self.supplies_list = res.data;
 				});
 				self.getLabelList();
 				
