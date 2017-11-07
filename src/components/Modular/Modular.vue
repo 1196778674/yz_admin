@@ -64,28 +64,38 @@
 		},
 		created: function () {
 			Public.initSelect();
-			this.getList();
+			this.getList(this.current_page);
 		},
 		components: {
 			"search": Search,
 			"paginate": Paginate
 		},
 		methods: {
-			getList () {
+			getList (page, param) {
 				var self = this;
 				var params = {
-					current_page: this.current_page
+					current_page: page
 				};
-				Public.Ajax('module/list', params, 'GET', function(res){
-					self.list = res.data.list;
-					self.page = res.data.total_page;
+				params = $.extend(true, params, param);
+				if (param) {
+					var url = 'module/search';
+				} else {
+					var url = 'module/list';
+				}
+				Public.Ajax(url, params, 'GET', function(res){
+					if (param) {
+						self.list = res.data;
+					} else {
+						self.list = res.data.list;
+						self.page = res.data.total_page;
+					}
 				});
 			},
 			searchFn (params) {
-				console.log(params);
+				this.getList(this.current_page, params);
 			},
 			pagination (page) {
-				this.current_page = page;
+				this.getList(page);
 			},
 			deleteList (e, id) {
 				var self = this;
