@@ -259,7 +259,13 @@
 				var self = this;
 				var module_eq;
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
-					console.log(self.forms.module_list);
+					// console.log(self.forms.module_list);
+					var params = {
+						module_list: JSON.stringify(self.forms.module_list)
+					};
+					Public.Ajax('project/getModuleDataForProject', params, 'GET', function(res){
+
+					});
 				}, function(){
 					$('body').on('click', '.check_items', function(e){
 						var is_checked = $(e.target).prop('checked'),
