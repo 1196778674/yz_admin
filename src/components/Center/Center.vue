@@ -33,7 +33,8 @@
 			getList () {
 				var self = this;
 				Public.Ajax('center/list', {}, 'GET', function (res) {
-					self.list = res.data;
+					var datas = res.data;
+					self.list = datas.splice(1,datas.length - 1);
 				});
 			},
 			edit (e, id, code, name) {
