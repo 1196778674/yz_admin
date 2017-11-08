@@ -137,7 +137,9 @@
 			deletePage (e) {
 				var id = this.$route.query.id;
 				Public.deleteModal(e, id, function () {
-					console.log(id);
+					Public.Ajax('project/del', {project_id: id}, 'GET', function(res){
+						window.location.href = '#/project';
+					});
 				});
 			},
 			printPage () {
