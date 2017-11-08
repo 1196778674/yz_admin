@@ -96,7 +96,7 @@
 			
 			<ul>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="prevPage()">上一页</button></li>
-				<li><button type="button" class="am-btn am-btn-secondary" @click="editPage()">编辑</button></li>
+				<li><button type="button" class="am-btn am-btn-secondary" @click="editPage(edit_id)">编辑</button></li>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="deletePage($event)">删除</button></li>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="printPage()">打印</button></li>
 				<li><button type="button" class="am-btn am-btn-secondary" @click="nextPage()">下一页</button></li>
@@ -131,8 +131,8 @@
 			prevPage () {
 				console.log('prevPage');
 			},
-			editPage () {
-				window.location.href = '#/form' + '?type=project';
+			editPage (id) {
+				window.location.href = '#/form' + '?type=project&project_id=' +  id;
 			},
 			deletePage (e) {
 				var id = this.$route.query.id;
