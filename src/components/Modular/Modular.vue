@@ -95,6 +95,7 @@
 				this.getList(this.current_page, params);
 			},
 			pagination (page) {
+				this.current_page = page;
 				this.getList(page);
 			},
 			deleteList (e, id) {

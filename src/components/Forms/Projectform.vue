@@ -109,8 +109,11 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">适应症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '适应症')"></p>
+						<p class="am-radius" @click="addEditFn($event, '适应症')">选中了{{forms.module_indications_labels.length}}个适应症</p>
 						<span class="am-icon-ellipsis-h"></span>
+					</div>
+					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_indications_labels.length > 0">
+						<span v-for="v in forms.module_indications_labels">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group">
@@ -126,8 +129,11 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">作用部位</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '作用部位')"></p>
+						<p class="am-radius" @click="addEditFn($event, '作用部位')">选中了{{forms.module_working_part_labels.length}}个作用部位</p>
 						<span class="am-icon-ellipsis-h"></span>
+					</div>
+					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_working_part_labels.length > 0">
+						<span v-for="v in forms.module_working_part_labels">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group">
@@ -183,7 +189,7 @@
 
 				<div class="am-form-group">
 					<div class="am-u-sm-10 am-u-sm-offset-2">
-						<button type="submit" class="am-btn am-btn-primary">确认提交</button>
+						<button type="submit" class="am-btn am-btn-primary" @click="save">确认提交</button>
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -222,8 +228,8 @@
 					module_clinics: [],
 					whether_medical_name: '',
 					module_working_part_labels: [],
-					module_contraindications_labels: [],
 					module_indications_labels: [],
+					module_contraindications_labels: [],
 					module_function_labels: [],
 					gender_limit_name: '',
 					age_limit: '',
@@ -232,6 +238,7 @@
 				center_list: '',
 				category_list: [],
 				module_list_arr: '',
+				checked_list: [],
 				indications_list: [],
 				working_part_list: []
 			}
@@ -340,11 +347,19 @@
 							self.system = res.data;
 						});
 					} else if (title == '适应症') {
-						console.log('适应症');
-						// module_indications_labels: []
+						$.each(self.indications_list, function(k, val) {
+							 var id = val.id + '';
+							 if ($.inArray(id, self.checked_list) > -1) {
+							 	self.forms.module_indications_labels.push(val);
+							 }
+						});
 					} else if (title == '作用部位') {
-						// module_working_part_labels: []
-						console.log('作用部位');
+						$.each(self.working_part_list, function(k, val) {
+							 var id = val.id + '';
+							 if ($.inArray(id, self.checked_list) > -1) {
+							 	self.forms.module_working_part_labels.push(val);
+							 }
+						});
 					}
 				}, function(){
 					$('body').unbind('click').on('click', '.check_items', function(e){
@@ -424,6 +439,37 @@
 							});
 						});
 					});
+					$('body').on('click', '.checks', function(e) {
+						self.checked_list = [];
+						$('.checks').each(function(k, v){
+							var is_checked = $(v).prop('checked'),
+								id = $(v).val();
+							if (is_checked) {
+								self.checked_list.push(id);
+							};
+						});
+					});
+				});
+			},
+			save () {
+				var self = this;
+				self.forms.center_id = $('#center_name').val();
+				self.forms.category_id = $('#category_name').val();
+				self.forms.module_indications_labels = JSON.stringify(self.forms.module_indications_labels);
+				self.forms.module_list = JSON.stringify(self.forms.module_list);
+				self.forms.module_working_part_labels = JSON.stringify(self.forms.module_working_part_labels);
+				if (!!self.$route.query.project_id) {
+					var url = 'project/edit';
+					this.forms.project_id = this.$route.query.project_id;
+				} else {
+					var url = 'project/add';
+				}
+				Public.Ajax(url, self.forms, 'POST', function(res){
+					if (!!self.$route.query.project_id) {
+						window.location.href = '#/projectdetail?id=' + self.$route.query.project_id;
+					} else {
+						window.location.href = '#/project';
+					}
 				});
 			},
 			selectHtm (title, list) {
@@ -470,7 +516,7 @@
 					$.each(self.indications_list, function(index, val) {
 						item += '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="'+val.id+'">'+val.name+
+							'<input class="checks" type="checkbox" value="'+val.id+'">'+val.name+
 							'</label>'+
 							'</li>';
 					});
@@ -479,7 +525,7 @@
 					$.each(self.working_part_list, function(index, val) {
 						item += '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="'+val.id+'">'+val.name+
+							'<input class="checks" type="checkbox" value="'+val.id+'">'+val.name+
 							'</label>'+
 							'</li>';
 					});
@@ -518,6 +564,11 @@
 	.form_container .am-u-sm-5{
 		float: left;
 		width: 33%;
+	}
+	.show_detail_list span{
+		font-size: 13px;
+		margin-right: 10px;
+		color: #777;
 	}
 	.am-table-bordered>tbody>tr>td, .am-table-bordered>tbody>tr>th, .am-table-bordered>tfoot>tr>td, .am-table-bordered>tfoot>tr>th, .am-table-bordered>thead>tr>td, .am-table-bordered>thead>tr>th, .am-table-bordered>thead+tbody>tr:first-child>td, .am-table-bordered>thead+tbody>tr:first-child>th{
 		word-break: keep-all;

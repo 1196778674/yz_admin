@@ -55,6 +55,7 @@
 
 		data() {
 			return {
+				page: 1,
 				list: '',
 				current_page: 1,
 				person: {
