@@ -111,13 +111,23 @@
 		name: 'Projectdetail',
 		data () {
 			return {
-
+				detail: {},
+				edit_id: this.$route.query.id
 			}
 		},
 		created () {
-
+			this.getDetail();
 		},
 		methods: {
+			getDetail () {
+				var self = this;
+				var params = {
+					project_id: this.edit_id
+				}
+				Public.Ajax('project/detail', params, 'GET', function(res){
+					self.detail = res.data;
+				});
+			},
 			prevPage () {
 				console.log('prevPage');
 			},
