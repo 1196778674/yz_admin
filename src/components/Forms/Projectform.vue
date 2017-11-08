@@ -244,11 +244,23 @@
 			}
 		},
 		created () {
-			this.getCenter();
+			if (!!this.$route.query.project_id) {
+				this.getDetail(this.$route.query.project_id);
+			} else {
+				this.getCenter();
+			};
+			// this.getCenter();
 			this.getModuleList();
 			this.getLabels();
 		},
 		methods: {
+			getDetail (id) {
+				var self = this;
+				Public.Ajax('project/detail', {project_id: id}, 'GET', function(res){
+					self.forms = res.data;
+					self.getCenter();
+				});
+			},
 			getLabels () {
 				var self = this;
 				Public.Ajax('label/selectList', {label_category_id: 1}, 'GET', function(res){
