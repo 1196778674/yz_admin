@@ -18,8 +18,21 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>项目模块</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '项目模块')"></p>
+						<p class="am-radius" @click="addEditFn($event, '项目模块')">选中{{forms.module_list.length}}个模块</p>
 						<span class="am-icon-ellipsis-h"></span>
+					</div>
+					<div class="am-u-sm-10 show_detail_list module_show_list" v-if="forms.module_list.length > 0">
+						<ul v-for="(module, key) in forms.module_list">
+							<li v-for="(item, i) in module">
+								<span v-if="module.length > 1">
+									{{key+1}}-{{i+1}},{{item.name}}
+								</span>
+								<span v-else>
+									{{key+1}},{{item.name}}
+								</span>
+							</li>
+						</ul>
+						<!-- <span v-for="v in forms.module_list">{{v.name}}</span> -->
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
@@ -259,7 +272,7 @@
 				var self = this;
 				var module_eq;
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
-					// console.log(self.forms.module_list);
+					console.log(self.forms.module_list);
 					var params = {
 						module_list: JSON.stringify(self.forms.module_list)
 					};
@@ -429,6 +442,11 @@
 	}
 </script>
 <style scoped>
+	.froms .am-form-group p.am-radius{
+		line-height: 25px;
+		padding-left: 5px;
+		font-size: 13px;
+	}
 	.form_container{
 		overflow: hidden;
 		padding-bottom: 50px;
