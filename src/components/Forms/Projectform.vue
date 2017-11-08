@@ -5,11 +5,11 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>项目名称</label>
 					<div class="am-u-sm-10">
-						<input type="text" class="am-radius" placeholder="输入您的项目名称">
+						<input type="text" class="am-radius" v-model="forms.name" placeholder="输入您的项目名称">
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>项目类别</label>
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>所属中心</label>
 					<div class="am-u-sm-10">
 						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
 						</select>
@@ -32,95 +32,78 @@
 								</span>
 							</li>
 						</ul>
-						<!-- <span v-for="v in forms.module_list">{{v.name}}</span> -->
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>项目类别</label>
+					<div class="am-u-sm-10">
+						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="category_name">
+						</select>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>所属中心</label>
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">执行人等级</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '所属中心')"></p>
-						<span class="am-icon-ellipsis-h"></span>
-					</div>
-				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>执行人等级</label>
-					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '执行人等级')"></p>
-						<span class="am-icon-ellipsis-h"></span>
+						<p class="am-radius">
+							<span v-for="item in system.job_grades">
+								{{item.name}}
+							</span>
+						</p>
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">是否医疗</label>
 					<div class="am-u-sm-10">
-						<label class="am-radio-inline">
-							<input type="radio"  value="" name="whether_medical">是
-						</label>
-						<label class="am-radio-inline">
-							<input type="radio" name="whether_medical">否
-						</label>
+						<p class="am-radius">{{system.whether_medical_name}}</p>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">项目时间</label>
 					<div class="am-u-sm-10">
-						<input type="text" class="am-radius" maxlength="4" placeholder="输入项目分钟数">
+						<input type="text" class="am-radius" v-model="forms.time" maxlength="4" placeholder="输入项目分钟数">
 						<span class="am-icon-ellipsis">分钟</span>
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">年龄限制</label>
-					<div class="am-u-sm-10 am-form-inline age">
-						<div style="float:left;">
-							<div class="am-form-group am-form-icon am-form-feedback">
-							    <input type="text" class="am-radius" maxlength="2" placeholder="录入数字">
-							    <span class="am-icon-ellipsis">岁</span>
-						  	</div>
-						  	<span>至</span>
-						  	<div class="am-form-group am-form-icon am-form-feedback">
-							    <input type="text" class="am-radius" maxlength="2" placeholder="录入数字">
-							    <span class="am-icon-ellipsis">岁</span>
-						  	</div>
-						</div>
-						<div class="checkbox no_limit">
-					        <label>
-				          		<input v-model="no_limit" type="checkbox" @click="noLimit">不限
-					        </label>
-				      	</div>
+					<div class="am-u-sm-10">
+						<p class="am-radius">{{system.age_limit}}</p>
 					</div>
 				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">性别限制</label>
 					<div class="am-u-sm-10">
-						<label class="am-radio-inline">
-							<input type="radio" value="0" name="gender_limit">不限
-						</label>
-						<label class="am-radio-inline">
-							<input type="radio" value="1" name="gender_limit">男
-						</label>
-						<label class="am-radio-inline">
-							<input type="radio" value="2" name="gender_limit">女
-						</label>
+						<p class="am-radius">{{system.gender_limit_name}}</p>
 					</div>
 				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
+				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">诊室</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '诊室')"></p>
-						<span class="am-icon-ellipsis-h"></span>
+						<p class="am-radius">
+							<span v-for="item in system.module_clinics">
+								{{item.name}}
+							</span>
+						</p>
 					</div>
 				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
+				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">设备</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '设备')"></p>
-						<span class="am-icon-ellipsis-h"></span>
+						<p class="am-radius">
+							<span v-for="item in system.module_equipment">
+								{{item.name}}
+							</span>
+						</p>
 					</div>
 				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
+				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">用品</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '用品')"></p>
-						<span class="am-icon-ellipsis-h"></span>
+						<p class="am-radius">
+							<span v-for="item in system.module_supplies">
+								{{item.name}}
+							</span>
+						</p>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
@@ -130,11 +113,14 @@
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
+				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">禁忌症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '禁忌症')"></p>
-						<span class="am-icon-ellipsis-h"></span>
+						<p class="am-radius">
+							<span v-for="item in system.module_contraindications_labels">
+								{{item.name}}
+							</span>
+						</p>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
@@ -144,49 +130,52 @@
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 				</div>
-				<div class="am-form-group am-form-icon am-form-feedback">
+				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">作用功能</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, '作用功能')"></p>
-						<span class="am-icon-ellipsis-h"></span>
+						<p class="am-radius">
+							<span v-for="item in system.module_function_labels">
+								{{item.name}}
+							</span>
+						</p>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">不良反应</label>
 					<div class="am-u-sm-10">
-						<textarea name=""></textarea>
+						<textarea name="" v-model="forms.adverse_reaction"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">注意事项</label>
 					<div class="am-u-sm-10">
-						<textarea name=""></textarea>
+						<textarea name="" v-model="forms.considerations"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">备注</label>
 					<div class="am-u-sm-10">
-						<textarea name=""></textarea>
+						<textarea name="" v-model="forms.remark"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">成本</label>
 					<div class="am-u-sm-5">
-						<input type="text" class="am-radius" maxlength="9" placeholder="成本价">
+						<p>{{system.expected_cost}}</p>
 						<span class="am-icon-ellipsis">元</span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">市场价</label>
 					<div class="am-u-sm-5">
-						<input type="text" class="am-radius" maxlength="9" placeholder="市场价">
+						<input type="text" class="am-radius" maxlength="9" v-model="forms.market_price" placeholder="市场价">
 						<span class="am-icon-ellipsis">元</span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">会员价</label>
 					<div class="am-u-sm-5">
-						<input type="text" class="am-radius" maxlength="9" placeholder="会员价">
+						<input type="text" class="am-radius" maxlength="9" v-model="forms.member_price" placeholder="会员价">
 						<span class="am-icon-ellipsis">元</span>
 					</div>
 				</div>
@@ -213,8 +202,35 @@
 					min_age_limit: '',
 					max_age_limit: '',
 					module_list: [],
+					category_id: '',
+					center_id: '',
+					description: '',
+					time: '',
+					gender_limit: '',
+					considerations: '',
+					adverse_reaction: '',
+					remark: '',
+					module_working_part_labels: [],
+					module_indications_labels: [],
+					market_price: '',
+					member_price: ''
+				},
+				system: {
+					job_grades: [],
+					module_equipment: [],
+					module_supplies: [],
+					module_clinics: [],
+					whether_medical_name: '',
+					module_working_part_labels: [],
+					module_contraindications_labels: [],
+					module_indications_labels: [],
+					module_function_labels: [],
+					gender_limit_name: '',
+					age_limit: '',
+					expected_cost: ''
 				},
 				center_list: '',
+				category_list: [],
 				module_list_arr: '',
 				no_limit: false,
 			}
@@ -258,10 +274,39 @@
 					};
 					$('#center_name').append(options);
 					Public.initSelect();
-					// self.getClinics();
-					// $('#center_name').on('change', function(){
-					// 	self.getClinics();
-					// });
+
+					$('#center_name').on('change', function(){
+						self.getCategory();
+					});
+				});
+			},
+			getCategory () {
+				var self = this;
+				// category_name
+				var params = {
+					center_id: $('#center_name').val()
+				};
+				Public.Ajax('category/listByCenterId', params, 'GET', function(res){
+					self.category_list = res.data;
+					var options = '';
+					// var category_id = self.forms.category_id;
+					var eq;
+					// if (!!self.$route.query.module_id) {
+					// 	$.each(self.category_list, function(index, val) {
+					// 		 if (val.id == category_id) {
+					// 		 	eq = index;
+					// 		 }
+					// 	});
+					// }
+					for (var i = 0; i < self.category_list.length; i++) {
+						if (eq == i) {
+							options += '<option value="'+self.category_list[i].id+'" selected>'+self.category_list[i].name+'</option>';
+						} else {
+							options += '<option value="'+self.category_list[i].id+'">'+self.category_list[i].name+'</option>';
+						};
+					};
+					$('#category_name').html('').append(options);
+					Public.initSelect();
 				});
 			},
 			noLimit () {
@@ -272,12 +317,12 @@
 				var self = this;
 				var module_eq;
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
-					console.log(self.forms.module_list);
+					// console.log(self.forms.module_list);
 					var params = {
 						module_list: JSON.stringify(self.forms.module_list)
 					};
 					Public.Ajax('project/getModuleDataForProject', params, 'GET', function(res){
-
+						self.system = res.data;
 					});
 				}, function(){
 					$('body').on('click', '.check_items', function(e){
@@ -366,10 +411,10 @@
 							items +
 							'</tbody>'+
 							'</table>';
-				} else if (title == '所属中心') {
+				} else if (title == '项目类别') {
 					var item = '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">中心1'+
+							'<input type="checkbox" value="option1">类别1'+
 							'</label>'+
 							'</li>';
 				} else if (title == '执行人等级') {
