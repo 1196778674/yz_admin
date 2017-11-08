@@ -317,6 +317,9 @@
 				var params = {
 					center_id: $('#center_name').val()
 				};
+				if (params.center_id == 0) {
+					return;
+				}
 				Public.Ajax('category/listByCenterId', params, 'GET', function(res){
 					self.category_list = res.data;
 					var options = '';

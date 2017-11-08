@@ -30,17 +30,13 @@
 		            <td class="title no-right space">项目时间</td>
 		            <td class="space">{{detail.time}}</td>
 		            <td class="title no-right space">诊室</td>
-		            <td colspan="3" class="no-right">
+		            <td>
 		            	<span v-for="item in detail.module_clinics">{{item.name}}</span>
 		            </td>
-		        </tr>
-		        <tr>
 		            <td class="title no-right space">执行人等级</td>
 		            <td class="space">
 		            	<span v-for="item in detail.job_grades">{{item.name}}</span>
 		            </td>
-		            <td class="title no-right space">执行人</td>
-		            <td colspan="3" class="no-right">专家康复师</td>
 		        </tr>
 		        <tr>
 		            <td class="title no-right">项目类别</td>
@@ -61,7 +57,7 @@
 		        <tr>
 		            <td class="title no-right">项目模板</td>
 		            <td colspan="5" class="no-right">
-		            	<p v-for="item in detail.module_list">{{item.index}}:{{item.name}}</p>
+		            	<p v-for="item in detail.module_list_view">{{item.index}}:{{item.name}}</p>
 		            </td>
 		        </tr>
 		        <tr>

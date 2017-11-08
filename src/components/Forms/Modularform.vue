@@ -180,6 +180,12 @@
 					</div>
 				</div>
 				<div class="am-form-group">
+					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">描述</label>
+					<div class="am-u-sm-8">
+						<textarea name="" v-model="forms.description"></textarea>
+					</div>
+				</div>
+				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">备注</label>
 					<div class="am-u-sm-8">
 						<textarea name="" v-model="forms.remark"></textarea>
@@ -314,6 +320,9 @@
 					Public.initSelect();
 					// self.getClinics();
 					$('#center_name').on('change', function(){
+						if ($('#center_name').val() == 0) {
+							return;
+						};
 						self.getClinics();
 					});
 				});
@@ -326,15 +335,15 @@
 						self.forms.center_id = v.id;
 					}
 				});
-				Public.Ajax('job-grade/list', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+				Public.Ajax('job-grade/list', {center_id: self.forms.center_id || 0}, 'GET', function(res){
 					self.grade_list = res.data;
 				});
 				// 设备
-				Public.Ajax('equipment/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+				Public.Ajax('equipment/listByCenterId', {center_id: self.forms.center_id || 0}, 'GET', function(res){
 					self.equipment_list = res.data;
 				});
 				// 用品 
-				Public.Ajax('supplies/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
+				Public.Ajax('supplies/listByCenterId', {center_id: self.forms.center_id || 0}, 'GET', function(res){
 					self.supplies_list = res.data;
 				});
 				self.getLabelList();

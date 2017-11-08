@@ -15,7 +15,7 @@
 					</div>
 				</div>
 				<div class="am-form-group am-u-sm-6">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">库存名字</label>
+					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">库存名称</label>
 					<div class="am-u-sm-8">
 						<input type="text" v-model="forms.storage_name" class="am-radius" placeholder="请输入库存名字">
 					</div>
