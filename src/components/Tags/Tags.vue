@@ -54,6 +54,8 @@
 					Public.Ajax('label/add', self.labels, 'POST', function(){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			edit (e, id, item) {
@@ -74,6 +76,8 @@
 					Public.Ajax('label/edit', self.labels, 'POST', function(){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			deleteBtn (e, id, label_category_id) {
@@ -96,7 +100,7 @@
 						'</div></div>'+
 						'<div class="am-modal-footer">'+
 				      	'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
-				      	'<span class="am-modal-btn" data-am-modal-confirm>确认</span>'+
+				      	'<span id="modal_confirm" class="am-modal-btn" data-am-modal-confirm>确认</span>'+
 					    '</div>'+
 					  	'</div>'+
 						'</div>';
