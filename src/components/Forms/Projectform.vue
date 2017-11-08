@@ -316,6 +316,9 @@
 			addEditFn (e, title) {
 				var self = this;
 				var module_eq;
+				if (title == '项目模块') {
+					self.forms.module_list = [];
+				};
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
 					// console.log(self.forms.module_list);
 					var params = {
@@ -325,7 +328,7 @@
 						self.system = res.data;
 					});
 				}, function(){
-					$('body').on('click', '.check_items', function(e){
+					$('body').unbind('click').on('click', '.check_items', function(e){
 						var is_checked = $(e.target).prop('checked'),
 							id = $(e.target).val(),
 							name = $(e.target).data('name');
