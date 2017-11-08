@@ -259,6 +259,7 @@
 				Public.Ajax('project/detail', {project_id: id}, 'GET', function(res){
 					self.forms = res.data;
 					self.getCenter();
+					self.getSystem();
 				});
 			},
 			getLabels () {
@@ -286,15 +287,15 @@
 				Public.Ajax('center/list', {}, 'GET', function(res){
 					self.center_list = res.data;
 					var options = '';
-					// var center_id = self.forms.center_id;
+					var center_id = self.forms.center_id;
 					var eq;
-					// if (!!self.$route.query.module_id) {
-					// 	$.each(self.center_list, function(index, val) {
-					// 		 if (val.id == center_id) {
-					// 		 	eq = index;
-					// 		 }
-					// 	});
-					// }
+					if (!!self.$route.query.project_id) {
+						$.each(self.center_list, function(index, val) {
+							 if (val.id == center_id) {
+							 	eq = index;
+							 }
+						});
+					}
 					for (var i = 0; i < self.center_list.length; i++) {
 						if (eq == i) {
 							options += '<option value="'+self.center_list[i].id+'" selected>'+self.center_list[i].name+'</option>';
@@ -304,7 +305,7 @@
 					};
 					$('#center_name').append(options);
 					Public.initSelect();
-
+					self.getCategory();
 					$('#center_name').on('change', function(){
 						self.getCategory();
 					});
@@ -319,15 +320,15 @@
 				Public.Ajax('category/listByCenterId', params, 'GET', function(res){
 					self.category_list = res.data;
 					var options = '';
-					// var category_id = self.forms.category_id;
+					var category_id = self.forms.category_id;
 					var eq;
-					// if (!!self.$route.query.module_id) {
-					// 	$.each(self.category_list, function(index, val) {
-					// 		 if (val.id == category_id) {
-					// 		 	eq = index;
-					// 		 }
-					// 	});
-					// }
+					if (!!self.$route.query.project_id) {
+						$.each(self.category_list, function(index, val) {
+							 if (val.id == category_id) {
+							 	eq = index;
+							 }
+						});
+					}
 					for (var i = 0; i < self.category_list.length; i++) {
 						if (eq == i) {
 							options += '<option value="'+self.category_list[i].id+'" selected>'+self.category_list[i].name+'</option>';
@@ -343,6 +344,15 @@
 				this.forms.min_age_limit = '';
 				this.forms.max_age_limit = '';
 			},
+			getSystem () {
+				var self = this;
+				var params = {
+					module_list: JSON.stringify(self.forms.module_list)
+				};
+				Public.Ajax('project/getModuleDataForProject', params, 'GET', function(res){
+					self.system = res.data;
+				});
+			},
 			addEditFn (e, title) {
 				var self = this;
 				var module_eq;
@@ -352,12 +362,7 @@
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
 					// console.log(self.forms.module_list);
 					if (title == '项目模块') {
-						var params = {
-							module_list: JSON.stringify(self.forms.module_list)
-						};
-						Public.Ajax('project/getModuleDataForProject', params, 'GET', function(res){
-							self.system = res.data;
-						});
+						self.getSystem();
 					} else if (title == '适应症') {
 						$.each(self.indications_list, function(k, val) {
 							 var id = val.id + '';
