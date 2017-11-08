@@ -82,17 +82,18 @@
 				} else {
 					var url = 'supplies/list';
 				}
-				Public.Ajax('supplies/list', params, 'GET', function(res){
+				Public.Ajax(url, params, 'GET', function(res){
 					if (param) {
 						self.list = res.data;
 					} else {
-						self.page_total = res.data.total_page;
 						self.list = res.data.list;
+						self.page_total = res.data.total_page;
 					}
 				});
 			},
 			pagination (page) {
 				this.current_page = page;
+				this.getList(page);
 			},
 			deleteList (e, id) {
 				var self = this;
