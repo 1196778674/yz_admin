@@ -9,17 +9,17 @@
 				<li class="sidebar-nav-link" @click="isActive(1)">
 					<router-link to="modular" :class="{'active': is_active == 1}"><span class="am-icon-bars"></span>模块管理</router-link>
 				</li>
-				<li class="sidebar-nav-link" @click="isActive(2)">
-					<router-link to="center" :class="{'active': is_active == 2}"><span class="am-icon-home"></span>中心管理</router-link>
-				</li>
 				<li class="sidebar-nav-link" @click="isActive(3)">
 					<router-link to="equipment" :class="{'active': is_active == 3}"><span class="am-icon-steam"></span>设备管理</router-link>
+				</li>
+				<li class="sidebar-nav-link" @click="isActive(5)">
+					<router-link to="articles" :class="{'active': is_active == 5}"><span class="am-icon-flask"></span>用品管理</router-link>
 				</li>
 				<li class="sidebar-nav-link" @click="isActive(4)">
 					<router-link to="personnel" :class="{'active': is_active == 4}"><span class="am-icon-user-md"></span>人员管理</router-link>
 				</li>
-				<li class="sidebar-nav-link" @click="isActive(5)">
-					<router-link to="articles" :class="{'active': is_active == 5}"><span class="am-icon-flask"></span>用品管理</router-link>
+				<li class="sidebar-nav-link" @click="isActive(2)">
+					<router-link to="center" :class="{'active': is_active == 2}"><span class="am-icon-home"></span>中心管理</router-link>
 				</li>
 				<li class="sidebar-nav-link" @click="isActive(6)">
 					<router-link to="tags" :class="{'active': is_active == 6}"><span class="am-icon-tags"></span>标签管理</router-link>
