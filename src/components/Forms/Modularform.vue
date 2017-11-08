@@ -62,7 +62,7 @@
 							<input type="radio" value="1" name="whether_medical">是
 						</label>
 						<label class="am-radio-inline">
-							<input type="radio" value="2" name="whether_medical">否
+							<input type="radio" value="0" name="whether_medical">否
 						</label>
 					</div>
 				</div>
