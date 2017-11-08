@@ -74,7 +74,7 @@
 				var self = this;
 				Public.Ajax('center/list', {}, 'GET', function(res){
 					self.center_list = res.data;
-					var options = '<option value="0">中心选择</option>';
+					var options = '';
 					for (var i = 0; i < self.center_list.length; i++) {
 						options += '<option value="'+self.center_list[i].id+'">'+self.center_list[i].name+'</option>';
 					};
