@@ -210,8 +210,8 @@
 					considerations: '',
 					adverse_reaction: '',
 					remark: '',
-					module_working_part_labels: [],
 					module_indications_labels: [],
+					module_working_part_labels: [],
 					market_price: '',
 					member_price: ''
 				},
@@ -232,14 +232,25 @@
 				center_list: '',
 				category_list: [],
 				module_list_arr: '',
-				no_limit: false,
+				indications_list: [],
+				working_part_list: []
 			}
 		},
 		created () {
 			this.getCenter();
 			this.getModuleList();
+			this.getLabels();
 		},
 		methods: {
+			getLabels () {
+				var self = this;
+				Public.Ajax('label/selectList', {label_category_id: 1}, 'GET', function(res){
+					self.indications_list = res.data;
+				});
+				Public.Ajax('label/selectList', {label_category_id: 4}, 'GET', function(res){
+					self.working_part_list = res.data;
+				});
+			},
 			getModuleList () {
 				var self = this;
 				var params = {
@@ -321,12 +332,20 @@
 				};
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
 					// console.log(self.forms.module_list);
-					var params = {
-						module_list: JSON.stringify(self.forms.module_list)
-					};
-					Public.Ajax('project/getModuleDataForProject', params, 'GET', function(res){
-						self.system = res.data;
-					});
+					if (title == '项目模块') {
+						var params = {
+							module_list: JSON.stringify(self.forms.module_list)
+						};
+						Public.Ajax('project/getModuleDataForProject', params, 'GET', function(res){
+							self.system = res.data;
+						});
+					} else if (title == '适应症') {
+						console.log('适应症');
+						// module_indications_labels: []
+					} else if (title == '作用部位') {
+						// module_working_part_labels: []
+						console.log('作用部位');
+					}
 				}, function(){
 					$('body').unbind('click').on('click', '.check_items', function(e){
 						var is_checked = $(e.target).prop('checked'),
@@ -382,10 +401,41 @@
 							module_eq = $(e.target).parent('ul').index();
 						};
 					});
+					$('#addCheckList').on('click', function(e){
+						var val = $('#add_check_name').val();
+						if (title == '适应症') {
+							var type = 1;
+						} else {
+							var type = 4;
+						}
+						Public.Ajax('label/add', {label_category_id: type, name: val}, 'POST', function(res){
+							Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
+								$('#add_check_name').val('');
+								var list = res.data,
+									item = '';
+								for (var i = 0; i < list.length; i++) {
+									item += '<li>'+
+											'<label class="am-checkbox-inline">'+
+											'<input class="checks" type="checkbox" value="'+list[i].id+'">'+list[i].name+''+
+											'</label>'+
+											'</li>';	
+								};
+								$('#checked_arr_list').html(item);
+							});
+						});
+					});
 				});
 			},
 			selectHtm (title, list) {
 				var self = this;
+				var addBtn = '<li style="width: 30%; margin-left:15px;">'+
+						'<div class="am-input-group">'+
+						'<input type="text" id="add_check_name" class="am-form-field" style="height: 30px;line-height: 30px;border: 1px solid #ccc; border-top-left-radius: 3px;border-bottom-left-radius: 3px;" placeholder="添加'+title+'">'+
+						'<span class="am-input-group-btn">'+
+						'<button class="am-btn am-btn-secondary" id="addCheckList" type="button" style="height: 30px;border: 1px solid #3bb4f2;">添加</button>'+
+						'</span>'+
+						'</div>'+
+						'</li>';
 				if (title == '项目模块') {
 					var items = '';
 					for (var i = 0; i < self.module_list_arr.length; i++) {
@@ -414,70 +464,36 @@
 							items +
 							'</tbody>'+
 							'</table>';
-				} else if (title == '项目类别') {
-					var item = '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">类别1'+
-							'</label>'+
-							'</li>';
-				} else if (title == '执行人等级') {
-					var item = '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">等级1'+
-							'</label>'+
-							'</li>';
-				} else if (title == '诊室') {
-					var item = '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">诊室1'+
-							'</label>'+
-							'</li>';
-				} else if (title == '设备') {
-					var item = '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">设备'+
-							'</label>'+
-							'</li>';
-				} else if (title == '用品') {
-					var item = '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">用品'+
-							'</label>'+
-							'</li>';
+					var addBtn = '';
 				} else if (title == '适应症') {
-					var item = '<li>'+
+					var item = '';
+					$.each(self.indications_list, function(index, val) {
+						item += '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">适应症'+
+							'<input type="checkbox" value="'+val.id+'">'+val.name+
 							'</label>'+
 							'</li>';
-				} else if (title == '禁忌症') {
-					var item = '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">禁忌症'+
-							'</label>'+
-							'</li>';
+					});
 				} else if (title == '作用部位') {
-					var item = '<li>'+
+					var item = '';
+					$.each(self.working_part_list, function(index, val) {
+						item += '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">作用部位'+
+							'<input type="checkbox" value="'+val.id+'">'+val.name+
 							'</label>'+
 							'</li>';
-				} else if (title == '作用功能') {
-					var item = '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input type="checkbox" value="option1">作用功能'+
-							'</label>'+
-							'</li>';
+					});
 				}
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
-						'<div class="am-modal-dialog" style="max-width: 100%;">'+
+						'<div class="am-modal-dialog">'+
 						'<div class="am-modal-hd">'+title+'</div>'+
 						'<div class="am-modal-bd">'+
 						'<div id="module_list_container">'+
 						'</div>'+
-						'<ul>'+
+						'<ul id="checked_arr_list">'+
 						item +
 						'</ul>'+
+						addBtn +
 						'</div>'+
 						'<div class="am-modal-footer">'+
 						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
