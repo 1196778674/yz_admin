@@ -364,15 +364,16 @@
 				if (title == '项目模块') {
 					self.forms.module_list = [];
 				} else if (title == '适应症') {
-					self.forms.module_indications_labels = [];
+					// self.forms.module_indications_labels = [];
 				} else if (title == '作用部位') {
-					self.forms.module_working_part_labels = [];
+					// self.forms.module_working_part_labels = [];
 				};
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
 					// console.log(self.forms.module_list);
 					if (title == '项目模块') {
 						self.getSystem();
 					} else if (title == '适应症') {
+						self.forms.module_indications_labels = [];
 						$.each(self.indications_list, function(k, val) {
 							 var id = val.id + '';
 							 if ($.inArray(id, self.checked_list) > -1) {
@@ -380,6 +381,7 @@
 							 }
 						});
 					} else if (title == '作用部位') {
+						self.forms.module_working_part_labels = [];
 						$.each(self.working_part_list, function(k, val) {
 							 var id = val.id + '';
 							 if ($.inArray(id, self.checked_list) > -1) {
@@ -539,21 +541,47 @@
 					var addBtn = '';
 				} else if (title == '适应症') {
 					var item = '';
+					var arr = [];
+					$.each(self.forms.module_indications_labels, function(index, val) {
+						 arr.push(val.id);
+					});
 					$.each(self.indications_list, function(index, val) {
-						item += '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input class="checks" type="checkbox" value="'+val.id+'">'+val.name+
-							'</label>'+
-							'</li>';
+						var id = val.id;
+						if ($.inArray(id, arr) > '-1') {
+							item += '<li>'+
+								'<label class="am-checkbox-inline">'+
+								'<input class="checks" checked type="checkbox" value="'+id+'">'+val.name+
+								'</label>'+
+								'</li>';
+						} else {
+							item += '<li>'+
+								'<label class="am-checkbox-inline">'+
+								'<input class="checks" type="checkbox" value="'+id+'">'+val.name+
+								'</label>'+
+								'</li>';
+						}
 					});
 				} else if (title == '作用部位') {
 					var item = '';
+					var arr = [];
+					$.each(self.forms.module_working_part_labels, function(index, val) {
+						 arr.push(val.id);
+					});
 					$.each(self.working_part_list, function(index, val) {
-						item += '<li>'+
-							'<label class="am-checkbox-inline">'+
-							'<input class="checks" type="checkbox" value="'+val.id+'">'+val.name+
-							'</label>'+
-							'</li>';
+						var id = val.id;
+						if ($.inArray(id, arr) > '-1') {
+							item += '<li>'+
+								'<label class="am-checkbox-inline">'+
+								'<input class="checks" checked type="checkbox" value="'+id+'">'+val.name+
+								'</label>'+
+								'</li>';
+						} else {
+							item += '<li>'+
+								'<label class="am-checkbox-inline">'+
+								'<input class="checks" type="checkbox" value="'+id+'">'+val.name+
+								'</label>'+
+								'</li>';
+						}
 					});
 				}
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
