@@ -364,7 +364,6 @@
 				var item = '';
 				for (var i = 0; i < list.length; i++) {
 					var id = list[i].id;
-					console.log(id, arr);
 					if ($.inArray(id, arr) > '-1') {
 						item += '<li>'+
 							'<label class="am-checkbox-inline">'+

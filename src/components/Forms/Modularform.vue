@@ -161,7 +161,7 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">作用功能</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, 4)">选中了{{forms.module_function_labels.length}}个作用功能</p>
+						<p class="am-radius" @click="addEditFn($event, 3)">选中了{{forms.module_function_labels.length}}个作用功能</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_function_labels.length > 0">
@@ -419,7 +419,7 @@
 							self.forms.module_contraindications_labels = [];
 							break;
 						case 3:
-							self.forms.module_working_part_labels = [];
+							self.forms.module_function_labels = [];
 							break;
 						case 4:
 							self.forms.module_function_labels = [];
@@ -452,7 +452,7 @@
 						 	self.forms.module_contraindications_labels.push(val);
 						 };
 						 if ($.inArray(id, self.checked_list) > -1 && type == 3) {
-						 	self.forms.module_working_part_labels.push(val);
+						 	self.forms.module_function_labels.push(val);
 						 };
 						 if ($.inArray(id, self.checked_list) > -1 && type == 4) {
 						 	self.forms.module_function_labels.push(val);
@@ -557,15 +557,24 @@
 				});
 			},
 			selectHtm (type, list) {
+				var self = this;
 				switch(type) {
 					case 1:
 						var title = '适应症';
 						break;
 					case 2:
 						var title = '禁忌症';
+						var arr = [];
+						$.each(self.forms.module_contraindications_labels, function(index, val) {
+							 arr.push(val.id);
+						});
 						break;
 					case 3:
 						var title = '作用部位';
+						var arr = [];
+						$.each(self.forms.module_function_labels, function(index, val) {
+							 arr.push(val.id);
+						});
 						break;
 					case 4:
 						var title = '作用功能';
@@ -585,27 +594,54 @@
 					case 'grade':
 						var title = '执行人等级';
 						var addBtn = '';
+						var arr = [];
+						$.each(self.forms.job_grades, function(index, val) {
+							 arr.push(val.id);
+						});
 						break;
 					case 'equipment':
 						var title = '设备';
 						var addBtn = '';
+						var arr = [];
+						$.each(self.forms.module_equipment, function(index, val) {
+							 arr.push(val.id);
+						});
 						break;
 					case 'supplies':
 						var title = '用品';
 						var addBtn = '';
+						var arr = [];
+						$.each(self.forms.module_supplies, function(index, val) {
+							 arr.push(val.id);
+						});
 						break;
-					default:
+					case 'consultation':
 						var title = '诊室';
 						var addBtn = '';
+						var arr = [];
+						$.each(self.consultation_list, function(index, val) {
+							 arr.push(val.id);
+						});
+						break;
+					default:
 						break;
 				};
 				var item = '';
 				for (var i = 0; i < list.length; i++) {
-					item += '<li>'+
+					var id = list[i].id;
+					if ($.inArray(id, arr) > '-1') {
+						item += '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input class="checks" type="checkbox" value="'+list[i].id+'">'+list[i].name+''+
+							'<input class="checks" checked type="checkbox" value="'+id+'">'+list[i].name+''+
 							'</label>'+
-							'</li>';	
+							'</li>';
+					} else {
+						item += '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input class="checks" type="checkbox" value="'+id+'">'+list[i].name+''+
+							'</label>'+
+							'</li>';
+					}	
 				};
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
