@@ -1,7 +1,8 @@
 <template>
 	<div class="form_container">
+		<h2 class="title">{{title}}</h2>
 		<div class="am-form froms am-form-horizontal">
-			<div class="am-u-sm-10">
+			<div class="am-u-sm-12">
 				<div class="am-form-group am-u-sm-6">
 					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>设备代码</label>
 					<div class="am-u-sm-8">
@@ -173,6 +174,7 @@
 		name: 'Equipmentform',
 		data () {
 			return {
+				title: !!this.$route.query.project_id ? '编辑设备' : '添加设备',
 				forms: {
 					code: '',
 					name: '',
