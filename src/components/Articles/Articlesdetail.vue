@@ -92,21 +92,32 @@
 		data () {
 			return {
 				detail: '',
-				edit_id: this.$route.query.id
+				edit_id: this.$route.query.id,
+				last_id: '',
+				next_id: ''
 			}
 		},
 		created () {
-			this.getDetail();
+			this.getDetail(this.edit_id);
 		},
 		methods: {
-			getDetail () {
+			getDetail (id) {
 				var self = this;
-				Public.Ajax('supplies/detail', {supplies_id: this.edit_id}, 'GET', function(res){
+				var params = {
+					supplies_id: id
+				};
+				Public.Ajax('supplies/detail', params, 'GET', function(res){
 					self.detail = res.data;
+					self.last_id = res.data.last_id;
+					self.next_id = res.data.next_id;
 				});
 			},
 			prevPage () {
-				console.log('prevPage');
+				if (!!this.last_id) {
+					this.getDetail(this.last_id);
+				} else {
+					Public.dialog('已是第一条用品数据!');
+				}
 			},
 			editPage (id) {
 				window.location.href = '#/form' + '?type=articles&supplies_id=' +  id;
@@ -125,7 +136,11 @@
 				Public.print('#print_table');
 			},
 			nextPage () {
-				console.log('nextPage');
+				if (!!this.next_id) {
+					this.getDetail(this.next_id);
+				} else {
+					Public.dialog('已是最后一条用品数据!');
+				}
 			}
 		}
 	}
