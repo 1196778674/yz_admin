@@ -124,7 +124,7 @@
 						<p class="am-radius" @click="addEditFn($event, 'consultation')">选中了{{consultation_list.length}}个诊室</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-8 show_detail_list" v-if="consultation_list.length > 0">
+					<div class="am-u-sm-10 show_detail_list" v-if="consultation_list.length > 0">
 						<span v-for="v in consultation_list">{{v.name}}</span>
 					</div>
 				</div>
