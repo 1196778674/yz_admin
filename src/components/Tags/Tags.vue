@@ -93,8 +93,14 @@
 				});
 			},
 			htm (obj) {
+				if (!!obj.name) {
+					var title = '编辑';
+				} else {
+					var title = '添加';
+				}
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
+						'<div class="am-modal-hd">'+title+'</div>'+
 						'<div class="am-modal-hd" style="padding: 20px;padding-bottom: 0px;"><div action="" class="am-form">'+
 						'<div class="am-form-group">'+
 						'<input type="text" id="name" value="'+obj.name+'" class="am-form-field" placeholder="请输入标签名称">'+
