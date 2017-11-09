@@ -1,33 +1,35 @@
 <template>
-	<div>
-		<div v-if="type == 'project'">
-			<projectform></projectform>
+	<animated-fade-in-right>
+		<div>
+			<div v-if="type == 'project'">
+				<projectform></projectform>
+			</div>
+			<div v-if="type == 'articles'">
+				<articlesform></articlesform>
+			</div>
+			<div v-if="type == 'category'">
+				<categoryform></categoryform>
+			</div>
+			<div v-if="type == 'center'">
+				<centerform></centerform>
+			</div>
+			<div v-if="type == 'consultation'">
+				<consultationform></consultationform>
+			</div>
+			<div v-if="type == 'equipment'">
+				<equipmentform></equipmentform>
+			</div>
+			<div v-if="type == 'modular'">
+				<modularform></modularform>
+			</div>
+			<div v-if="type == 'personnel'">
+				<personnelform></personnelform>
+			</div>
+			<div v-if="type == 'tags'">
+				<tagsform></tagsform>
+			</div>
 		</div>
-		<div v-if="type == 'articles'">
-			<articlesform></articlesform>
-		</div>
-		<div v-if="type == 'category'">
-			<categoryform></categoryform>
-		</div>
-		<div v-if="type == 'center'">
-			<centerform></centerform>
-		</div>
-		<div v-if="type == 'consultation'">
-			<consultationform></consultationform>
-		</div>
-		<div v-if="type == 'equipment'">
-			<equipmentform></equipmentform>
-		</div>
-		<div v-if="type == 'modular'">
-			<modularform></modularform>
-		</div>
-		<div v-if="type == 'personnel'">
-			<personnelform></personnelform>
-		</div>
-		<div v-if="type == 'tags'">
-			<tagsform></tagsform>
-		</div>
-	</div>
+	</animated-fade-in-right>
 </template>
 
 <script>

@@ -1,50 +1,52 @@
 <template>
-	<div>
-		<search modal="true" search="false" @addEditFn="addEditFn" fromtype="personnel"></search>	
+	<animated-fade-in-right>
+		<div>
+			<search modal="true" search="false" @addEditFn="addEditFn" fromtype="personnel"></search>	
 
-		<div class="am-scrollable-horizontal list_table">
-	  		<table class="am-table am-table-bordered am-table-compact">
-		  		<thead>
-			  		<tr>
-			    		<th>人员姓名</th>
-			    		<th>所属中心</th>
-			    		<th>职位等级</th>
-			    		<th>时薪</th>
-			    		<th>操作</th>
-			  		</tr>
-			  	</thead>
-			  	<tbody>
-				  	<tr v-for="item in list">
-					    <td>{{item.name}}</td>
-					    <td>{{item.center_name}}</td>
-					    <td>{{item.job_grade_name}}</td>
-					    <td>{{item.hourly_wage}}</td>
-					    <td>
-					    	<a href="javascript:;" title="编辑" @click="edit($event, item.id, item)">
-					    		<span class="am-icon-edit"></span>
-					    		编辑
-					    	</a>
-					    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, item.id)">
-					    		<span class="am-icon-trash-o"></span>
-					    		删除
-					    	</a>
-					    </td>
-				  	</tr>
-			  	</tbody>
-			</table>
-		</div>
+			<div class="am-scrollable-horizontal list_table">
+		  		<table class="am-table am-table-bordered am-table-compact">
+			  		<thead>
+				  		<tr>
+				    		<th>人员姓名</th>
+				    		<th>所属中心</th>
+				    		<th>职位等级</th>
+				    		<th>时薪</th>
+				    		<th>操作</th>
+				  		</tr>
+				  	</thead>
+				  	<tbody>
+					  	<tr v-for="item in list">
+						    <td>{{item.name}}</td>
+						    <td>{{item.center_name}}</td>
+						    <td>{{item.job_grade_name}}</td>
+						    <td>{{item.hourly_wage}}</td>
+						    <td>
+						    	<a href="javascript:;" title="编辑" @click="edit($event, item.id, item)">
+						    		<span class="am-icon-edit"></span>
+						    		编辑
+						    	</a>
+						    	<a href="javascript:;" title="删除" class="am-delete" @click="deleteList($event, item.id)">
+						    		<span class="am-icon-trash-o"></span>
+						    		删除
+						    	</a>
+						    </td>
+					  	</tr>
+				  	</tbody>
+				</table>
+			</div>
 
-		<div class="yx_page" v-if="page > 1">
-			<paginate
-			  :page-count=page
-			  :click-handler="pagination"
-			  :active-class="'am-active'"
-			  :container-class="'am-pagination'"
-			  :prev-text="'上一页'"
-			  :next-text="'下一页'">
-			</paginate>
+			<div class="yx_page" v-if="page > 1">
+				<paginate
+				  :page-count=page
+				  :click-handler="pagination"
+				  :active-class="'am-active'"
+				  :container-class="'am-pagination'"
+				  :prev-text="'上一页'"
+				  :next-text="'下一页'">
+				</paginate>
+			</div>
 		</div>
-	</div>
+	</animated-fade-in-right>
 </template>
 
 <script>

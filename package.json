@@ -10,6 +10,8 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
+    "animated-vue": "^0.5.3",
     "less": "^3.0.0-alpha.3",
     "less-loader": "^4.0.5",
     "vue": "^2.5.2",

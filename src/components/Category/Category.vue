@@ -1,19 +1,21 @@
 <template>
-	<div class="category">
-		<ul v-for="item in list">
-			<h3>{{item.name}}</h3>
-			<li v-for="val in item.list">
-				{{val.name}}
-				<div class="btns">
-					<div class="centers">
-						<span class="am-icon-edit edit" @click="edit($event, item.id, val)"></span>
-						<span class="am-icon-trash delete" @click="deleteBtn($event, val.id, item.id)"></span>
+	<animated-fade-in-right>
+		<div class="category">
+			<ul v-for="item in list">
+				<h3>{{item.name}}</h3>
+				<li v-for="val in item.list">
+					{{val.name}}
+					<div class="btns">
+						<div class="centers">
+							<span class="am-icon-edit edit" @click="edit($event, item.id, val)"></span>
+							<span class="am-icon-trash delete" @click="deleteBtn($event, val.id, item.id)"></span>
+						</div>
 					</div>
-				</div>
-			</li>
-			<span class="plus am-icon-plus-square-o" @click="addCategory($event, item.id)"></span>
-		</ul>
-	</div>
+				</li>
+				<span class="plus am-icon-plus-square-o" @click="addCategory($event, item.id)"></span>
+			</ul>
+		</div>
+	</animated-fade-in-right>
 </template>
 
 <script>

@@ -1,40 +1,42 @@
 <template>
-	<div class="category">
-		<ul v-for="item in list">
-			<h3>{{item.name}}</h3>
-			<div class="list_container">
-				<li v-for="val in item.clinics_list">
-					{{val.name}}
-					<div class="btns">
-						<div class="centers">
-							<span class="am-icon-edit edit" @click="edit($event, item.id, val)"></span>
-							<span class="am-icon-trash delete" @click="deleteBtn($event, val.id, item.id)"></span>
-						</div>
-					</div>
-				</li>
-				<span class="plus am-icon-plus-square-o" @click="addConsultation($event, item.id)"></span>
-				<span class="plus am-icon-bars" @click="addParallelConsultation($event, item.id)"></span>
-			</div>
-			<div class="list_containers" v-if="item.parallel_clinics_list.length">
-				<p>平行诊室</p>
-				<ul>
-					<li v-for="v in item.parallel_clinics_list">
-						{{v.name}}
+	<animated-fade-in-right>
+		<div class="category">
+			<ul v-for="item in list">
+				<h3>{{item.name}}</h3>
+				<div class="list_container">
+					<li v-for="val in item.clinics_list">
+						{{val.name}}
 						<div class="btns">
-							<div class="centers" style="margin-left: -5px;">
-								<span class="am-icon-trash" @click="deleteBtn($event, v.id, item.id)"></span>
+							<div class="centers">
+								<span class="am-icon-edit edit" @click="edit($event, item.id, val)"></span>
+								<span class="am-icon-trash delete" @click="deleteBtn($event, val.id, item.id)"></span>
 							</div>
 						</div>
-						<div class="tips">
-							<div class="triangle"></div>
-							<dd v-for="vv in v.list">{{vv.name}}</dd>
-						</div>
 					</li>
-				</ul>
-			</div>
-			<div class="clear"></div>
-		</ul>
-	</div>
+					<span class="plus am-icon-plus-square-o" @click="addConsultation($event, item.id)"></span>
+					<span class="plus am-icon-bars" @click="addParallelConsultation($event, item.id)"></span>
+				</div>
+				<div class="list_containers" v-if="item.parallel_clinics_list.length">
+					<p>平行诊室</p>
+					<ul>
+						<li v-for="v in item.parallel_clinics_list">
+							{{v.name}}
+							<div class="btns">
+								<div class="centers" style="margin-left: -5px;">
+									<span class="am-icon-trash" @click="deleteBtn($event, v.id, item.id)"></span>
+								</div>
+							</div>
+							<div class="tips">
+								<div class="triangle"></div>
+								<dd v-for="vv in v.list">{{vv.name}}</dd>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="clear"></div>
+			</ul>
+		</div>
+	</animated-fade-in-right>
 </template>
 
 <script>
