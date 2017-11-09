@@ -132,7 +132,7 @@ const common = {
 
 	// 回车事件 
 	keyEnter () {
-		$('body').on('keyup', 'input[type="text"]', function(e){
+		$('body').unbind('keyup').on('keyup', 'input[type="text"]', function(e){
 			e.preventDefault();
 			if (e.keyCode == 13) {
 				$('#modal_confirm').trigger('click');
