@@ -320,11 +320,10 @@
 					};
 					$('#center_name').append(options);
 					Public.initSelect();
-					// self.getClinics();
+					if (!!self.$route.query.module_id) {
+						self.getClinics();
+					};
 					$('#center_name').on('change', function(){
-						if ($('#center_name').val() == 0) {
-							return;
-						};
 						self.getClinics();
 					});
 				});
