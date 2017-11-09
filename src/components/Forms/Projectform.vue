@@ -1,5 +1,6 @@
 <template>
 	<div class="form_container">
+		<h2 class="title">{{title}}</h2>
 		<div class="am-form froms am-form-horizontal">
 			<div class="am-u-sm-8 am-u-sm-offset-2">
 				<div class="am-form-group">
@@ -204,6 +205,7 @@
 		name: 'Projectform',
 		data () {
 			return {
+				title: !!this.$route.query.project_id ? '编辑项目' : '添加项目',
 				forms: {
 					min_age_limit: '',
 					max_age_limit: '',

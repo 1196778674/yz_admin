@@ -1,33 +1,34 @@
 <template>
 	<div class="form_container">
+		<h2 class="title">{{title}}</h2>
 		<div class="am-form froms am-form-horizontal">
-			<div class="am-u-sm-9">
+			<div class="am-u-sm-8 am-u-sm-offset-2">
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>模块名称</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>模块名称</label>
+					<div class="am-u-sm-10">
 						<input type="text" v-model="forms.name" class="am-radius" placeholder="请输入模块名称">
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>所属中心</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>所属中心</label>
+					<div class="am-u-sm-10">
 						<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="center_name">
 						</select>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>执行人等级</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>执行人等级</label>
+					<div class="am-u-sm-10">
 						<p class="am-radius" @click="addEditFn($event, 'grade')">选中了{{forms.job_grades.length}}个执行人等级</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-8 show_detail_list" v-if="forms.job_grades.length > 0">
+					<div class="am-u-sm-10 show_detail_list" v-if="forms.job_grades.length > 0">
 						<span v-for="v in forms.job_grades">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>执行人</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>执行人</label>
+					<div class="am-u-sm-10">
 						<p class="am-radius">
 							<span v-for="person in grade_list_person">
 								{{person.name}}
@@ -36,28 +37,28 @@
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">设备</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">设备</label>
+					<div class="am-u-sm-10">
 						<p class="am-radius" @click="addEditFn($event, 'equipment')">选中了{{forms.module_equipment.length}}个设备</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_equipment.length > 0">
+					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_equipment.length > 0">
 						<span v-for="v in forms.module_equipment">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">用品</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">用品</label>
+					<div class="am-u-sm-10">
 						<p class="am-radius" @click="addEditFn($event, 'supplies')">选中了{{forms.module_supplies.length}}个用品</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_supplies.length > 0">
+					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_supplies.length > 0">
 						<span v-for="v in forms.module_supplies">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-4" class="am-u-sm-4 am-form-label"><span>*</span>是否医疗</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-4" class="am-u-sm-2 am-form-label"><span>*</span>是否医疗</label>
+					<div class="am-u-sm-10">
 						<label class="am-radio-inline">
 							<input type="radio" value="1" name="whether_medical">是
 						</label>
@@ -67,8 +68,8 @@
 					</div>
 				</div>
 				<div class="am-form-group ages" style="padding-left:5px;">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>服务时间</label>
-					<div class="am-u-sm-8" style="float:left;">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>服务时间</label>
+					<div class="am-u-sm-10" style="float:left;">
 						<div class="am-form-icon am-form-feedback">
 						    <input type="text" class="am-radius" v-model="forms.service_time" maxlength="4" placeholder="">
 						    <span class="am-icon-ellipsis">分钟</span>
@@ -76,8 +77,8 @@
 					</div>
 				</div>
 				<div class="am-form-group ages" style="padding-left:5px;">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>服务后时间</label>
-					<div class="am-u-sm-8" style="float:left;">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>服务后时间</label>
+					<div class="am-u-sm-10" style="float:left;">
 						<div class="am-form-icon am-form-feedback">
 						    <input type="text" class="am-radius" v-model="forms.service_after_time" maxlength="4" placeholder="">
 						    <span class="am-icon-ellipsis">分钟</span>
@@ -85,8 +86,8 @@
 					</div>
 				</div>
 				<div class="am-form-group" style="padding-left:5px;">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>年龄限制</label>
-					<div class="am-u-sm-8 age" style="float:left;">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>年龄限制</label>
+					<div class="am-u-sm-10 age" style="float:left;">
 						<div class="am-form-icon am-form-feedback">
 						    <input type="text" class="am-radius" v-model="forms.min_age_limit" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
@@ -104,8 +105,8 @@
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>性别限制</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>性别限制</label>
+					<div class="am-u-sm-10">
 						<label class="am-radio-inline">
 							<input type="radio" value="0" name="gender_limit">不限
 						</label>
@@ -118,8 +119,8 @@
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>诊室</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>诊室</label>
+					<div class="am-u-sm-10">
 						<p class="am-radius" @click="addEditFn($event, 'consultation')">选中了{{consultation_list.length}}个诊室</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
@@ -138,12 +139,12 @@
 					</div>
 				</div> -->
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">禁忌症</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">禁忌症</label>
+					<div class="am-u-sm-10">
 						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{forms.module_contraindications_labels.length}}个禁忌症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_contraindications_labels.length > 0">
+					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_contraindications_labels.length > 0">
 						<span v-for="v in forms.module_contraindications_labels">{{v.name}}</span>
 					</div>
 				</div>
@@ -158,36 +159,36 @@
 					</div>
 				</div> -->
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">作用功能</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">作用功能</label>
+					<div class="am-u-sm-10">
 						<p class="am-radius" @click="addEditFn($event, 4)">选中了{{forms.module_function_labels.length}}个作用功能</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-8 show_detail_list" v-if="forms.module_function_labels.length > 0">
+					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_function_labels.length > 0">
 						<span v-for="v in forms.module_function_labels">{{v.name}}</span>
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">注意事项</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">注意事项</label>
+					<div class="am-u-sm-10">
 						<textarea name="" v-model="forms.considerations"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">不良反应</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">不良反应</label>
+					<div class="am-u-sm-10">
 						<textarea name="" v-model="forms.adverse_reaction"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">描述</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">描述</label>
+					<div class="am-u-sm-10">
 						<textarea name="" v-model="forms.description"></textarea>
 					</div>
 				</div>
 				<div class="am-form-group">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">备注</label>
-					<div class="am-u-sm-8">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">备注</label>
+					<div class="am-u-sm-10">
 						<textarea name="" v-model="forms.remark"></textarea>
 					</div>
 				</div>
@@ -196,7 +197,7 @@
 
 
 				<div class="am-form-group">
-					<div class="am-u-sm-10 am-u-sm-offset-4">
+					<div class="am-u-sm-10 am-u-sm-offset-2">
 						<button type="submit" class="am-btn am-btn-primary" @click="save()">确认提交</button>
 					</div>
 				</div>
@@ -211,6 +212,7 @@
 		name: 'Modularform',
 		data () {
 			return {
+				title: !!this.$route.query.project_id ? '编辑模块' : '添加模块',
 				forms: {
 					"id": '',
 			        "code": "",
