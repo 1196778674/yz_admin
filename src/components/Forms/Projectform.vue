@@ -363,6 +363,10 @@
 				var module_eq;
 				if (title == '项目模块') {
 					self.forms.module_list = [];
+				} else if (title == '适应症') {
+					self.forms.module_indications_labels = [];
+				} else if (title == '作用部位') {
+					self.forms.module_working_part_labels = [];
 				};
 				Public.addEditFn(e, '', self.selectHtm(title, self.module_list_arr), function(){
 					// console.log(self.forms.module_list);
