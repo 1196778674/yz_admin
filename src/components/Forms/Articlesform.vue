@@ -347,18 +347,37 @@
 				});
 			},
 			selectHtm (type, list) {
+				var self = this;
 				if (type == 1) {
 					var title = '适应症';
+					var arr = [];
+					$.each(self.forms.supplies_indications_labels, function(index, val) {
+						 arr.push(val.id);
+					});
 				} else {
 					var title = '禁忌症';
+					var arr = [];
+					$.each(self.forms.supplies_contraindications_labels, function(index, val) {
+						 arr.push(val.id);
+					});
 				}
 				var item = '';
 				for (var i = 0; i < list.length; i++) {
-					item += '<li>'+
+					var id = list[i].id;
+					console.log(id, arr);
+					if ($.inArray(id, arr) > '-1') {
+						item += '<li>'+
 							'<label class="am-checkbox-inline">'+
-							'<input class="checks" type="checkbox" value="'+list[i].id+'">'+list[i].name+''+
+							'<input class="checks" checked type="checkbox" value="'+id+'">'+list[i].name+''+
 							'</label>'+
 							'</li>';	
+					} else {
+						item += '<li>'+
+							'<label class="am-checkbox-inline">'+
+							'<input class="checks" type="checkbox" value="'+id+'">'+list[i].name+''+
+							'</label>'+
+							'</li>';	
+					}
 				};
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
