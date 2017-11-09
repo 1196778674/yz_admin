@@ -1,5 +1,5 @@
 <template>
-	<animated-fade-in-right>
+	<animated-fade-in-up-big>
 		<div>
 			<search modal="true" search="false" @addEditFn="addEditFn" fromtype="personnel"></search>	
 
@@ -46,7 +46,7 @@
 				</paginate>
 			</div>
 		</div>
-	</animated-fade-in-right>
+	</animated-fade-in-up-big>
 </template>
 
 <script>

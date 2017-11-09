@@ -1,5 +1,5 @@
 <template>
-	<animated-fade-in-right>
+	<animated-fade-in-up-big>
 		<div class="detail">
 			<table class="am-table" id="print_table">
 			    <tbody>
@@ -115,7 +115,7 @@
 				
 			</ul>
 		</div>
-	</animated-fade-in-right>
+	</animated-fade-in-up-big>
 </template>
 
 <script>

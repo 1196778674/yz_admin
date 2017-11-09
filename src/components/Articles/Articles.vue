@@ -1,5 +1,5 @@
 <template>
-	<animated-fade-in-right>
+	<animated-fade-in-up-big>
 		<div>
 			<search modal="false" @searchFn="searchFn" fromtype="articles"></search>	
 
@@ -48,7 +48,7 @@
 				</paginate>
 			</div>
 		</div>
-	</animated-fade-in-right>
+	</animated-fade-in-up-big>
 </template>
 
 <script>

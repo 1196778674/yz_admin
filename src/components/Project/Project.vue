@@ -1,5 +1,5 @@
 <template>
-	<animated-fade-in-right>
+	<animated-fade-in-up-big>
 		<div class="yx_project">
 			<search modal="false" @searchFn="searchFn" fromtype="project"></search>	
 
@@ -48,7 +48,7 @@
 				</paginate>
 			</div>
 		</div>
-	</animated-fade-in-right>
+	</animated-fade-in-up-big>
 </template>
 <script>
 	import Search from '@/tpls/Search';

@@ -1,5 +1,5 @@
 <template>
-	<animated-fade-in-right>
+	<animated-fade-in-up-big>
 		<div>
 			<div v-if="type == 'project'">
 				<projectform></projectform>
@@ -29,7 +29,7 @@
 				<tagsform></tagsform>
 			</div>
 		</div>
-	</animated-fade-in-right>
+	</animated-fade-in-up-big>
 </template>
 
 <script>
