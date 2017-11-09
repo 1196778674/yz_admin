@@ -239,6 +239,7 @@
 				var self = this;
 				Public.Ajax('center/list', {}, 'GET', function(res){
 					self.center_list = res.data;
+					self.center_list.unshift({id: 0, name: '中心选择'});
 					var options = '';
 					var center_id = self.forms.center_id;
 					var eq;
