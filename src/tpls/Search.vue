@@ -1,11 +1,11 @@
 <template>
 	<div class="list_header am-form">
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected="{btnWidth: '100%', maxHeight: 300}" id="center_name">
+			<select data-am-selected="{btnWidth: '120', maxHeight: 300}" id="center_name">
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected="{btnWidth: '100%', maxHeight: 200}" id="category_name">
+			<select data-am-selected="{btnWidth: '100', maxHeight: 200}" id="category_name">
 				<option value="0">标签选择</option>
 		  		<option value="1">适应症</option>
 			  	<option value="2">禁忌症</option>
@@ -14,7 +14,7 @@
 			</select>
 		</div>
 		<div class="list_left" v-if="search == 'true'">
-			<select data-am-selected="{btnWidth: '100%', maxHeight: 300}" id="keyword_name">
+			<select data-am-selected="{btnWidth: '120', maxHeight: 300}" id="keyword_name">
 			</select>
 		</div>
 		<!-- <div class="am-form-group am-form-icon list_left">
@@ -74,7 +74,7 @@
 				var self = this;
 				Public.Ajax('center/list', {}, 'GET', function(res){
 					self.center_list = res.data;
-					var options = '';
+					var options = '<option value="0">中心选择</option>';
 					for (var i = 0; i < self.center_list.length; i++) {
 						options += '<option value="'+self.center_list[i].id+'">'+self.center_list[i].name+'</option>';
 					};
