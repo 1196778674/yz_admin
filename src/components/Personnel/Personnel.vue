@@ -141,6 +141,12 @@
 				});
 			},
 			htm (obj) {
+				console.log(obj);
+					if (!!obj.id) {
+						var title = '编辑人员';
+					} else {
+						var title = '添加人员';
+					};
 					var option = '';
 					for (var i = 0; i < this.center_list.length; i++) {
 						if (this.center_list[i].id == obj.center_id) {
@@ -151,7 +157,7 @@
 					}
 					return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
-						'<div class="am-modal-hd">添加/编辑</div>'+
+						'<div class="am-modal-hd">'+title+'</div>'+
 						'<div class="am-modal-bd" style="padding: 0px;">'+
 						'<div class="am-modal-hd" style="padding: 20px;padding-bottom: 0px;"><div action="" class="am-form">'+
 						'<div class="am-form-group">'+

@@ -87,8 +87,14 @@
 				});
 			},
 			htm (obj) {
+				if (!!obj.code) {
+					var title = '编辑中心';
+				} else {
+					var title = '添加中心';
+				}
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
+						'<div class="am-modal-hd">'+title+'</div>'+
 						'<div class="am-modal-hd" style="padding: 20px;padding-bottom: 0px;"><div action="" class="am-form">'+
 						'<div class="am-form-group">'+
 						'<input type="text" id="code" value="'+obj.code+'" class="am-form-field" placeholder="请输入中心编码">'+
