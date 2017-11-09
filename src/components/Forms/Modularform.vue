@@ -212,7 +212,7 @@
 		name: 'Modularform',
 		data () {
 			return {
-				title: !!this.$route.query.project_id ? '编辑模块' : '添加模块',
+				title: !!this.$route.query.module_id ? '编辑模块' : '添加模块',
 				forms: {
 					"id": '',
 			        "code": "",

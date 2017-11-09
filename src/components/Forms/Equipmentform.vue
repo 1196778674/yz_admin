@@ -174,7 +174,7 @@
 		name: 'Equipmentform',
 		data () {
 			return {
-				title: !!this.$route.query.project_id ? '编辑设备' : '添加设备',
+				title: !!this.$route.query.equipment_id ? '编辑设备' : '添加设备',
 				forms: {
 					code: '',
 					name: '',

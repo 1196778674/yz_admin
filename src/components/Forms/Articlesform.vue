@@ -174,7 +174,7 @@
 		name: 'Articlesform',
 		data () {
 			return {
-				title: !!this.$route.query.project_id ? '编辑用品' : '添加用品',
+				title: !!this.$route.query.supplies_id ? '编辑用品' : '添加用品',
 				forms: {
 					code: '',
 					name: '',
