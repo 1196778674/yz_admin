@@ -7,6 +7,11 @@ const common = {
 		} else {
 			var url = 'http://admin.yx.dev/admin/' + url;
 		}
+		var cookie = {
+			token: $.cookie('token')
+		};
+		$.extend(true, params, cookie);
+		
 		$.ajax({
 			url: url,
 			type: type,
@@ -20,6 +25,8 @@ const common = {
 		.done(function(res) {
 			if (res.status == 5000) {
 				self.dialog(res.msg);
+			} else if (res.status == 20000 || res.status == 20001) {
+				window.location.href = 'admin/#/login';
 			} else {
 				callback(res);
 			};

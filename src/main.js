@@ -5,10 +5,10 @@ import App from './App'
 import router from './router'
 
 import AnimatedVue from 'animated-vue'
-
 Vue.use(AnimatedVue)
 
 import './assets/js/app.js'
+import './assets/js/cookie.js'
 
 window.amaze = require('amazeui')
 window.prints = require('./assets/js/print.js')

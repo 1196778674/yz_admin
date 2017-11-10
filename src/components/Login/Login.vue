@@ -6,12 +6,12 @@
 			<h3>{{title1}}</h3>
 			<div class="am-form-group am-form-icon">
 			    <i class="am-icon-user"></i>
-			    <input type="text" class="am-form-field" v-model="params.user_name" placeholder="请输入您的用户名">
+			    <input type="email" class="am-form-field" v-model="params.email" placeholder="请输入您的邮箱" @keyup="keyUp($event)">
 		  	</div>
 
 		  	<div class="am-form-group am-form-icon">
 			    <i class="am-icon-unlock-alt"></i>
-			    <input type="password" class="am-form-field" v-model="params.password" placeholder="请输入密码">
+			    <input type="password" class="am-form-field" v-model="params.password" placeholder="请输入密码" @keyup="keyUp($event)">
 		  	</div>
 
 		  	<div class="am-form-group">
@@ -28,33 +28,40 @@
 				title: '优翔国际生命院',
 				title1: '项目管理系统',
 				params: {
-					user_name: '',
+					email: '',
 					password: ''
 				}
 			}
 		},
 		methods: {
 			login (e) {
+				var self = this;
 				var $btn = $(e.target),
 					params = this.params;
 				$btn.button('loading');
-				if (!$.trim(params.user_name)) {
-					Public.dialog('请输入正确的用户名!');
+				if (!$.trim(params.email) || !/[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/.test($.trim(params.email))) {
+					Public.dialog('请输入正确的邮箱!');
 					$btn.button('reset');
 					return false;
 				}
 				if (!$.trim(params.password)) {
-					Public.dialog('请输入正确的密码!');
+					Public.dialog('请输入密码!');
 					$btn.button('reset');
 					return false;
 				}
-				setTimeout(function(){
-				    $btn.button('reset');
-				    window.location.href = '#/module';
-				}, 3000);
-				// Public.Ajax('', params, 'POST', function(res){
-				// 	$btn.button('reset');
-				// });
+				Public.Ajax('user/login', params, 'POST', function(res){
+					$btn.button('reset');
+					var data = res.data;
+					$.cookie('token', data.token, { expires: 7 });
+					$.cookie('name', data.name, { expires: 7 });
+					window.location.href = '#/project';
+				});
+			},
+			keyUp (e) {
+				var keyCode = e.keyCode;
+				if (keyCode == 13) {
+					$('button').trigger('click');
+				}
 			}
 		}
 	}
