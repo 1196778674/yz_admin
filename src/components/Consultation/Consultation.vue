@@ -82,6 +82,8 @@
 					Public.Ajax('clinics/add', self.consultation, 'POST', function(){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			addParallelConsultation (e, id) {
@@ -102,7 +104,7 @@
 							clinics_list.push({id: $(val).find('input').val(), name: $(val).text()});
 						}
 					});
-					console.log(clinics_list);
+					// console.log(clinics_list);
 					self.consultations = {
 						name: $('#names').val(),
 						center_id: id,
@@ -141,6 +143,8 @@
 					Public.Ajax('clinics/edit', self.consultation, 'POST', function(){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			deleteBtn (e, id, center_id) {
@@ -169,7 +173,7 @@
 						'</div></div>'+
 						'<div class="am-modal-footer">'+
 				      	'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
-				      	'<span class="am-modal-btn" data-am-modal-confirm>确认</span>'+
+				      	'<span id="modal_confirm" class="am-modal-btn" data-am-modal-confirm>确认</span>'+
 					    '</div>'+
 					  	'</div>'+
 						'</div>';
