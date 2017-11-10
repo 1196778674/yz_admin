@@ -45,8 +45,13 @@
 		},
 		created () {
 			var name = this.$route.name;
-			console.log(name);
+			// console.log(name);
 			// return;
+			var hash = window.location.hash.split('/')[1];
+            if (!hash) {
+                window.location.href = '#/project';
+                name = 'Project';
+            }
 			switch(name) {
 				case 'Project':
 					this.is_active = 0;
