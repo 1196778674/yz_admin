@@ -121,6 +121,8 @@
 					Public.Ajax('personnel/add', self.person, 'POST', function(res){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			edit (e, id, obj) {
@@ -138,6 +140,8 @@
 					Public.Ajax('personnel/edit', self.person, 'POST', function(res){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			htm (obj) {
@@ -178,7 +182,7 @@
 						'</div>'+
 						'<div class="am-modal-footer">'+
 						'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
-						'<span class="am-modal-btn" data-am-modal-confirm>提交</span>'+
+						'<span id="modal_confirm" class="am-modal-btn" data-am-modal-confirm>确认</span>'+
 						'</div>'+
 						'</div>'+
 						'</div>';
