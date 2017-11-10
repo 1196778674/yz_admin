@@ -1,5 +1,5 @@
 <template>
-	<animated-fade-in-up-big>
+	<animated-zoom-in>
 		<div class="detail">
 			<table class="am-table" id="print_table">
 			    <tbody>
@@ -83,7 +83,7 @@
 				
 			</ul>
 		</div>
-	</animated-fade-in-up-big>
+	</animated-zoom-in>
 </template>
 
 <script>
