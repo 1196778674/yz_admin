@@ -236,6 +236,23 @@
 	}
 }
 
+table tr td.no-right{
+	span {
+		color: #666;
+		&:nth-child(1){
+			&:before{
+				width: 0;
+				height: 0px;
+				content: ''
+			}
+		}
+		&:before{
+			width: 0;
+			height: 0px;
+			content: '|'
+		}
+	}
+}
 
 
 
