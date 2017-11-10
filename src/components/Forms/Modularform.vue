@@ -542,6 +542,16 @@
 					} else {
 						window.location.href = '#/modular';
 					}
+				}, function(){
+					self.forms.job_grades = JSON.parse(self.forms.job_grades);
+					self.forms.personnel_list = JSON.parse(self.forms.personnel_list);
+					self.forms.module_equipment = JSON.parse(self.forms.module_equipment);
+					self.forms.module_supplies = JSON.parse(self.forms.module_supplies);
+					self.forms.module_clinics = JSON.parse(self.forms.module_clinics);
+					self.forms.module_working_part_labels = JSON.parse(self.forms.module_working_part_labels);
+					self.forms.module_contraindications_labels = JSON.parse(self.forms.module_contraindications_labels);
+					self.forms.module_indications_labels = JSON.parse(self.forms.module_indications_labels);
+					self.forms.module_function_labels = JSON.parse(self.forms.module_function_labels);
 				});
 			},
 			initCheckbox () {

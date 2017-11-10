@@ -1,6 +1,6 @@
 const common = {
 	// ajax
-	Ajax (url, params, type, callback) {
+	Ajax (url, params, type, callback, callbackfail) {
 		var self = this;
 		if (window.location.host == '118.190.204.110') {
 			var url = 'http://118.190.204.110/admin/' + url;
@@ -25,6 +25,9 @@ const common = {
 		.done(function(res) {
 			if (res.status == 5000) {
 				self.dialog(res.msg);
+				if (!!callbackfail) {
+					callbackfail();
+				}
 			} else if (res.status == 20000 || res.status == 20001) {
 				window.location.href = 'admin/#/login';
 			} else {
