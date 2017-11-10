@@ -198,7 +198,7 @@
 		white-space:nowrap;
 	}
 	table tr td span{
-		margin-right: 10px;
+		/* margin-right: 10px; */
 	}
 	table tr td.no-right{
 		border-right: 0;
