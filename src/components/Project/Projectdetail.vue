@@ -106,11 +106,11 @@
 			<ul class="am-pagination">
 				
 				<ul>
-					<li><button type="button" class="am-btn am-btn-secondary" @click="prevPage()">上一页</button></li>
+					<li><button :disabled="!last_id" type="button" class="am-btn am-btn-secondary" @click="prevPage()">上一页</button></li>
 					<li><button type="button" class="am-btn am-btn-secondary" @click="editPage(edit_id)">编辑</button></li>
 					<li><button type="button" class="am-btn am-btn-secondary" @click="deletePage($event)">删除</button></li>
 					<li><button type="button" class="am-btn am-btn-secondary" @click="printPage()">打印</button></li>
-					<li><button type="button" class="am-btn am-btn-secondary" @click="nextPage()">下一页</button></li>
+					<li><button :disabled="!next_id" type="button" class="am-btn am-btn-secondary" @click="nextPage()">下一页</button></li>
 				</ul>
 				
 			</ul>
