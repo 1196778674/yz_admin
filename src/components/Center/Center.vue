@@ -56,6 +56,8 @@
 					Public.Ajax('center/edit', self.center, 'POST', function(){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			deletes (e, id) {
@@ -84,6 +86,8 @@
 					Public.Ajax('center/add', self.center, 'POST', function(){
 						self.getList();
 					});
+				}, function(){
+					Public.keyEnter();
 				});
 			},
 			htm (obj) {
@@ -105,7 +109,7 @@
 						'</div></div>'+
 						'<div class="am-modal-footer">'+
 				      	'<span class="am-modal-btn" data-am-modal-cancel>取消</span>'+
-				      	'<span class="am-modal-btn" data-am-modal-confirm>确认</span>'+
+				      	'<span id="modal_confirm" class="am-modal-btn" data-am-modal-confirm>确认</span>'+
 					    '</div>'+
 					  	'</div>'+
 						'</div>';
