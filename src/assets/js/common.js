@@ -30,6 +30,9 @@ const common = {
 				}
 			} else if (res.status == 20000 || res.status == 20001) {
 				window.location.href = 'admin/#/login';
+			} else if (res.status == 100001 || res.status == 100002) {
+				self.dialog(res.msg);
+				$('button').button('reset');
 			} else {
 				callback(res);
 			};
