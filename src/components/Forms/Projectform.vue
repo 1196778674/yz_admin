@@ -493,13 +493,36 @@
 				} else {
 					var url = 'project/add';
 				}
+				if (!self.forms.name) {
+					Public.dialog('请输入项目名称');
+					self.returnString();
+					return false;
+				}
+				if (!self.forms.center_id) {
+					Public.dialog('请选择所属中心');
+					self.returnString();
+					return false;
+				}
+				if (!self.forms.category_id) {
+					Public.dialog('请选择项目类别');
+					self.returnString();
+					return false;
+				}
 				Public.Ajax(url, self.forms, 'POST', function(res){
 					if (!!self.$route.query.project_id) {
 						window.location.href = '#/projectdetail?id=' + self.$route.query.project_id;
 					} else {
 						window.location.href = '#/project';
 					}
+				}, function(){
+					self.returnString();
 				});
+			},
+			returnString () {
+				var self = this;
+				self.forms.module_indications_labels = JSON.parse(self.forms.module_indications_labels);
+				self.forms.module_list = JSON.parse(self.forms.module_list);
+				self.forms.module_working_part_labels = JSON.parse(self.forms.module_working_part_labels);
 			},
 			selectHtm (title, list) {
 				var self = this;
