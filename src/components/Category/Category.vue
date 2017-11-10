@@ -4,7 +4,7 @@
 			<ul v-for="item in list">
 				<h3>{{item.name}}</h3>
 				<li v-for="val in item.list">
-					{{val.name}}
+					{{val.code}}-{{val.name}}
 					<div class="btns">
 						<div class="centers">
 							<span class="am-icon-edit edit" @click="edit($event, item.id, val)"></span>
