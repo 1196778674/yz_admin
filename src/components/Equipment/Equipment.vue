@@ -99,8 +99,8 @@
 			deleteList (e, id) {
 				var self = this;
 				Public.deleteModal(e, id, function(){
-					console.log(id);
-					return;
+					// console.log(id);
+					// return;
 					Public.Ajax('equipment/del', {equipment_id: id}, 'GET', function(res){
 						self.getList(self.current_page);
 					});
