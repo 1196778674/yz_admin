@@ -349,7 +349,9 @@
 					self.supplies_list = res.data;
 				});
 				self.getLabelList();
-				
+				if (!self.$route.query.module_id) {
+					self.getConsultationList(self.forms);
+				}
 			},
 			getLabelList () {
 				var self = this; 
