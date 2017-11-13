@@ -1,6 +1,6 @@
 @leftWidth: 150px;
 @headerHeight: 60px;
-@fontColor: #4fd4e6;
+@fontColor: #E9854C;
 
 ul,li {
     list-style: none;
@@ -355,7 +355,7 @@ ul.tpl-dropdown-content {
     }
 
     .skiner-black {
-        background: #2C343C;
+        background: none;
         border: 2px solid #222;
     }
 }
@@ -473,8 +473,10 @@ ul.tpl-dropdown-content {
         display: block;
         color: #fafafa;
         padding: 10px 30px;
-        border-left: #2C343C 3px solid;
-        font-size: 14px;
+        // border-left: #2C343C 3px solid;
+        // font-size: 14px;
+        // font-weight: 600;
+        font-size: 15px;
         cursor: pointer;
         span{
             display: inline-block;
@@ -484,8 +486,8 @@ ul.tpl-dropdown-content {
         }
         &.active {
             cursor: pointer;
-            border-left: #fafafa 3px solid;
-            color: #080808;
+            // border-left: #fafafa 3px solid;
+            color: @fontColor;
             
         }
 
@@ -1358,9 +1360,9 @@ color: #c5cacd;
             // border-left: #080808 3px solid;
         }
         a:hover {
-            background: #080808;
+            background: none;
             color: @fontColor;
-            border-left: #080808 3px solid;
+            // border-left: #080808 3px solid;
             span{
                 color: @fontColor;
             }
@@ -1368,9 +1370,9 @@ color: #c5cacd;
     }
 
     .sidebar-nav-link a.active {
-            background: #080808;
+            background: none;
             color:  @fontColor;
-            border-left: #080808 3px solid;
+            // border-left: #080808 3px solid;
     }
    .sidebar-nav-heading {
        color: #999;
@@ -1384,11 +1386,11 @@ color: #c5cacd;
        background: #e9ecf3;
    }
     .tpl-header-fluid {
-    background: #3a414a;
-    border-top: 1px solid #3a414a;
+    background: #48B6C8;
+    border-top: 1px solid #48B6C8;
 }
     .tpl-header-logo {
-     background: #2C343C;
+     background: #48B6C8;
      // border-bottom: 1px solid #080808;
 }
 
@@ -1411,7 +1413,11 @@ color: #c5cacd;
         }
     }
     .left-sidebar {
-        background: #2C343C;
+        // background: #2C343C;
+        background: -webkit-linear-gradient(#80C8B0, #47B5C8); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(#80C8B0, #47B5C8); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(#80C8B0, #47B5C8); /* Firefox 3.6 - 15 */
+        background: linear-gradient(#80C8B0, #47B5C8); /* 标准的语法 */
     }
 
   .widget-color-green {

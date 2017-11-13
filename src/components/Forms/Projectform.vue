@@ -648,6 +648,9 @@
 		margin-right: 10px;
 		color: #777;
 	}
+	[class*=am-u-]+[class*=am-u-]:last-child{
+		float: left;
+	}
 	.am-table-bordered>tbody>tr>td, .am-table-bordered>tbody>tr>th, .am-table-bordered>tfoot>tr>td, .am-table-bordered>tfoot>tr>th, .am-table-bordered>thead>tr>td, .am-table-bordered>thead>tr>th, .am-table-bordered>thead+tbody>tr:first-child>td, .am-table-bordered>thead+tbody>tr:first-child>th{
 		word-break: keep-all;
 	}
