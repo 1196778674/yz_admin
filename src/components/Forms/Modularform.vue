@@ -22,7 +22,7 @@
 						<p class="am-radius" @click="addEditFn($event, 'grade')">选中了{{forms.job_grades.length}}个执行人等级</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="forms.job_grades.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.job_grades.length > 0">
 						<span v-for="v in forms.job_grades">{{v.name}}</span>
 					</div>
 				</div>
@@ -42,7 +42,7 @@
 						<p class="am-radius" @click="addEditFn($event, 'equipment')">选中了{{forms.module_equipment.length}}个设备</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_equipment.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_equipment.length > 0">
 						<span v-for="v in forms.module_equipment">{{v.name}}</span>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 						<p class="am-radius" @click="addEditFn($event, 'supplies')">选中了{{forms.module_supplies.length}}个用品</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_supplies.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_supplies.length > 0">
 						<span v-for="v in forms.module_supplies">{{v.name}}</span>
 					</div>
 				</div>
@@ -124,7 +124,7 @@
 						<p class="am-radius" @click="addEditFn($event, 'consultation')">选中了{{consultation_list.length}}个诊室</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="consultation_list.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="consultation_list.length > 0">
 						<span v-for="v in consultation_list">{{v.name}}</span>
 					</div>
 				</div>
@@ -144,7 +144,7 @@
 						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{forms.module_contraindications_labels.length}}个禁忌症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_contraindications_labels.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_contraindications_labels.length > 0">
 						<span v-for="v in forms.module_contraindications_labels">{{v.name}}</span>
 					</div>
 				</div>
@@ -164,7 +164,7 @@
 						<p class="am-radius" @click="addEditFn($event, 3)">选中了{{forms.module_function_labels.length}}个作用功能</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_function_labels.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_function_labels.length > 0">
 						<span v-for="v in forms.module_function_labels">{{v.name}}</span>
 					</div>
 				</div>

@@ -22,7 +22,7 @@
 						<p class="am-radius" @click="addEditFn($event, '项目模块')">选中{{forms.module_list.length}}个模块</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list module_show_list" v-if="forms.module_list.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list module_show_list" v-if="forms.module_list.length > 0">
 						<ul v-for="(module, key) in forms.module_list">
 							<li v-for="(item, i) in module">
 								<span v-if="module.length > 1">
@@ -113,7 +113,7 @@
 						<p class="am-radius" @click="addEditFn($event, '适应症')">选中了{{forms.module_indications_labels.length}}个适应症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_indications_labels.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_indications_labels.length > 0">
 						<span v-for="v in forms.module_indications_labels">{{v.name}}</span>
 					</div>
 				</div>
@@ -133,7 +133,7 @@
 						<p class="am-radius" @click="addEditFn($event, '作用部位')">选中了{{forms.module_working_part_labels.length}}个作用部位</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="forms.module_working_part_labels.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_working_part_labels.length > 0">
 						<span v-for="v in forms.module_working_part_labels">{{v.name}}</span>
 					</div>
 				</div>
@@ -547,7 +547,10 @@
 							'<td>'+data.time+'</td>'+
 							'</tr>';
 					}
-					var item = '<table class="am-table am-table-bordered am-table-striped am-table-compact">'+
+					if (self.module_list_arr.length == 0) {
+						var item = '无模块，请添加模块！'
+					} else {
+						var item = '<table class="am-table am-table-bordered am-table-striped am-table-compact">'+
 							'<thead>'+
 							'<tr>'+
 							'<th></th>'+
@@ -562,6 +565,7 @@
 							items +
 							'</tbody>'+
 							'</table>';
+					}
 					var addBtn = '';
 				} else if (title == '适应症') {
 					var item = '';

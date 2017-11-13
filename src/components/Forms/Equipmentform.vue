@@ -108,7 +108,7 @@
 						<p class="am-radius" @click="addEditFn($event, 1)">选中了{{indications}}个适应症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="indications > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="indications > 0">
 						<span v-for="v in forms.equipment_indications_labels">{{v.name}}</span>
 					</div>
 				</div>
@@ -118,7 +118,7 @@
 						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{contraindications}}个禁忌症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 show_detail_list" v-if="contraindications > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="contraindications > 0">
 						<span v-for="v in forms.equipment_contraindications_labels">{{v.name}}</span>
 					</div>
 				</div>
