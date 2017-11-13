@@ -29,7 +29,11 @@ const common = {
 					callbackfail();
 				}
 			} else if (res.status == 20000 || res.status == 20001) {
-				window.location.href = 'admin/#/login';
+				if (window.location.pathname.indexOf('admin') > '-1') {
+					window.location.href = '#/login';
+				} else {
+					window.location.href = 'admin/#/login';
+				}
 			} else if (res.status == 100001 || res.status == 100002) {
 				self.dialog(res.msg);
 				$('button').button('reset');
