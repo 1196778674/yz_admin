@@ -262,9 +262,6 @@
 					self.forms = res.data;
 					self.getCenter();
 					self.getSystem();
-					if (self.forms.max_age_limit == '' && self.forms.min_age_limit == '') {
-						self.no_limit = true;
-					};
 				});
 			},
 			getLabels () {
