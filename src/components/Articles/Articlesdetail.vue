@@ -49,13 +49,13 @@
 			        <tr>
 			            <td class="title no-right">适应症</td>
 			            <td colspan="5" class="no-right">
-			            	<span v-for="item in detail.equipment_indications_labels">{{item.name}}</span>
+			            	<span v-for="item in detail.supplies_indications_labels">{{item.name}}</span>
 			            </td>
 			        </tr>
 			        <tr>
 			            <td class="title no-right">禁忌症</td>
 			            <td colspan="5" class="no-right">
-			            	<span v-for="item in detail.equipment_contraindications_labels">{{item.name}}</span>
+			            	<span v-for="item in detail.supplies_contraindications_labels">{{item.name}}</span>
 			            </td>
 			        </tr>
 			        <tr>
