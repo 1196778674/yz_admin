@@ -20,7 +20,7 @@
 			        </tr>
 			        <tr>
 			            <td class="title no-right space">年龄限制</td>
-			            <td class="space">{{detail.min_age_limit}}-{{detail.max_age_limit}}</td>
+			            <td class="space">{{detail.age_limit}}</td>
 			            <td class="title space no-right">性别限制</td>
 			            <td class="space">{{detail.gender_limit_name}}</td>
 			            <td class="title space no-right">计量单位</td>
