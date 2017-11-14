@@ -281,6 +281,22 @@
 				}
 				// console.log(this.forms);
 				// return;
+				if (!$.trim(self.forms.code)) {
+					Public.dialog('请输入用品编码');
+					return false;
+				};
+				if (!$.trim(self.forms.name)) {
+					Public.dialog('请输入用品名称');
+					return false;
+				};
+				if (self.forms.center_id == 0) {
+					Public.dialog('请选择所属中心');
+					return false;
+				}
+				if (self.forms.gender_limit == undefined) {
+					Public.dialog('请选择性别限制');
+					return false;
+				}
 				this.forms.supplies_indications_labels = JSON.stringify(this.forms.supplies_indications_labels);
 				this.forms.supplies_contraindications_labels = JSON.stringify(this.forms.supplies_contraindications_labels);
 				Public.Ajax(url, this.forms, 'POST', function(res){

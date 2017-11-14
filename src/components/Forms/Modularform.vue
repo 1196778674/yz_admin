@@ -284,6 +284,9 @@
 					self.grade_list_person = self.forms.personnel_list;
 					self.getCenter();
 					self.getConsultationList(self.forms);
+					if (self.forms.max_age_limit == '' && self.forms.min_age_limit == '') {
+						self.no_limit = true;
+					};
 				});
 			},
 			getConsultationList (obj) {
@@ -532,6 +535,40 @@
 					var url = 'module/edit'
 				} else {
 					var url = 'module/add'
+				}
+				if (!$.trim(self.forms.name)) {
+					Public.dialog('请输入模块名称');
+					return false;
+				};
+				if (self.forms.center_id == 0) {
+					Public.dialog('请选择所属中心');
+					return false;
+				}
+				if (!self.forms.job_grades.length) {
+					Public.dialog('请选择执行人等级');
+					return false;
+				}
+				if (self.forms.whether_medical == undefined) {
+					Public.dialog('请选择是否医疗');
+					return false;
+				}
+				if (!$.trim(self.forms.service_time)) {
+					Public.dialog('请填加服务时间');
+					return false;
+				}
+				if (!$.trim(self.forms.service_after_time)) {
+					Public.dialog('请填加服务后时间');
+					return false;
+				}
+				if (self.forms.gender_limit == undefined) {
+					Public.dialog('请选择性别限制');
+					return false;
+				}
+				// console.log(self.forms.module_clinics);
+				// return;
+				if (!self.forms.module_clinics.length) {
+					Public.dialog('请选择诊室');
+					return false;
 				}
 				this.forms.job_grades = JSON.stringify(this.forms.job_grades);
 				this.forms.personnel_list = JSON.stringify(this.forms.personnel_list);
