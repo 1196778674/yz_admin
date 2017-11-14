@@ -19,7 +19,7 @@
 		},
 		created () {
 			var body_height = ($(window).height() - 90) + 'px';
-			this.bodyHeight.height = body_height;
+			this.bodyHeight.minHeight = body_height;
 		}
 	}
 </script>
