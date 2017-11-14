@@ -190,7 +190,8 @@
 
 				<div class="am-form-group">
 					<div class="am-u-sm-10 am-u-sm-offset-2">
-						<button type="submit" class="am-btn am-btn-primary" @click="save">确认提交</button>
+						<button type="submit" class="am-btn am-btn-primary" @click="addEditFn($event, '确认提交')">确认提交</button>
+						<!--  @click="save" -->
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -389,6 +390,8 @@
 							 	self.forms.module_working_part_labels.push(val);
 							 }
 						});
+					} else if (title == '确认提交') {
+						self.save();
 					}
 				}, function(){
 					$('body').unbind('click').on('click', '.check_items', function(e){
@@ -611,6 +614,10 @@
 								'</li>';
 						}
 					});
+				} else if (title == '确认提交') {
+					var item = '';
+					var addBtn = '';
+					item += '<li>是否确认提交当前项目?</li>';
 				}
 				return '<div class="am-modal am-modal-prompt" tabindex="-1" id="add-edit-modal">'+
 						'<div class="am-modal-dialog">'+
