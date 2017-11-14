@@ -1,6 +1,7 @@
 <template>
 	<animated-zoom-in>
 		<div class="detail">
+			<button class="am-btn am-btn-secondary return-go" @click="goHistory"><i class="am-icon-arrow-left"></i>返回</button>
 			<table class="am-table" id="print_table">
 			    <tbody>
 			        <tr>
@@ -101,6 +102,9 @@
 			this.getDetail(this.edit_id);
 		},
 		methods: {
+			goHistory () {
+				window.history.go(-1);
+			},
 			getDetail (id) {
 				var self = this;
 				var params = {
