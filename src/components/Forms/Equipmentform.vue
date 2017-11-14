@@ -71,7 +71,7 @@
 					</div>
 				</div>
 				<div class="am-form-group am-u-sm-6">
-					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label"><span>*</span>摆放诊室</label>
+					<label for="doc-ipt-3" class="am-u-sm-4 am-form-label">摆放诊室</label>
 					<div class="am-u-sm-8">
 						<select data-am-selected="{btnWidth: '100%'}" id="clinics_name">
 						</select>
