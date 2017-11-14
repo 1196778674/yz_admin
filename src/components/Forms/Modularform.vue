@@ -463,8 +463,8 @@
 					});
 					if (type == 'equipment' || type == 'supplies' || type == 'consultation') {
 						var params = {
-							equipment_list: JSON.stringify(self.equipment_list),
-							supplies_list: JSON.stringify(self.supplies_list),
+							equipment_list: JSON.stringify(self.forms.module_equipment),
+							supplies_list: JSON.stringify(self.forms.module_supplies),
 							center_id: self.forms.center_id || 1
 						};
 						Public.Ajax('module/check_gender_age', params, 'GET', function(res){
@@ -473,7 +473,9 @@
 							$('input[name="gender_limit"]').eq(data.gender).prop('checked', true);
 							self.forms.max_age_limit = data.max_age_limit;
 							self.forms.min_age_limit = data.min_age_limit;
-							self.forms.module_clinics = data.clinics_list;
+							if (data.clinics_list.length) {
+								self.forms.module_clinics = data.clinics_list;
+							}
 
 							if (self.consultation_list.length) {
 								return;
