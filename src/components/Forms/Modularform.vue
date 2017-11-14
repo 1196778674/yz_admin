@@ -566,7 +566,7 @@
 				}
 				// console.log(self.forms.module_clinics);
 				// return;
-				if (!self.forms.module_clinics.length) {
+				if (!self.consultation_list.length) {
 					Public.dialog('请选择诊室');
 					return false;
 				}
@@ -574,7 +574,7 @@
 				this.forms.personnel_list = JSON.stringify(this.forms.personnel_list);
 				this.forms.module_equipment = JSON.stringify(this.forms.module_equipment);
 				this.forms.module_supplies = JSON.stringify(this.forms.module_supplies);
-				this.forms.module_clinics = JSON.stringify(this.forms.module_clinics);
+				this.forms.module_clinics = JSON.stringify(this.consultation_list);
 				this.forms.module_working_part_labels = JSON.stringify(this.forms.module_working_part_labels);
 				this.forms.module_contraindications_labels = JSON.stringify(this.forms.module_contraindications_labels);
 				this.forms.module_indications_labels = JSON.stringify(this.forms.module_indications_labels);
