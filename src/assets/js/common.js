@@ -44,6 +44,7 @@ const common = {
 		})
 		.fail(function() {
 			$('#loading').remove();
+			callbackfail();
 			self.dialog('请求失败，请稍后重试');
 		})
 		
