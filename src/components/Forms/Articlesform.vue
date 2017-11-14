@@ -283,13 +283,20 @@
 				// return;
 				this.forms.supplies_indications_labels = JSON.stringify(this.forms.supplies_indications_labels);
 				this.forms.supplies_contraindications_labels = JSON.stringify(this.forms.supplies_contraindications_labels);
-					Public.Ajax(url, this.forms, 'POST', function(res){
+				Public.Ajax(url, this.forms, 'POST', function(res){
 					if (!!self.$route.query.supplies_id) {
 						window.location.href = '#/articlesdetail?id=' + self.$route.query.supplies_id;
 					} else {
 						window.location.href = '#/articles';
 					}
+				}, function (){
+					self.returnString();
 				});
+			},
+			returnString () {
+				var self = this;
+				self.forms.supplies_indications_labels = JSON.parse(self.forms.supplies_indications_labels);
+				self.forms.supplies_contraindications_labels = JSON.parse(self.forms.supplies_contraindications_labels);
 			},
 			addEditFn (e, type) {
 				var self = this;
