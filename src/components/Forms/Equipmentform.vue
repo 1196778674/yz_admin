@@ -349,7 +349,14 @@
 					} else {
 						window.location.href = '#/equipment';
 					}
+				}, function(){
+					self.returnString();
 				});
+			},
+			returnString () {
+				var self = this;
+				self.forms.equipment_indications_labels = JSON.parse(self.forms.equipment_indications_labels);
+				self.forms.equipment_contraindications_labels = JSON.parse(self.forms.equipment_contraindications_labels);
 			},
 			addEditFn (e, type) {
 				var self = this;

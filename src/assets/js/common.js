@@ -175,7 +175,14 @@ const common = {
 	keyEnter () {
 		$('body').unbind('keyup').on('keyup', 'input[type="text"]', function(e){
 			e.preventDefault();
-			if (e.keyCode == 13) {
+			var flag = true;
+			var inputs = $(e.target).parents('.am-form').find('input[type="text"]');
+			$.each(inputs, function(index, val) {
+				 if (!$(val).val()) {
+				 	flag = false;
+				 }
+			});
+			if (e.keyCode == 13 && flag) {
 				$('#modal_confirm').trigger('click');
 			}
 		});
