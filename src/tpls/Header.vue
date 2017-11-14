@@ -4,7 +4,7 @@
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img src="../assets/img/logo_1.png" alt=""></a>
+                <a href="javascript:;"><img src="../assets/img/logo_1.png" height="571" width="1129" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">

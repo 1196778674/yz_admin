@@ -341,11 +341,11 @@
 					self.grade_list = res.data;
 				});
 				// 设备
-				Public.Ajax('equipment/listByCenterId', {center_id: self.forms.center_id || 0}, 'GET', function(res){
+				Public.Ajax('equipment/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
 					self.equipment_list = res.data;
 				});
 				// 用品 
-				Public.Ajax('supplies/listByCenterId', {center_id: self.forms.center_id || 0}, 'GET', function(res){
+				Public.Ajax('supplies/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
 					self.supplies_list = res.data;
 				});
 				self.getLabelList();
