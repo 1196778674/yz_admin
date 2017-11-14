@@ -133,6 +133,27 @@ const common = {
 		});
 	},
 
+	// 提交确认模态框
+	addModel (e, callback) {
+		$('#confirm_modal').remove();
+		var modal = '<div class="am-modal am-modal-prompt" tabindex="-1" id="confirm_modal">'+
+					'<div class="am-modal-dialog">'+
+					'<div class="am-modal-hd">确认提交当前数据!</div>'+
+					'<div class="am-modal-footer">'+
+			      	'<span class="am-modal-btn" data-am-modal-cancel>检查一下</span>'+
+			      	'<span class="am-modal-btn" data-am-modal-confirm>确认提交</span>'+
+				    '</div>'+
+				  	'</div>'+
+					'</div>';
+		$('body').append(modal);
+	    $('#confirm_modal').modal({
+			relatedTarget: $(e.target),
+			onConfirm: function(e) {
+				callback();
+			}
+		});
+	},
+
 	// 编辑添加modal
 	addEditFn (e, id, htm, callback, init) {
 		$('#add-edit-modal').remove();

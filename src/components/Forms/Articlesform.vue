@@ -160,7 +160,7 @@
 
 				<div class="am-form-group">
 					<div class="am-u-sm-10 am-u-sm-offset-2">
-						<button type="submit" class="am-btn am-btn-primary" @click="save()">确认提交</button>
+						<button type="submit" class="am-btn am-btn-primary" @click="saveArticles($event)">确认提交</button>
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -259,6 +259,10 @@
 					$('#center_name').append(options);
 					Public.initSelect();
 				});
+			},
+			saveArticles (e) {
+				var self = this;
+				Public.addModel(e, self.save);
 			},
 			save () {
 				var self = this;

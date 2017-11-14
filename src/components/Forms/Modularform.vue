@@ -198,7 +198,7 @@
 
 				<div class="am-form-group">
 					<div class="am-u-sm-10 am-u-sm-offset-2">
-						<button type="submit" class="am-btn am-btn-primary" @click="save()">确认提交</button>
+						<button type="submit" class="am-btn am-btn-primary" @click="saveModule($event)">确认提交</button>
 					</div>
 				</div>
 				<div class="clear"></div>
@@ -511,6 +511,10 @@
 				this.forms.min_age_limit = '';
 				this.forms.max_age_limit = '';
 			},
+			saveModule (e) {
+				var self = this;
+				Public.addModel(e, self.save);
+			},
 			save () {
 				var self = this;
 				var center_name = $('.am-selected-status').eq(0).text();
@@ -690,6 +694,7 @@
 	}
 	.form_container .ages span{
 		right: 10px;	
+		font-size: 13px;
 	}
 	.form_container .am-u-sm-5{
 		float: left;
