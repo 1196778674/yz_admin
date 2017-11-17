@@ -89,12 +89,12 @@
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>年龄限制</label>
 					<div class="am-u-sm-10 age" style="float:left;">
 						<div class="am-form-icon am-form-feedback">
-						    <input type="text" class="am-radius" v-model="forms.min_age_limit" maxlength="2" placeholder="" :disabled="no_limit">
+						    <input type="text" class="age-input am-radius" v-model="forms.min_age_limit" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<span class="fg">至</span>
 					  	<div class="am-form-icon am-form-feedback">
-						    <input type="text" class="am-radius" v-model="forms.max_age_limit" maxlength="2" placeholder="" :disabled="no_limit">
+						    <input type="text" class="age-input am-radius" v-model="forms.max_age_limit" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<div class="checkbox no_limit">
@@ -264,8 +264,12 @@
 			};
 			// this.getCenter();
 			this.initCheckbox();
+			this.ageInput();
 		},
 		methods: {
+			ageInput () {
+				Public.inputNumber('.age-input');
+			},
 			getDetail (id) {
 				var self = this;
 				Public.Ajax('module/detail', {module_id: id}, 'GET', function(res){

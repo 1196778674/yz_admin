@@ -193,6 +193,18 @@ const common = {
 		$(id).printThis({
 			importStyle: true
 		});
+	},
+
+	// 正整数
+	inputNumber (cls) {
+		$('body').on('keyup', cls, function(e) {
+			var val = $(e.target).val();
+			if (/^[1-9]\d*$/.test(val)) {
+				$(e.target).val(val);
+			} else {
+				$(e.target).val('');
+			}
+		});
 	}
 	
 

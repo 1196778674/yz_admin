@@ -81,12 +81,12 @@
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label"><span>*</span>年龄限制</label>
 					<div class="am-u-sm-6 age" style="float:left;">
 						<div class="am-form-icon am-form-feedback">
-						    <input type="text" v-model="forms.min_age_limit" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
+						    <input type="text" v-model="forms.min_age_limit" class="age-input am-radius" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<span class="fg">至</span>
 					  	<div class="am-form-icon am-form-feedback">
-						    <input type="text" v-model="forms.max_age_limit" class="am-radius" maxlength="2" placeholder="" :disabled="no_limit">
+						    <input type="text" v-model="forms.max_age_limit" class="age-input am-radius" maxlength="2" placeholder="" :disabled="no_limit">
 						    <span class="am-icon-ellipsis">岁</span>
 					  	</div>
 					  	<div class="checkbox no_limit">
@@ -210,6 +210,7 @@
 		},
 		created () {
 			this.initCheckbox();
+			this.ageInput();
 			if (!!this.$route.query.equipment_id) {
 				this.getDetail(this.$route.query.equipment_id);
 			} else {
@@ -217,6 +218,9 @@
 			}
 		},
 		methods: {
+			ageInput () {
+				Public.inputNumber('.age-input');
+			},
 			noLimit () {
 				this.forms.min_age_limit = '';
 				this.forms.max_age_limit = '';
