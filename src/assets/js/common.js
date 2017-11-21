@@ -2,8 +2,8 @@ const common = {
 	// ajax
 	Ajax (url, params, type, callback, callbackfail) {
 		var self = this;
-		if (window.location.host == '118.190.204.110') {
-			var url = 'http://118.190.204.110/admin/' + url;
+		if (window.location.host == 'basic.lavionlife.com') {
+			var url = 'http://basic.lavionlife.com/admin/' + url;
 		} else {
 			var url = 'http://admin.yx.dev/admin/' + url;
 		}
