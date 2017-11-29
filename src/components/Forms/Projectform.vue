@@ -461,8 +461,14 @@
 						Public.Ajax('label/add', {label_category_id: type, name: val}, 'POST', function(res){
 							Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
 								$('#add_check_name').val('');
-								var list = res.data,
-									item = '';
+								var item = '';
+								if (title == '适应症') {
+									self.indications_list = res.data;
+									var list = self.indications_list;
+								} else {
+									self.working_part_list = res.data;
+									var list = self.working_part_list;
+								}
 								for (var i = 0; i < list.length; i++) {
 									item += '<li>'+
 											'<label class="am-checkbox-inline">'+
