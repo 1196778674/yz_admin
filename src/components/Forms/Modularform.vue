@@ -634,7 +634,7 @@
 						});
 						break;
 					case 3:
-						var title = '作用部位';
+						var title = '作用功能';
 						var arr = [];
 						$.each(self.forms.module_function_labels, function(index, val) {
 							 arr.push(val.id);
