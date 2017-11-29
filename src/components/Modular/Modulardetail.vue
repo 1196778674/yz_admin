@@ -16,9 +16,9 @@
 			            <td class="title no-right space">成本</td>
 			            <td class="space">{{detail.expected_cost}}</td>
 			            <td class="title no-right space">时间</td>
-			            <td class="space">{{detail.service_time}}</td>
+			            <td class="space">{{detail.service_time}}分钟</td>
 			            <td class="title no-right space">服务后时间</td>
-			            <td class="no-right space">{{detail.service_after_time}}</td>
+			            <td class="no-right space">{{detail.service_after_time}}分钟</td>
 			        </tr>
 			        <tr>
 			            <td class="title no-right space">年龄限制</td>

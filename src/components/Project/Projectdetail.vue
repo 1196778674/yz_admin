@@ -30,7 +30,7 @@
 			        </tr>
 			        <tr>
 			            <td class="title no-right space">项目时间</td>
-			            <td class="space">{{detail.time}}</td>
+			            <td class="space">{{detail.time}}分钟</td>
 			            <td class="title no-right space">诊室</td>
 			            <td>
 			            	<span v-for="item in detail.module_clinics">{{item.name}}</span>
