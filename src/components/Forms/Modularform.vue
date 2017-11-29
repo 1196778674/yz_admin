@@ -141,11 +141,11 @@
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">禁忌症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{forms.module_contraindications_labels.length}}个禁忌症</p>
+						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{contraindications_list.length}}个禁忌症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
 					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_contraindications_labels.length > 0">
-						<span v-for="v in forms.module_contraindications_labels">{{v.name}}</span>
+						<span v-for="v in contraindications_list">{{v.name}}</span>
 					</div>
 				</div>
 				<!-- <div class="am-form-group am-form-icon am-form-feedback">
@@ -249,6 +249,7 @@
 				grade_list: '',
 				label_list: '',
 				consultation_list: [],
+				contraindications_list: [],
 				equipment_list: '',
 				supplies_list: '',
 				grade_list_person: [],
@@ -286,6 +287,7 @@
 					});
 					self.consultation_list = self.forms.module_clinics;
 					self.grade_list_person = self.forms.personnel_list;
+					self.contraindications_list = self.forms.module_contraindications_labels;
 					self.getCenter();
 					self.getConsultationList(self.forms);
 					if (self.forms.max_age_limit == '' && self.forms.min_age_limit == '') {
@@ -395,7 +397,8 @@
 						list = self.getLabelSelct(self.label_list, 1);
 						break;
 					case 2:
-						list = self.getLabelSelct(self.label_list, 2);
+						// list = self.getLabelSelct(self.label_list, 2);
+						list =  this.forms.module_contraindications_labels;
 						break;
 					case 3:
 						list = self.getLabelSelct(self.label_list, 3);
@@ -410,7 +413,6 @@
 				Public.addEditFn(e, '', self.selectHtm(type, list), function(){
 					switch(type) {
 						case 'grade':
-							self.forms.job_grades = [];
 							self.grade_list_person = [];
 							break;
 						case 'equipment':
@@ -421,7 +423,6 @@
 							break;
 						case 'consultation':
 							self.forms.module_clinics = [];
-							self.consultation_list = [];
 							break;
 						case 1:
 							self.forms.module_indications_labels = [];
@@ -439,6 +440,8 @@
 
 							break;
 					};
+					self.contraindications_list = [];
+					self.consultation_list = [];
 					$.each(list, function(index, val) {
 						 var id = val.id + '';
 						 if ($.inArray(id, self.checked_list) > -1 && type == 'grade') {
@@ -460,7 +463,7 @@
 						 	self.forms.module_indications_labels.push(val);
 						 };
 						 if ($.inArray(id, self.checked_list) > -1 && type == 2) {
-						 	self.forms.module_contraindications_labels.push(val);
+						 	self.contraindications_list.push(val);
 						 };
 						 if ($.inArray(id, self.checked_list) > -1 && type == 3) {
 						 	self.forms.module_function_labels.push(val);
@@ -469,7 +472,7 @@
 						 	self.forms.module_function_labels.push(val);
 						 };
 					});
-					if (type == 'equipment' || type == 'supplies' || type == 'consultation') {
+					if (type == 'equipment' || type == 'supplies' || type == 'consultation' || type == '2') {
 						var params = {
 							equipment_list: JSON.stringify(self.forms.module_equipment),
 							supplies_list: JSON.stringify(self.forms.module_supplies),
@@ -485,12 +488,21 @@
 								self.forms.module_clinics = data.clinics_list;
 							}
 
-							if (self.consultation_list.length) {
+							if (data.module_contraindications_labels.length) {
+								self.forms.module_contraindications_labels = data.module_contraindications_labels;
+							}
+
+							if (self.consultation_list.length && self.contraindications_list.length) {
 								return;
 							}
 							$.each(self.forms.module_clinics, function(index, val) {
 								 if (val.status == 1) {
 								 	self.consultation_list.push(val);
+								 }
+							});
+							$.each(self.forms.module_contraindications_labels, function(index, val) {
+								 if (val.status == 1) {
+								 	self.contraindications_list.push(val);
 								 }
 							});
 						});
@@ -581,7 +593,7 @@
 				this.forms.module_supplies = JSON.stringify(this.forms.module_supplies);
 				this.forms.module_clinics = JSON.stringify(this.consultation_list);
 				this.forms.module_working_part_labels = JSON.stringify(this.forms.module_working_part_labels);
-				this.forms.module_contraindications_labels = JSON.stringify(this.forms.module_contraindications_labels);
+				this.forms.module_contraindications_labels = JSON.stringify(this.contraindications_list);
 				this.forms.module_indications_labels = JSON.stringify(this.forms.module_indications_labels);
 				this.forms.module_function_labels = JSON.stringify(this.forms.module_function_labels);
 				// console.log(this.forms);
@@ -630,7 +642,7 @@
 					case 2:
 						var title = '禁忌症';
 						var arr = [];
-						$.each(self.forms.module_contraindications_labels, function(index, val) {
+						$.each(self.contraindications_list, function(index, val) {
 							 arr.push(val.id);
 						});
 						break;
