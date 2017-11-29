@@ -153,6 +153,12 @@
 						<textarea name="" v-model="forms.adverse_reaction"></textarea>
 					</div>
 				</div>
+				<div class="am-form-group">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">描述</label>
+					<div class="am-u-sm-10">
+						<textarea name="" v-model="forms.description"></textarea>
+					</div>
+				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">注意事项</label>
 					<div class="am-u-sm-10">
