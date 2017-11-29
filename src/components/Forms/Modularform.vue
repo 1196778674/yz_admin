@@ -377,30 +377,31 @@
 			},
 			addEditFn (e, type) {
 				var self = this;
+				var list;
 				switch(type) {
 					case 'grade':
-						var list = this.grade_list;
+						list = this.grade_list;
 						break;
 					case 'equipment':
-						var list = this.equipment_list;
+						list = this.equipment_list;
 						break;
 					case 'supplies':
-						var list = this.supplies_list;
+						list = this.supplies_list;
 						break;
 					case 'consultation':
-						var list = this.forms.module_clinics;
+						list = this.forms.module_clinics;
 						break;
 					case 1:
-						var list = self.getLabelSelct(self.label_list, 1);
+						list = self.getLabelSelct(self.label_list, 1);
 						break;
 					case 2:
-						var list = self.getLabelSelct(self.label_list, 2);
+						list = self.getLabelSelct(self.label_list, 2);
 						break;
 					case 3:
-						var list = self.getLabelSelct(self.label_list, 3);
+						list = self.getLabelSelct(self.label_list, 3);
 						break;
 					case 4:
-						var list = self.getLabelSelct(self.label_list, 4);
+						list = self.getLabelSelct(self.label_list, 4);
 						break;
 					default:
 
@@ -500,8 +501,8 @@
 						Public.Ajax('label/add', {label_category_id: type, name: val}, 'POST', function(res){
 							Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
 								$('#add_check_name').val('');
-								var list = res.data,
-									item = '';
+								list = res.data;
+								var item = '';
 								for (var i = 0; i < list.length; i++) {
 									item += '<li>'+
 											'<label class="am-checkbox-inline">'+
