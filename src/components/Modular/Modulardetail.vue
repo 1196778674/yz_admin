@@ -231,6 +231,10 @@
 		font-weight: bolder;
 		color: #333;
 	}
+	table tr td p{
+		margin: 0;
+		line-height: 25px;
+	}
 	table tr td span:before{
 		width: auto;
 	}
