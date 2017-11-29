@@ -325,7 +325,7 @@
 				var self = this;
 				var list, item;
 				Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
-					var list = res.data;
+					list = res.data;
 					Public.addEditFn(e, '', self.selectHtm(type, list), function(){
 						if (type == 1) {
 							self.forms.supplies_indications_labels = [];
@@ -352,8 +352,8 @@
 							Public.Ajax('label/add', {label_category_id: type, name: val}, 'POST', function(res){
 								Public.Ajax('label/selectList', {label_category_id: type}, 'GET', function(res){
 									$('#add_check_name').val('');
-									var list = res.data,
-										item = '';
+									list = res.data,
+									item = '';
 									for (var i = 0; i < list.length; i++) {
 										item += '<li>'+
 												'<label class="am-checkbox-inline">'+
