@@ -120,7 +120,11 @@
 			        </tr>
 			        <tr>
 			            <td class="title no-right">备注</td>
-			            <td colspan="5" class="no-right">{{detail.show_remark}}</td>
+			            <td colspan="5" class="no-right">
+			            	<p v-for="item in detail.show_remark">
+			            		{{item.title}} {{item.content}}
+			            	</p>
+			            </td>
 			        </tr>
 			    </tbody>
 			</table>
