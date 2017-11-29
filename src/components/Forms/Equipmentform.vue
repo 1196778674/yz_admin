@@ -281,7 +281,9 @@
 					}
 				});
 				Public.Ajax('clinics/listByCenterId', {center_id: self.forms.center_id || 1}, 'GET', function(res){
-					self.clinics_list = res.data;
+					var datas = res.data,
+						first = [{id: 0, name: '请选择'}]
+					self.clinics_list = first.concat(datas);
 					var options = '';
 					var clinics_id = self.forms.clinics_id;
 					var eq;
@@ -292,6 +294,7 @@
 							 }
 						});
 					}
+					// console.log(self.clinics_list);
 					for (var i = 0; i < self.clinics_list.length; i++) {
 						if (eq == i) {
 							options += '<option value="'+self.clinics_list[i].id+'" selected>'+self.clinics_list[i].name+'</option>';
