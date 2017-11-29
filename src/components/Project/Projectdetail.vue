@@ -92,11 +92,11 @@
 			        </tr>
 			        <tr>
 			            <td class="title no-right">注意事项</td>
-			            <td colspan="5" class="no-right">{{detail.considerations}}</td>
+			            <td colspan="5" class="no-right">{{detail.show_considerations}}</td>
 			        </tr>
 			        <tr>
 			            <td class="title no-right">不良反应</td>
-			            <td colspan="5" class="no-right">{{detail.adverse_reaction}}</td>
+			            <td colspan="5" class="no-right">{{detail.show_adverse_reaction}}</td>
 			        </tr>
 			        <tr>
 			            <td class="title no-right">备注</td>
