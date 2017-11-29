@@ -120,7 +120,7 @@
 			        </tr>
 			        <tr>
 			            <td class="title no-right">备注</td>
-			            <td colspan="5" class="no-right">{{detail.remark}}</td>
+			            <td colspan="5" class="no-right">{{detail.show_remark}}</td>
 			        </tr>
 			    </tbody>
 			</table>
