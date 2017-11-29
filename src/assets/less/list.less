@@ -251,9 +251,17 @@ table tr td{
 			}
 		}
 		&:before{
-			width: 0;
+			display: inline-block;
+			width: 10px;
 			height: 0px;
-			content: '|'
+			content: '|';
+			color: #888;
+		}
+		&:after{
+			display: inline-block;
+			width: 5px;
+			height: 0px;
+			content: ''
 		}
 	}
 }

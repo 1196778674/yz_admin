@@ -227,4 +227,10 @@
 		font-weight: bolder;
 		color: #333;
 	}
+	table tr td span:before{
+		width: auto;
+	}
+	table tr td span:after{
+		width: 0px;
+	}
 </style>
