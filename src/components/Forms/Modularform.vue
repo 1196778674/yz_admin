@@ -411,6 +411,8 @@
 						break;
 				};
 				Public.addEditFn(e, '', self.selectHtm(type, list), function(){
+					self.contraindications_list = [];
+					self.consultation_list = [];
 					switch(type) {
 						case 'grade':
 							self.grade_list_person = [];
@@ -440,8 +442,6 @@
 
 							break;
 					};
-					self.contraindications_list = [];
-					self.consultation_list = [];
 					$.each(list, function(index, val) {
 						 var id = val.id + '';
 						 if ($.inArray(id, self.checked_list) > -1 && type == 'grade') {
