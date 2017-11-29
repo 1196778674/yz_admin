@@ -411,8 +411,14 @@
 						break;
 				};
 				Public.addEditFn(e, '', self.selectHtm(type, list), function(){
-					self.contraindications_list = [];
-					self.consultation_list = [];
+					if (type != 2) {
+						self.consultation_list = [];
+					}
+					if (type != 'consultation') {
+						self.contraindications_list = [];
+					}
+					// self.contraindications_list = [];
+					// self.consultation_list = [];
 					switch(type) {
 						case 'grade':
 							self.grade_list_person = [];
@@ -492,19 +498,20 @@
 								self.forms.module_contraindications_labels = data.module_contraindications_labels;
 							}
 
-							if (self.consultation_list.length && self.contraindications_list.length) {
-								return;
-							}
-							$.each(self.forms.module_clinics, function(index, val) {
-								 if (val.status == 1) {
-								 	self.consultation_list.push(val);
-								 }
-							});
-							$.each(self.forms.module_contraindications_labels, function(index, val) {
-								 if (val.status == 1) {
-								 	self.contraindications_list.push(val);
-								 }
-							});
+							if (!self.consultation_list.length && type != '2') {
+								$.each(self.forms.module_clinics, function(index, val) {
+									 if (val.status == 1) {
+									 	self.consultation_list.push(val);
+									 }
+								});
+							};
+							if (!self.contraindications_list.length && type != 'consultation') {
+								$.each(self.forms.module_contraindications_labels, function(index, val) {
+									 if (val.status == 1) {
+									 	self.contraindications_list.push(val);
+									 }
+								});
+							};
 						});
 					}
 				}, function(){
