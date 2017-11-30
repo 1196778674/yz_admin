@@ -13,7 +13,7 @@
 			            <td class="no-right space">{{detail.name}}</td>
 			        </tr>
 			        <tr>
-			            <td class="title no-right space">成本</td>
+			            <td class="title no-right space">最低限价</td>
 			            <td class="space">{{detail.expected_cost}}</td>
 			            <td class="title no-right space">时间</td>
 			            <td class="space">{{detail.service_time}}分钟</td>
