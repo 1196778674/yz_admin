@@ -168,6 +168,15 @@
 						<span v-for="v in forms.module_function_labels">{{v.name}}</span>
 					</div>
 				</div>
+				<div class="am-form-group ages" style="padding-left:5px;">
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">成本</label>
+					<div class="am-u-sm-10" style="float:left;">
+						<div class="am-form-icon am-form-feedback">
+						    <input type="text" class="am-radius" v-model="forms.expected_cost" maxlength="4" placeholder="">
+						    <span class="am-icon-ellipsis">元</span>
+					  	</div>
+					</div>
+				</div>
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">注意事项</label>
 					<div class="am-u-sm-10">
@@ -304,6 +313,7 @@
 				};
 				Public.Ajax('module/check_gender_age', params, 'GET', function(res){
 					self.forms.module_clinics = res.data.clinics_list;
+					self.forms.module_contraindications_labels = res.data.module_contraindications_labels;
 				});
 			},
 			getCenter () {
