@@ -144,7 +144,7 @@
 						<p class="am-radius" @click="addEditFn($event, 2)">选中了{{contraindications_list.length}}个禁忌症</p>
 						<span class="am-icon-ellipsis-h"></span>
 					</div>
-					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_contraindications_labels.length > 0">
+					<div class="am-u-sm-10 am-u-sm-offset-2 show_detail_list" v-if="forms.module_contraindications_labels">
 						<span v-for="v in contraindications_list">{{v.name}}</span>
 					</div>
 				</div>
@@ -432,6 +432,7 @@
 					switch(type) {
 						case 'grade':
 							self.grade_list_person = [];
+							self.forms.job_grades = [];
 							break;
 						case 'equipment':
 							self.forms.module_equipment = [];
