@@ -186,7 +186,7 @@
 					</div>
 				</div>
 				<div class="am-form-group am-form-icon am-form-feedback">
-					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">会员价</label>
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">最低限价</label>
 					<div class="am-u-sm-5">
 						<input type="text" class="am-radius" maxlength="9" v-model="forms.member_price" placeholder="会员价">
 						<span class="am-icon-ellipsis">元</span>

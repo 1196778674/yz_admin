@@ -15,7 +15,7 @@
 			        <tr>
 			            <td class="title no-right space">成本</td>
 			            <td class="space">{{detail.expected_cost}}</td>
-			            <td class="title no-right space">会员价</td>
+			            <td class="title no-right space">最低限价</td>
 			            <td class="space">{{detail.member_price}}</td>
 			            <td class="title no-right space">市场价</td>
 			            <td class="no-right space">{{detail.market_price}}</td>
