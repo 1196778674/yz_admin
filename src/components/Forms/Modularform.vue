@@ -169,7 +169,7 @@
 					</div>
 				</div>
 				<div class="am-form-group ages" style="padding-left:5px;">
-					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">最低限价</label>
+					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">成本</label>
 					<div class="am-u-sm-10" style="float:left;">
 						<div class="am-form-icon am-form-feedback">
 						    <input type="text" class="am-radius" v-model="forms.expected_cost" maxlength="4" placeholder="">
