@@ -103,7 +103,7 @@
 		},
 		methods: {
 			goHistory () {
-				window.history.go(-1);
+				Public.goList('articles');
 			},
 			getDetail (id) {
 				var self = this;

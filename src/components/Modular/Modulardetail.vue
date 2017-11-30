@@ -155,7 +155,7 @@
 		},
 		methods: {
 			goHistory () {
-				window.history.go(-1);
+				Public.goList('modular');
 			},
 			getDetail (id) {
 				var self = this;

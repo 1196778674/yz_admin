@@ -147,7 +147,7 @@
 		},
 		methods: {
 			goHistory () {
-				window.history.go(-1);
+				Public.goList('project');
 			},
 			getDetail (id) {
 				var self = this;

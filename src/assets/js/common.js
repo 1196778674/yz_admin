@@ -205,7 +205,12 @@ const common = {
 				$(e.target).val('');
 			}
 		});
-	}
+	},
+
+	// 返回列表
+	goList (type) {
+		window.location.href = '#/' + type;
+	},
 	
 
 
