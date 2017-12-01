@@ -75,7 +75,10 @@
 			        <tr>
 			            <td class="title no-right">禁忌症</td>
 			            <td colspan="5" class="no-right">
-			            	<span v-for="item in detail.module_contraindications_labels">{{item.name}}</span>
+			            	<p v-for="item in detail.module_contraindications_labels">
+			            		{{item.title}}<span v-for="v in item.list">{{v.name}}</span>
+			            	</p>
+			            	<!-- <span v-for="item in detail.module_contraindications_labels">{{item.name}}</span> -->
 			            </td>
 			        </tr>
 			        <tr>
