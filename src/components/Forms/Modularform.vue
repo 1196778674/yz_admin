@@ -408,7 +408,7 @@
 						break;
 					case 2:
 						// list = self.getLabelSelct(self.label_list, 2);
-						list =  this.forms.module_contraindications_labels;
+						list =  this.forms.module_contraindications_labels.length ? this.forms.module_contraindications_labels : self.getLabelSelct(self.label_list, 2);
 						break;
 					case 3:
 						list = self.getLabelSelct(self.label_list, 3);
@@ -421,10 +421,10 @@
 						break;
 				};
 				Public.addEditFn(e, '', self.selectHtm(type, list), function(){
-					if (type != 2) {
+					if (type == 'consultation') {
 						self.consultation_list = [];
 					}
-					if (type != 'consultation') {
+					if (type == '2') {
 						self.contraindications_list = [];
 					}
 					// self.contraindications_list = [];
