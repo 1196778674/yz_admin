@@ -424,7 +424,7 @@
 					if (type == 'consultation') {
 						self.consultation_list = [];
 					}
-					if (type == '2') {
+					if (type == '2' || type == 'supplies' || type == 'equipment') {
 						self.contraindications_list = [];
 					}
 					// self.contraindications_list = [];
