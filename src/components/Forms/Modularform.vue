@@ -421,7 +421,7 @@
 						break;
 				};
 				Public.addEditFn(e, '', self.selectHtm(type, list), function(){
-					if (type == 'consultation') {
+					if (type == 'consultation' || type == 'equipment') {
 						self.consultation_list = [];
 					}
 					if (type == '2' || type == 'supplies' || type == 'equipment') {
