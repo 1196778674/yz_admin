@@ -80,7 +80,7 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">诊室</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius">
+						<p class="am-radius auto-height">
 							<span v-for="item in system.module_clinics">
 								{{item.name}}
 							</span>
@@ -90,7 +90,7 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">设备</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius">
+						<p class="am-radius auto-height">
 							<span v-for="item in system.module_equipment">
 								{{item.name}}
 							</span>
@@ -100,7 +100,7 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">用品</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius">
+						<p class="am-radius auto-height">
 							<span v-for="item in system.module_supplies">
 								{{item.name}}
 							</span>
@@ -120,7 +120,7 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">禁忌症</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius">
+						<p class="am-radius auto-height">
 							<span v-for="item in system.module_contraindications_labels">
 								{{item.name}}
 							</span>
@@ -140,7 +140,7 @@
 				<div class="am-form-group">
 					<label for="doc-ipt-3" class="am-u-sm-2 am-form-label">作用功能</label>
 					<div class="am-u-sm-10">
-						<p class="am-radius">
+						<p class="am-radius auto-height">
 							<span v-for="item in system.module_function_labels">
 								{{item.name}}
 							</span>
